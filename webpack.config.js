@@ -43,5 +43,9 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/favicon.ico'
     })
-  ]
+  ],
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000
+  }
 };

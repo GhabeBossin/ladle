@@ -62,5 +62,3 @@ export default class MainNav extends React.Component {
     );
   }
 }
-
-// export default Nav

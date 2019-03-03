@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import ReactImage from './react.png';
+import Nav from './Nav'
 
 export default class App extends Component {
   state = { username: null };
@@ -12,11 +13,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { username } = this.state;
+    // const { username } = this.state;
     return (
-      <div>
-        {username ? <h1>{`3 Blind Mice is using  ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
+      <div className="App">
+        <Nav />
+        {/* {username ? <h1>{`3 Blind Mice is using  ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
+        <img src={ReactImage} alt="react" /> */}
+        
       </div>
     );
   }

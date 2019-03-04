@@ -11,6 +11,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+// import SearchBar from './SearchBar.js'
 
 export default class MainNav extends React.Component {
   constructor(props) {
@@ -34,6 +35,11 @@ export default class MainNav extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+            {/* STRETCH:
+              <NavItem>
+                <SearchBar />
+              </NavItem>
+              */}
               <NavItem>
                 <NavLink href="#">Hello, Username</NavLink>
               </NavItem>
@@ -45,10 +51,6 @@ export default class MainNav extends React.Component {
                   <DropdownItem>
                     <NavLink href="/login">Logout</NavLink>
                   </DropdownItem>
-                  {/* STRETCH:
-                  <DropdownItem>
-                    <NavLink href="/">Search</NavLink>
-                  </DropdownItem> */}
                   <DropdownItem divider />
                   <DropdownItem>
                     <NavLink href="/dashboard">Admin</NavLink>

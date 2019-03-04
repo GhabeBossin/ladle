@@ -1,14 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 const localhost = "http://localhost:8080"
-axios({
-  method: 'post',
-  url: '5',
-  data: {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-  }
-});
+
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);

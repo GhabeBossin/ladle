@@ -5,13 +5,8 @@ import Nav from './Nav';
 import SignUp from './SignUp';
 
 export default class App extends Component {
-  constructor() {
-    super(),
-    this.state = { 
-    username: 'Bill',
-   }
-  }
-  
+  state = { username: null };
+
   componentDidMount() {
     fetch('/api/getUsername')
       .then(res => res.json())
@@ -25,6 +20,6 @@ export default class App extends Component {
         <Nav />
         <SignUp />
       </div>
-   );
+    );
   }
 }

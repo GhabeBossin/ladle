@@ -7,12 +7,13 @@
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --host 0.0.0.0",
-    "server": "nodemon src/server/index.js",
+    "server": "nodemon -L src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Sandeep Raveesh",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.4",

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 import ReactImage from './react.png';
 import Nav from './Nav';
-import SignUp from './SignUp';
+import Game from './Game';
 
 export default class App extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <SignUp />
+        <Game />
       </div>
     );
   }

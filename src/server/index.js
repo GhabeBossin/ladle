@@ -13,6 +13,7 @@ app.use(express.static('dist'));
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
 const signupRoutes = require("./routes/signup");
+const gameRoutes =  require("./routes/game");
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -22,3 +23,4 @@ app.use(function(req, res, next) {
 });
 
 app.use("/signup", signupRoutes(knex));
+app.use("/game", gameRoutes(knex));

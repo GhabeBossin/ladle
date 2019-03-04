@@ -4,9 +4,10 @@ const express     = require('express');
 const os          = require('os');
 const knexConfig  = require("../../knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
-
+const bodyParser  = require("body-parser");
 const app         = express();
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static('dist'));
 // app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
 
@@ -20,4 +21,4 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use("/", signupRoutes(knex));
+app.use("/signup", signupRoutes(knex));

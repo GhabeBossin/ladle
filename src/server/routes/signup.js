@@ -17,11 +17,13 @@ const router  = express.Router();
 //   return router
 
   module.exports = (knex) => {
-    console.log("almost there")
+    console.log("almost there+++++++++++++++++++++++++++++++++")
     router.post("/", (req, res) => {
          knex("users")
-        .insert({name: "billy"})
-        .then(console.log("insterted"));
+        .insert({name: "timmy"})
+        .then(function(body) {
+          console.log("req.body",res.body);
+        })
     });
     return router;
   };

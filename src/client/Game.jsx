@@ -9,7 +9,7 @@ export default class Game extends React.Component {
       en_word: "",
       es_word: "",
       user_word: "",
-      user_word_id: null
+      user_word_id: null,
     }
   }
 
@@ -42,6 +42,7 @@ export default class Game extends React.Component {
       </form>
       <h1>{this.state.en_word} </h1>
       <h1>{this.state.es_word} </h1>
+      <button id='flip'>FLIP</button>
       </div>
     );
   }

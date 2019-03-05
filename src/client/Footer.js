@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Navbar } from 'reactstrap';
-// import SearchBar from './SearchBar.js'
 
-export default class Footer extends React.Component {
+class Footer extends Component {
   render() {
     return (
-      <footer>
-        <Navbar className='justify-content-end mb-0'>
+      <footer className={this.props.className} >
+        <Navbar>
           <span> © Three Blind 🐁 Ltd site</span>
         </Navbar>
       </footer>
     );
   }
 }
+
+export default Footer

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
@@ -13,7 +13,7 @@ import {
   DropdownItem } from 'reactstrap';
 // import SearchBar from './SearchBar.js'
 
-export default class MainNav extends React.Component {
+class MainNav extends Component {
   constructor(props) {
     super(props);
     //get username for greeting from whoever the current user is
@@ -29,8 +29,8 @@ export default class MainNav extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar color="warning" expand="md">
+      <div className={ this.props.className }>
+        <Navbar light expand="md" className="shadow-sm">
           <NavbarBrand href="/">ladle</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -64,3 +64,5 @@ export default class MainNav extends React.Component {
     );
   }
 }
+
+export default MainNav

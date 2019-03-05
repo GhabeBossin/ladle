@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,3 +41,4 @@ export default class SignUp extends React.Component {
   }
 }
 
+export default SignUp

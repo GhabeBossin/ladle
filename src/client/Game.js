@@ -41,7 +41,7 @@ class Game extends Component {
         <Col>
         { !this.state.flipped
           ?
-          <Card className={ `${this.state.flipped ? '' : 'animated flipOutX'} text-center flash-card front border-0` }>
+          <Card className="text-center flash-card front border-0">
             <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
             <CardBody className="card-img-overlay">
               <CardTitle className="flash-card-word">Eat Shit (eng word on front of card)</CardTitle>

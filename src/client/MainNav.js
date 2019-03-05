@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
@@ -13,7 +13,7 @@ import {
   DropdownItem } from 'reactstrap';
 // import SearchBar from './SearchBar.js'
 
-export default class MainNav extends React.Component {
+class MainNav extends Component {
   constructor(props) {
     super(props);
     //get username for greeting from whoever the current user is
@@ -64,3 +64,5 @@ export default class MainNav extends React.Component {
     );
   }
 }
+
+export default MainNav

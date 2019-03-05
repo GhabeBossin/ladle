@@ -1,44 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
-import './app.css';
-import MainNav from './MainNav'
+import StyledMainNav from './styles/mainNavStyles'
 import Game from './Game'
-import Footer from './Footer'
+import StyledFooter from './styles/footerStyles'
 
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: calc(100vh - 2.5em);
 `;
 
-const StyledNav = styled(MainNav)`
-  display: flex;
-  flex: 1;
-  max-height: fit-content;
-  min-width: 100%;
-  justify-self: flex-start;
-  margin-bottom: 1rem;
-
-  & > nav {
-    min-width: 100% !important;
-  }
-`;
-
-const StyledFooter = styled(Footer)`
-  display: flex;
-  flex: 1;
-  max-height: 8vh;
-  min-width: 100%;
-  justify-self: flex-end;
-  justify-content: flex-end;
-  & > footer {
-    min-width: 100% !important;
-  }
-`;
-
-export default class App extends Component {
+class App extends Component {
   // state = { username: null };
 
   componentDidMount() {
@@ -50,11 +23,15 @@ export default class App extends Component {
   render() {
     // const { username } = this.state;
     return (
-      <AppContainer className="app">
-        <StyledNav />
-        <Game />
+      <div>
+        <AppContainer>
+          <StyledMainNav />
+          <Game />
+        </AppContainer>
         <StyledFooter />
-      </AppContainer>
+      </div>
     );
   }
 }
+
+export default App

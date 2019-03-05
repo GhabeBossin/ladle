@@ -29,8 +29,8 @@ export default class MainNav extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar color="warning" expand="md">
+      <div className={ this.props.className }>
+        <Navbar light expand="md" className="shadow-sm">
           <NavbarBrand href="/">ladle</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

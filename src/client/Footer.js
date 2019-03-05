@@ -5,10 +5,10 @@ import { Navbar } from 'reactstrap';
 export default class Footer extends React.Component {
   render() {
     return (
-      <footer>
-        <Navbar className='justify-content-end mb-0'>
+      <footer className={this.props.className} >
+        {/* < className='justify-content-end mb-0'> */}
           <span> © Three Blind 🐁 Ltd site</span>
-        </Navbar>
+        {/* </> */}
       </footer>
     );
   }

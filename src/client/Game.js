@@ -13,52 +13,48 @@ import FlashCardImg from './flash-card.png';
 import './game.css';
 import axios from 'axios';
 
-export default class Game extends React.Component {
+class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       en_word: "",
       es_word: "",
       user_word: "",
-      user_word_id: null,
-      user_id: 2
+      user_word_id: 1,
+      user_id: 2,
+      firstFlip: false,
+      flipped  : false
     }
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-
-  componentDidMount() {
+  getCard = (user_word_id) => {
     axios.get("http://localhost:8080/game", {
       params: {
-        id: "this",
+        id: user_word_id,
       }
     })
     .then((response) => {
       this.setState({en_word: response.data[0].rows[0].word })
       this.setState({es_word: response.data[1].rows[0].word })
-      // console.log(response);
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
-  handleFlip(e) {
+
+  componentDidMount() {
+    this.getCard(this.state.user_word_id)
   }
 
-  render() {
-    return (
-class Game extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstFlip: false,
-      flipped  : false
-    }
-  };
+  checkMark = () => {
+    let num = this.state.user_word_id;
+    this.setState({
+      user_word_id: num + 1
+    })
+    this.getCard(num + 1)
+    this.setState({firstFlip: false, flipped: !this.state.flipped})
+  }
 
   firstFlip = () => {
     this.setState({
@@ -106,7 +102,7 @@ class Game extends Component {
             <ButtonGroup className="card-answer-btns">
               <Button>✘</Button>
               <Button onClick={this.flip}>Flip</Button>
-              <Button>✔</Button>
+              <Button onClick={this.checkMark}>✔</Button>
             </ButtonGroup> }
         </Col>
       </Row>

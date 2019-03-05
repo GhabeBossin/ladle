@@ -18,10 +18,10 @@ module.exports = (knex) => {
     //             console.log("data+++++++++++++++++++++++++++++++++++++++++++++++++++++", dataArray)
     //           })
     // }
-  console.log(req.params)  
+  console.log(req.query.id)  
   const queries = [
-    knex("en_words").select('*').where({'en_words.id': 1}),
-    knex("es_words").select('*').where({'es_words.id': 1}),
+    knex("en_words").select('*').where({ 'en_words.id': req.query.id }),
+    knex("es_words").select('*').where({ 'es_words.id': req.query.id }),
   ];
 
   const multiQuery = queries.join(";");

@@ -1,0 +1,10 @@
+.flash-card {
+  margin: 1em 0 2em;
+}
+
+.card-img-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}

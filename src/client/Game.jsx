@@ -7,7 +7,7 @@ export default class Game extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       en_word: "",
-      sp_word: "",
+      es_word: "",
       user_word: "",
       user_word_id: null
     }
@@ -20,10 +20,10 @@ export default class Game extends React.Component {
         ranking: 1
       }
     })
-    // .then(this.setState({en_word: response.body.word}))
     .then((response) => {
-      this.setState({en_word: response.data[0].word })
-      console.log("response", response);
+      this.setState({en_word: response.data[0].rows[0].word })
+      this.setState({es_word: response.data[1].rows[0].word })
+      console.log(response);
     })
     .catch(function (error) {
       console.log(error);
@@ -41,6 +41,7 @@ export default class Game extends React.Component {
         <input type="submit" value="Submit" />
       </form>
       <h1>{this.state.en_word} </h1>
+      <h1>{this.state.es_word} </h1>
       </div>
     );
   }

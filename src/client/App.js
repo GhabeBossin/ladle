@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import StyledAppContainer from './styles/appStyles'
 import StyledMainNav from './styles/mainNavStyles'
 import Game from './Game'
 import StyledFooter from './styles/footerStyles'
-
-const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 100vw;
-  min-height: calc(100vh - 2.5em);
-`;
 
 class App extends Component {
   // state = { username: null };
@@ -24,10 +17,10 @@ class App extends Component {
     // const { username } = this.state;
     return (
       <div>
-        <AppContainer>
+        <StyledAppContainer>
           <StyledMainNav />
           <Game />
-        </AppContainer>
+        </StyledAppContainer>
         <StyledFooter />
       </div>
     );

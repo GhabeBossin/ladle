@@ -13,20 +13,27 @@ import {
   DropdownItem } from 'reactstrap';
 // import SearchBar from './SearchBar.js'
 
+//react-router
+
 class MainNav extends Component {
   constructor(props) {
     super(props);
     //get username for greeting from whoever the current user is
-    this.toggle = this.toggle.bind(this);
+    // this.toggle = this.toggle.bind(this);
     this.state = {
+      currentUser: {
+        name   : 'Jo',
+        isAdmin: true
+      },
       isOpen: false
     };
   }
-  toggle() {
+  toggle = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen  : !this.state.isOpen
     });
   }
+
   render() {
     return (
       <div className={ this.props.className }>
@@ -41,7 +48,7 @@ class MainNav extends Component {
               </NavItem>
               */}
               <NavItem>
-                <NavLink href="#">Hello, Username</NavLink>
+                <NavLink href="#">Hello, {this.state.currentUser.name}</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -51,10 +58,16 @@ class MainNav extends Component {
                   <DropdownItem>
                     <NavLink href="/login">Logout</NavLink>
                   </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    <NavLink href="/dashboard">Admin</NavLink>
-                  </DropdownItem>
+                  { this.state.currentUser.isAdmin
+                    ?
+                    <div>
+                      <DropdownItem divider />
+                      <DropdownItem>
+                        <NavLink href="/dashboard">Admin</NavLink>
+                      </DropdownItem>
+                    </div>
+                    : null
+                  }
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

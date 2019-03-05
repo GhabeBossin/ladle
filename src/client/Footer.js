@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
       <footer className={this.props.className} >
         <Navbar>
-          <span> © Three Blind 🐁 Ltd site</span>
+          <span> © Two Blind 🐁 Ltd site</span>
         </Navbar>
       </footer>
     );

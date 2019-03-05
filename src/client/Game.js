@@ -24,55 +24,54 @@ class Game extends Component {
   firstFlip = () => {
     this.setState({
       firstFlip: true,
-      flipped  : true
+      isFlipped  : true
     })
   }
 
   flip = () => {
     this.setState({
-      flipped: !this.state.flipped
+      isFlipped: !this.state.isFlipped
     });
   }
 
   render() {
-  return (
-    <Container>
-      <Row>
-        <Col>
-        { !this.state.flipped
-          ?
-          <Card className="text-center flash-card front border-0">
-            <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
-            <CardBody className="card-img-overlay">
-              <CardTitle className="flash-card-word">Eat Shit (eng word on front of card)</CardTitle>
-            </CardBody>
-          </Card>
-          :
-          <Card className="text-center flash-card back border-0">
-            <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
-            <CardBody className="card-img-overlay">
-              <CardTitle className="flash-card-word">Como Mierda (spanish word on back of card)</CardTitle>
-            </CardBody>
-          </Card>
-        }
-        </Col>
-      </Row>
-      <Row>
-        <Col className="card-buttons">
-        {/* When given a new card, only shows flip button until user clicks flip and sees the translation, then they see all three buttons to mark correct (checkmark) or incorrect (x mark), or flip again */}
-          { !this.state.firstFlip
+    return (
+      <Container>
+        <Row>
+          <Col>
+          { !this.state.isFlipped
             ?
-            <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
+            <Card className="text-center flash-card front border-0">
+              <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
+              <CardBody className="card-img-overlay">
+                <CardTitle className="flash-card-word">Eat Shit (eng word on front of card)</CardTitle>
+              </CardBody>
+            </Card>
             :
-            <ButtonGroup className="card-answer-btns">
-              <Button>✘</Button>
-              <Button onClick={this.flip}>Flip</Button>
-              <Button>✔</Button>
-            </ButtonGroup> }
-        </Col>
-      </Row>
-    </Container>
-  );
+            <Card className="text-center flash-card back border-0">
+              <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
+              <CardBody className="card-img-overlay">
+                <CardTitle className="flash-card-word">Como Mierda (spanish word on back of card)</CardTitle>
+              </CardBody>
+            </Card>
+          }
+          </Col>
+        </Row>
+        <Row>
+          <Col className="card-buttons">
+            { !this.state.firstFlip
+              ?
+              <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
+              :
+              <ButtonGroup className="card-answer-btns">
+                <Button>✘</Button>
+                <Button onClick={this.flip}>Flip</Button>
+                <Button>✔</Button>
+              </ButtonGroup> }
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 };
 

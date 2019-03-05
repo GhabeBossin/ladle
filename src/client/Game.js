@@ -1,10 +1,16 @@
 import React from 'react';
-import {Container, Row, Col, Button, ButtonGroup, Card, CardImg, CardBody,
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  ButtonGroup,
+  Card,
+  CardImg,
+  CardBody,
   CardTitle} from 'reactstrap';
 import FlashCardImg from './flash-card.png';
 import './game.css';
-
-
 
 const Game = (props) => {
   return (

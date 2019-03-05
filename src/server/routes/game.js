@@ -7,7 +7,7 @@ module.exports = (knex) => {
   
   router.get("/", (req, res) => {
     // console.log(req)
-    const id_num = 1
+    // const id_num = req.params.id
     // const dataArray = [];
     // function getEnglish() {
     //   return knex("en_words")
@@ -18,10 +18,10 @@ module.exports = (knex) => {
     //             console.log("data+++++++++++++++++++++++++++++++++++++++++++++++++++++", dataArray)
     //           })
     // }
-
+  console.log(req.params)  
   const queries = [
-    knex("en_words").select('*').where({'en_words.id': id_num}),
-    knex("es_words").select('*').where({'es_words.id': id_num}),
+    knex("en_words").select('*').where({'en_words.id': 1}),
+    knex("es_words").select('*').where({'es_words.id': 1}),
   ];
 
   const multiQuery = queries.join(";");

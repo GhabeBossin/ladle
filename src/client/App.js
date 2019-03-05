@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import Nav from './Nav'
-import Game from './Game'
+import Game from './Game.js'
 import Footer from './Footer'
 
 export default class App extends Component {

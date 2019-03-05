@@ -15,7 +15,7 @@ export default class Game extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.get("http://localhost:8080/game", {
+    axios.get("/api", {
       params: {
         ranking: 1
       }
@@ -28,6 +28,10 @@ export default class Game extends React.Component {
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  handleFlip(e) {
+
   }
 
   render() {

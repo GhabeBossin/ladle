@@ -11,22 +11,59 @@ import {
   CardTitle} from 'reactstrap';
 import FlashCardImg from './flash-card.png';
 import './game.css';
+import axios from 'axios';
 
-const Game = (props) => {
-  return (
+export default class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      en_word: "",
+      es_word: "",
+      user_word: "",
+      user_word_id: null,
+      user_id: 2
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  componentDidMount() {
+    axios.get("http://localhost:8080/game", {
+      params: {
+        id: "this",
+      }
+    })
+    .then((response) => {
+      this.setState({en_word: response.data[0].rows[0].word })
+      this.setState({es_word: response.data[1].rows[0].word })
+      // console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  handleFlip(e) {
+  }
+
+  render() {
+    return (
     <Container>
       <Row>
         <Col>
           <Card className="text-center flash-card front border-0">
-            <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
+            <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
             <CardBody className="card-img-overlay">
-              <CardTitle className="flash-card-word">Pants (eng word on front of card)</CardTitle>
+              <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
             </CardBody>
           </Card>
           <Card className="text-center flash-card back border-0">
-            <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
+            <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
             <CardBody className="card-img-overlay">
-              <CardTitle className="flash-card-word">Pantalones (spanish word on back of card)</CardTitle>
+              <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
             </CardBody>
           </Card>
         </Col>
@@ -43,7 +80,6 @@ const Game = (props) => {
         </Col>
       </Row>
     </Container>
-  );
-};
-
-export default Game;
+    )
+  }
+}

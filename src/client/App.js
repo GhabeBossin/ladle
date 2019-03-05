@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import './app.css';
-import Nav from './Nav'
-import Game from './Game.js'
-import Footer from './Footer'
+import styled from 'styled-components';
+import StyledMainNav from './styles/mainNavStyles'
+import Game from './Game'
+import StyledFooter from './styles/footerStyles'
 
-export default class App extends Component {
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 100vw;
+  min-height: calc(100vh - 2.5em);
+`;
+
+class App extends Component {
   // state = { username: null };
 
   componentDidMount() {
@@ -16,11 +23,15 @@ export default class App extends Component {
   render() {
     // const { username } = this.state;
     return (
-      <div className="app">
-        <Nav />
-        <Game />
-        <Footer />
+      <div>
+        <AppContainer>
+          <StyledMainNav />
+          <Game />
+        </AppContainer>
+        <StyledFooter />
       </div>
     );
   }
 }
+
+export default App

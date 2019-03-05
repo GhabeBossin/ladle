@@ -8,3 +8,7 @@
   align-items: center;
   font-size: 2em;
 }
+
+.card-buttons {
+  margin: 0 auto;
+}

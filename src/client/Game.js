@@ -27,6 +27,16 @@ class Game extends React.Component {
     }
   }
 
+  // Post to user_words DB when a word is learned
+  learnedCard = (user_id, en_word_id) => {
+    axios.post("http://localhost:8080/learned", {
+        user_id: user_id,
+        en_word_id: en_word_id,
+        is_known: true
+    })
+  }
+
+  // Get the proper card from the deck for current user
   getCard = (user_word_id) => {
     axios.get("http://localhost:8080/game", {
       params: {
@@ -47,6 +57,7 @@ class Game extends React.Component {
     this.getCard(this.state.user_word_id)
   }
 
+  // Update card and cue next card when word is learned
   checkMark = () => {
     let num = this.state.user_word_id;
     this.setState({
@@ -54,6 +65,7 @@ class Game extends React.Component {
     })
     this.getCard(num + 1)
     this.setState({firstFlip: false, flipped: !this.state.flipped})
+    this.learnedCard(this.state.user_id, num)
   }
 
   firstFlip = () => {

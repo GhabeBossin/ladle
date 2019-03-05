@@ -6,6 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('user_words').insert([
         { en_words_id: 1, users_id: 1, is_known: false, user_difficulty: 0 },
+        { en_words_id: 5, users_id: 1, is_known: false, user_difficulty: 0 },
         { en_words_id: 2, users_id: 2, is_known: false, user_difficulty: 0 },
         { en_words_id: 3, users_id: 3, is_known: false, user_difficulty: 0 },
         { en_words_id: 4, users_id: 4, is_known: false, user_difficulty: 0 },

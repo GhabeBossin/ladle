@@ -16,7 +16,7 @@ import {
 export default class MainNav extends React.Component {
   constructor(props) {
     super(props);
-
+    //get username for greeting from whoever the current user is
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
@@ -30,7 +30,7 @@ export default class MainNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="warning" light expand="md">
+        <Navbar color="warning" expand="md">
           <NavbarBrand href="/">ladle</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

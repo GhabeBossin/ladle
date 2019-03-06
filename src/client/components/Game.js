@@ -5,13 +5,12 @@ import {
   Col,
   Button,
   ButtonGroup,
-  Card,
   CardImg,
-  CardBody,
   CardTitle} from 'reactstrap';
-import FlashCardImg from './flash-card.png';
-import './game.css';
+import FlashCardImg from '../flash-card.png';
+// import './game.css';
 import axios from 'axios';
+import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
 
 class Game extends Component {
   constructor(props) {
@@ -99,35 +98,33 @@ class Game extends Component {
       isFlipped: !this.state.isFlipped
     });
     console.log(this.state.isFlipped)
-  
   }
 
   render() {
-  return (
-    <Container>
-      <Row>
-        <Col>
-        { !this.state.isFlipped
-          ?
-          <Card className="text-center flash-card front border-0">
-            <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-            <CardBody className="card-img-overlay">
-              <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
-            </CardBody>
-          </Card>
-          :
-          <Card className="text-center flash-card back border-0">
-            <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-            <CardBody className="card-img-overlay">
-              <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
-            </CardBody>
-          </Card>
-        }
-        </Col>
-      </Row>
-      <Row>
-        <Col className="card-buttons">
-        {/* When given a new card, only shows flip button until user clicks flip and sees the translation, then they see all three buttons to mark correct (checkmark) or incorrect (x mark), or flip again */}
+    return (
+      <Container>
+        <Row>
+          <Col>
+          { !this.state.isFlipped
+            ?
+            <StyledCard className="text-center flash-card front border-0">
+              <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
+              <StyledCardBody className="card-img-overlay">
+                <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
+              </StyledCardBody>
+            </StyledCard>
+            :
+            <StyledCard className="text-center flash-card back border-0">
+              <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
+              <StyledCardBody className="card-img-overlay">
+                <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
+              </StyledCardBody>
+            </StyledCard>
+          }
+          </Col>
+        </Row>
+        <StyledBtnDiv>
+          <StyledCardButtons>
           { !this.state.firstFlip
             ?
             <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
@@ -137,10 +134,10 @@ class Game extends Component {
               <Button onClick={ this.flip }>Flip</Button>
               <Button onClick={ this.checkMark }>✔</Button>
             </ButtonGroup> }
-        </Col>
-      </Row>
-    </Container>
-  );
+          </StyledCardButtons>
+        </StyledBtnDiv>
+      </Container>
+    );
   }
 };
 

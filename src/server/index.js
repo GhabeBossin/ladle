@@ -2,6 +2,7 @@ require('dotenv').config();
 const ENV         = process.env.ENV || "development";
 const express     = require('express');
 const os          = require('os');
+const cors        = require('cors')
 const knexConfig  = require("../../knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const bodyParser  = require("body-parser");
@@ -12,9 +13,10 @@ app.use(express.static('dist'));
 // app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
-const signupRoutes = require("./routes/signup");
-const gameRoutes =  require("./routes/game");
 const learnedRoutes = require("./routes/learned");
+const signupRoutes = require("./routes/signup");
+const loginRoutes = require("./routes/login");
+const gameRoutes =  require("./routes/game");
 const updateWordRoutes = require("./routes/updateWord");
 
 app.use(function(req, res, next) {
@@ -28,3 +30,4 @@ app.use("/learned", learnedRoutes(knex));
 app.use("/signup", signupRoutes(knex));
 app.use("/game", gameRoutes(knex));
 app.use("/updateWord", updateWordRoutes(knex));
+app.use("/login", loginRoutes(knex));

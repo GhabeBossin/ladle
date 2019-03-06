@@ -16,6 +16,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      x_words: [],
       en_word: "",
       es_word: "",
       user_word: "",
@@ -72,10 +73,12 @@ class Game extends Component {
     this.setState({firstFlip: false, flipped: this.state.flipped})
   }
 
-  exMark = () => {
+  xMark = () => {
     let num = this.state.user_word_id;
     this.updateWord(num, -1);
     this.marked()
+    this.state.x_words.push(num)
+    console.log(this.state.x_words)
   }
 
   // Update card and cue next card when word is learned
@@ -130,7 +133,7 @@ class Game extends Component {
             <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
             :
             <ButtonGroup className="card-answer-btns">
-              <Button onClick={ this.exMark }>✘</Button>
+              <Button onClick={ this.xMark }>✘</Button>
               <Button onClick={ this.flip }>Flip</Button>
               <Button onClick={ this.checkMark }>✔</Button>
             </ButtonGroup> }

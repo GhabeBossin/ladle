@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import StyledAppContainer from './styles/appStyles'
 import StyledMainNav from './styles/mainNavStyles'
 import Game from './Game'

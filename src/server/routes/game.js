@@ -8,6 +8,7 @@ module.exports = (knex) => {
   const queries = [
     knex("en_words").select('*').where({ 'en_words.id': req.query.id }),
     knex("es_words").select('*').where({ 'es_words.id': req.query.id }),
+    
   ];
 
   const multiQuery = queries.join(";");

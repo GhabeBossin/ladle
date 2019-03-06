@@ -30,4 +30,4 @@ app.use("/learned", learnedRoutes(knex));
 app.use("/signup", signupRoutes(knex));
 app.use("/game", gameRoutes(knex));
 app.use("/updateWord", updateWordRoutes(knex));
-app.use("/login", loginRoutes(knex));
+app.use("/api/login", loginRoutes(knex));

@@ -41,7 +41,7 @@ class App extends Component {
                 <Route exact path="/" component={Game} />
                 <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> } />
                 <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/admin/dashboard" component={AdminDash} />
+                <Route exact path="/admin/dashboard" component={ AdminDash } />
               </Switch>
             </div>
         </StyledAppContainer>

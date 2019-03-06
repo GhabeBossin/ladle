@@ -4,15 +4,22 @@ const url = require('url');
 const express = require('express');
 const router  = express.Router();
 
-  module.exports = (knex) => {
+module.exports = (knex) => {
 
-    router.post("/", (req, res) => {
-      const data = req.body;
-        knex("users")
-        .insert(data)
-        .then(res.status(200))
-        .then(res.send("you are a winner"))
+  router.post("/", (req, res) => {
+    const data = req.body;
+      knex("users")
+      .insert(data)
+      .then(res.status(200))
+      .then(res.send("you are a winner"))
+  });
 
-    });
-    return router;
-  };
+  // router.get("/api/users/:name", (req, res) => {
+  //   const user = knex.select('*')
+  //   .from('users')
+  //   .where('name', req.params.name)
+  //   .returning('*')
+  //   console.log(user)
+  // })
+  return router;
+};

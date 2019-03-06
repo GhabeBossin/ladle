@@ -5,13 +5,15 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (knex) => {
-
-  router.get("/api/users/:name", cors(), (req, res) => {
+  router.get("/", cors(), (req, res) => {
     knex.select('*')
     .from('users')
-    .where('name', req.params.name)
+    .where({ 'username': req.query.username })
     .returning('*')
     .then(result => { res.json(result) })
+    .catch((error) => {
+      console.log(error)
+    });
   })
 
   return router;

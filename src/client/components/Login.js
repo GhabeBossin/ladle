@@ -18,7 +18,7 @@ class Login extends Component {
       nameInput: '',
       passwordInput: '',
       currentUser: {
-        name: ''
+        first_name: ''
       }
     }
   }
@@ -38,9 +38,14 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    return axios.get(`http://localhost:8080/api/users/${this.state.nameInput}`)
+    return axios.get("http://localhost:8080/api/login/", {
+      params: {
+        username: this.state.nameInput
+      }
+    })
     .then((response) => {
       console.log(response);
+      console.log(this.state)
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) });
     })

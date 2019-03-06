@@ -29,7 +29,7 @@ class Game extends React.Component {
 
   // Post to user_words DB when a word is learned
   learnedCard = (user_id, en_word_id) => {
-    axios.post("http://localhost:8080/learned", {
+    axios.put("http://localhost:8080/learned", {
         user_id: user_id,
         en_word_id: en_word_id,
         is_known: true

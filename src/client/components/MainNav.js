@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Link, NavLink } from "react-router-dom"
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem } from 'reactstrap'
 // import SearchBar from './SearchBar.js'
 
 class MainNav extends Component {
@@ -35,7 +34,9 @@ class MainNav extends Component {
     return (
       <div className={ this.props.className }>
         <Navbar light expand="md" className="shadow-sm">
-          <NavbarBrand href="/">ladle</NavbarBrand>
+          <Link to="/" className="navbar-brand">
+            ladle
+          </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -44,8 +45,7 @@ class MainNav extends Component {
                 <SearchBar />
               </NavItem>
               */}
-              <NavItem>
-                <NavLink href="#">Hello, {this.state.currentUser.name}</NavLink>
+              <NavItem className="nav-link">Hello, {this.state.currentUser.name}
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -53,14 +53,14 @@ class MainNav extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <NavLink href="/login">Logout</NavLink>
+                    <NavLink to="/login" className="nav-link">Logout</NavLink>
                   </DropdownItem>
                   { this.state.currentUser.isAdmin
                     ?
                     <div>
                       <DropdownItem divider />
                       <DropdownItem>
-                        <NavLink href="/dashboard">Admin</NavLink>
+                        <NavLink to="/admin/dashboard" className="nav-link">Admin</NavLink>
                       </DropdownItem>
                     </div>
                     : null

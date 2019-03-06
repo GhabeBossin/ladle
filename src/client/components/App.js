@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
 import StyledAppContainer from '../styles/appStyles'
 import StyledMainNav from '../styles/mainNavStyles'
 import Game from './Game'
+import AdminDash from './AdminDash'
+import SignUp from './SignUp.jsx'
+import Login from './Login'
 import StyledFooter from '../styles/footerStyles'
 
 class App extends Component {
@@ -20,7 +23,14 @@ class App extends Component {
       <div>
         <StyledAppContainer>
           <StyledMainNav />
-          <Game />
+            <div>
+              <Switch>
+                <Route exact path="/" component={Game} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/admin/dashboard" component={AdminDash} />
+              </Switch>
+            </div>
         </StyledAppContainer>
         <StyledFooter />
       </div>

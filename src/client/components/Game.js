@@ -5,12 +5,10 @@ import {
   Col,
   Button,
   ButtonGroup,
-  Card,
   CardImg,
-  CardBody,
   CardTitle} from 'reactstrap';
 import FlashCardImg from '../flash-card.png';
-import '../styles/game.css';
+import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
 
 class Game extends Component {
   constructor(props) {
@@ -41,24 +39,24 @@ class Game extends Component {
           <Col>
           { !this.state.isFlipped
             ?
-            <Card className="text-center flash-card front border-0">
+            <StyledCard>
               <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
-              <CardBody className="card-img-overlay">
+              <StyledCardBody>
                 <CardTitle className="flash-card-word">Eat Shit (eng word on front of card)</CardTitle>
-              </CardBody>
-            </Card>
+              </StyledCardBody>
+            </StyledCard>
             :
-            <Card className="text-center flash-card back border-0">
+            <StyledCard>
               <CardImg top width="100%" src={FlashCardImg} alt="Card image cap" />
-              <CardBody className="card-img-overlay">
+              <StyledCardBody className="card-img-overlay">
                 <CardTitle className="flash-card-word">Como Mierda (spanish word on back of card)</CardTitle>
-              </CardBody>
-            </Card>
+              </StyledCardBody>
+            </StyledCard>
           }
           </Col>
         </Row>
-        <Row>
-          <Col className="card-buttons">
+        <StyledBtnDiv>
+          <StyledCardButtons>
             { !this.state.firstFlip
               ?
               <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
@@ -68,8 +66,8 @@ class Game extends Component {
                 <Button onClick={this.flip}>Flip</Button>
                 <Button>✔</Button>
               </ButtonGroup> }
-          </Col>
-        </Row>
+          </StyledCardButtons>
+        </StyledBtnDiv>
       </Container>
     );
   }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import MainNav from '../views/MainNav'
+import MainNav from '../components/MainNav'
 
 const StyledMainNav = styled(MainNav)`
   display: flex;

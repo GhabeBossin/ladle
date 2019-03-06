@@ -25,8 +25,8 @@ class App extends Component {
     return (
       <div>
         <AppContainer>
-          <StyledMainNav />
-          <Game />
+        <StyledMainNav />
+        <Game />
         </AppContainer>
         <StyledFooter />
       </div>
@@ -34,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;

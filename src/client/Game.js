@@ -13,7 +13,7 @@ import FlashCardImg from './flash-card.png';
 import './game.css';
 import axios from 'axios';
 
-class Game extends React.Component {
+class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +52,6 @@ class Game extends React.Component {
     });
   }
 
-
   componentDidMount() {
     this.getCard(this.state.user_word_id)
   }
@@ -71,13 +70,13 @@ class Game extends React.Component {
   firstFlip = () => {
     this.setState({
       firstFlip: true,
-      flipped  : true
+      isFlipped  : true
     })
   }
 
   flip = () => {
     this.setState({
-      flipped: !this.state.flipped
+      isFlipped: !this.state.isFlipped
     });
   }
 
@@ -86,7 +85,7 @@ class Game extends React.Component {
     <Container>
       <Row>
         <Col>
-        { !this.state.flipped
+        { !this.state.flip
           ?
           <Card className="text-center flash-card front border-0">
             <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />

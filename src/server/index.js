@@ -15,12 +15,16 @@ app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${proc
 const signupRoutes = require("./routes/signup");
 const gameRoutes =  require("./routes/game");
 const learnedRoutes = require("./routes/learned");
+const updateWordRoutes = require("./routes/updateWord");
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   next();
 });
+
 app.use("/learned", learnedRoutes(knex));
 app.use("/signup", signupRoutes(knex));
 app.use("/game", gameRoutes(knex));
+app.use("/updateWord", updateWordRoutes(knex));

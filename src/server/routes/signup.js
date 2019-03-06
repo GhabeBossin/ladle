@@ -1,3 +1,4 @@
+// Insert new user into DB
 "use strict";
 const url = require('url');
 const express = require('express');

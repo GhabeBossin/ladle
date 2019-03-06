@@ -15,7 +15,7 @@ class Login extends Component {
     this.setCurrentUser = setCurrentUser;
     this.state = {
       validated: false,
-      nameInput: '',
+      usernameInput: '',
       passwordInput: '',
       currentUser: {
         first_name: ''
@@ -25,9 +25,9 @@ class Login extends Component {
 
   handleInputChange = ({ target }) => {
     const { name, value } = target;
-    name === 'fname' ?
+    name === 'username' ?
     this.setState({
-      nameInput: value
+      usernameInput: value
     })
     :
     this.setState({
@@ -40,7 +40,7 @@ class Login extends Component {
 
     return axios.get("http://localhost:8080/api/login/", {
       params: {
-        username: this.state.nameInput
+        username: this.state.usernameInput
       }
     })
     .then((response) => {
@@ -63,8 +63,8 @@ class Login extends Component {
       <Container>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label htmlFor="fname">First Name</Label>
-            <Input type="text" name='fname' id="fname" onChange={ this.handleInputChange } value={ this.state.nameInput } />
+            <Label htmlFor="username">Username</Label>
+            <Input type="text" name='username' id="username" onChange={ this.handleInputChange } value={ this.state.usernameInput } />
           </FormGroup>
           <FormGroup>
             <Label htmlFor="pass">Password</Label>

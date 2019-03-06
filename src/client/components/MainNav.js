@@ -16,10 +16,6 @@ class MainNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {
-        name   : 'Jo',
-        isAdmin: true
-      },
       isOpen: false
     };
   }
@@ -31,6 +27,7 @@ class MainNav extends Component {
   }
 
   render() {
+    console.log(this.props.currentUser)
     return (
       <div className={ this.props.className }>
         <Navbar light expand="md" className="shadow-sm">
@@ -45,7 +42,8 @@ class MainNav extends Component {
                 <SearchBar />
               </NavItem>
               */}
-              <NavItem className="nav-link">Hello, {this.state.currentUser.name}
+              {/* conditional render greeting based on currentUser */}
+              <NavItem className="nav-link">Hello {this.props.currentUser.first_name}
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -55,7 +53,7 @@ class MainNav extends Component {
                   <DropdownItem>
                     <NavLink to="/login" className="nav-link">Logout</NavLink>
                   </DropdownItem>
-                  { this.state.currentUser.isAdmin
+                  { this.props.currentUser.is_admin
                     ?
                     <div>
                       <DropdownItem divider />

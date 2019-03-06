@@ -13,7 +13,7 @@ import FlashCardImg from './flash-card.png';
 import './game.css';
 import axios from 'axios';
 
-class Game extends React.Component {
+class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +51,6 @@ class Game extends React.Component {
       console.log(error);
     });
   }
-
 
   componentDidMount() {
     this.getCard(this.state.user_word_id)

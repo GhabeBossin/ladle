@@ -4,9 +4,8 @@ const express = require('express');
 const router  = express.Router();
 
   module.exports = (knex) => {
-    
+
     router.put("/", (req, res) => {
-      console.log(req.body)
       const id = req.body.user_id;
       const word = req.body.en_word_id;
       const known = req.body.is_known;

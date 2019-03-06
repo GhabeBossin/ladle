@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import {
   Container,
   Button,
@@ -39,10 +39,8 @@ class Login extends Component {
     e.preventDefault();
 
     return axios.get(`http://localhost:8080/api/users/${this.state.nameInput}`)
-    .then((response) => {yassss
-    
+    .then((response) => {
       console.log(response);
-
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) });
     })

@@ -8,18 +8,11 @@ module.exports = (knex) => {
 
   router.post("/", (req, res) => {
     const data = req.body;
-      knex("users")
-      .insert(data)
-      .then(res.status(200))
-      .then(res.send("you are a winner"))
+    knex("users")
+    .insert(data)
+    .then(res.status(200))
+    .then(res.send("you are a winner"))
   });
 
-  // router.get("/api/users/:name", (req, res) => {
-  //   const user = knex.select('*')
-  //   .from('users')
-  //   .where('name', req.params.name)
-  //   .returning('*')
-  //   console.log(user)
-  // })
   return router;
 };

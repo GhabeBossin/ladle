@@ -13,9 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {
-
-      }
+      currentUser: {}
     }
   }
 
@@ -36,6 +34,7 @@ class App extends Component {
     return (
       <div>
         <StyledAppContainer>
+          {/* Pass userObj to StyledMainNav somehow*/}
           <StyledMainNav />
             <div>
               <Switch>

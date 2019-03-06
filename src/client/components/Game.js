@@ -7,8 +7,8 @@ import {
   ButtonGroup,
   CardImg,
   CardTitle} from 'reactstrap';
-import FlashCardImg from './flash-card.png';
-import './game.css';
+import FlashCardImg from '../flash-card.png';
+// import './game.css';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
 
@@ -88,9 +88,9 @@ class Game extends Component {
             ?
             <StyledCard className="text-center flash-card front border-0">
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-              <CardBody className="card-img-overlay">
+              <StyledCardBody className="card-img-overlay">
                 <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
-              </CardBody>
+              </StyledCardBody>
             </StyledCard>
             :
             <StyledCard className="text-center flash-card back border-0">

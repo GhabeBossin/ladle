@@ -1,5 +1,4 @@
 "use strict";
-const url = require('url');
 const express = require('express');
 const router  = express.Router();
 
@@ -17,7 +16,9 @@ module.exports = (knex) => {
     res.json(result)
   })
   .catch((error) => {
+    console.log(error)
   });
   });
+
   return router;
 };

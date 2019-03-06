@@ -17,6 +17,8 @@ const learnedRoutes = require("./routes/learned");
 const signupRoutes = require("./routes/signup");
 const loginRoutes = require("./routes/login");
 const gameRoutes =  require("./routes/game");
+const updateWordRoutes = require("./routes/updateWord");
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -26,14 +28,6 @@ app.use(function(req, res, next) {
 
 app.use("/learned", learnedRoutes(knex));
 app.use("/signup", signupRoutes(knex));
-app.use("/login", loginRoutes(knex));
 app.use("/game", gameRoutes(knex));
-
-app.get("/api/users/:name", cors(), (req, res) => {
-  knex.select('*')
-  .from('users')
-  .where('name', req.params.name)
-  .returning('*')
-  .then(result => { res.json(result) })
-  // res.json(user);
-})
+app.use("/updateWord", updateWordRoutes(knex));
+app.use("/login", loginRoutes(knex));

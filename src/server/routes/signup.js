@@ -11,7 +11,14 @@ module.exports = (knex) => {
       .insert(data)
       .then(res.status(200))
       .then(res.send("you are a winner"))
-
   });
+
+  // router.get("/api/users/:name", (req, res) => {
+  //   const user = knex.select('*')
+  //   .from('users')
+  //   .where('name', req.params.name)
+  //   .returning('*')
+  //   console.log(user)
+  // })
   return router;
 };

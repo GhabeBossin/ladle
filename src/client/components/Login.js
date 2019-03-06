@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect, Link } from 'react-router-dom'
 import {
   Container,
   Button,
@@ -9,9 +10,11 @@ import {
 import axios from 'axios';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
+  constructor({ setCurrentUser }) {
+    super();
+    this.setCurrentUser = setCurrentUser;
     this.state = {
+      validated: false,
       nameInput: '',
       passwordInput: '',
       currentUser: {
@@ -35,17 +38,25 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.get(`http://localhost:8080/api/login/${this.state.nameInput}`)
-    .then(function (response) {
+    return axios.get(`http://localhost:8080/api/users/${this.state.nameInput}`)
+    .then((response) => {yassss
+    
       console.log(response);
+
+      this.setState({ validated: true },
+        () => { this.setCurrentUser(response) });
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     });
   }
 
   render() {
-    return (
+    return (<>
+    { this.state.validated
+      ?
+      <Redirect to='/' />
+      :
       <Container>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
@@ -56,11 +67,13 @@ class Login extends Component {
             <Label htmlFor="pass">Password</Label>
             <Input type="password" name='pass' id="pass" onChange={ this.handleInputChange } value={ this.state.passwordInput } />
           </FormGroup>
-          <Button type="button" onClick={ this.handleSubmit }>Login</Button>
+          <Button type="button" onClick={ this.handleSubmit }>
+            Login
+          </Button>
         </Form>
         // New here? Would you like to Signup? Link to='/signup'
-      </Container>
-    );
+      </Container> }
+    </>);
   }
 }
 

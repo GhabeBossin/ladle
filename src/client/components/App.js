@@ -10,6 +10,20 @@ import StyledFooter from '../styles/footerStyles'
 
 class App extends Component {
   // state = { username: null };
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: {
+
+      }
+    }
+  }
+
+  setCurrentUser = userObj => {
+    this.setState({
+      currentUser: userObj
+    })
+  }
 
   componentDidMount() {
     // fetch('/api/getUsername')
@@ -26,7 +40,7 @@ class App extends Component {
             <div>
               <Switch>
                 <Route exact path="/" component={Game} />
-                <Route exact path="/login" component={Login} />
+                <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> } />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/admin/dashboard" component={AdminDash} />
               </Switch>

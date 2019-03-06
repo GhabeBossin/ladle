@@ -2,6 +2,7 @@ require('dotenv').config();
 const ENV         = process.env.ENV || "development";
 const express     = require('express');
 const os          = require('os');
+const cors        = require('cors')
 const knexConfig  = require("../../knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const bodyParser  = require("body-parser");
@@ -22,3 +23,12 @@ app.use(function(req, res, next) {
 });
 
 app.use("/signup", signupRoutes(knex));
+
+app.get("/api/users/:name", cors(), (req, res) => {
+  knex.select('*')
+  .from('users')
+  .where('name', req.params.name)
+  .returning('*')
+  .then(result => { res.json(result) })
+  // res.json(user);
+})

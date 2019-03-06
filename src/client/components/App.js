@@ -18,8 +18,15 @@ class App extends Component {
   }
 
   setCurrentUser = userObj => {
+    // console.log(' USEROBJ: ', userObj)
     this.setState({
-      currentUser: userObj
+      currentUser: {
+        id: userObj.data[0].id,
+        first_name: userObj.data[0].first_name,
+        last_name: userObj.data[0].last_name,
+        username: userObj.data[0].username,
+        is_admin: userObj.data[0].is_admin,
+      }
     })
   }
 
@@ -27,6 +34,7 @@ class App extends Component {
     // fetch('/api/getUsername')
     //   .then(res => res.json())
     //   .then(user => this.setState({ username: user.username }));
+    console.log(this.state.currentUser.first_name)
   }
 
   render() {
@@ -35,7 +43,7 @@ class App extends Component {
       <div>
         <StyledAppContainer>
           {/* Pass userObj to StyledMainNav somehow*/}
-          <StyledMainNav />
+          <StyledMainNav currentUser={this.state.currentUser}/>
             <div>
               <Switch>
                 <Route exact path="/" component={Game} />

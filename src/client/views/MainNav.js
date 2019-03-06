@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
@@ -13,24 +13,28 @@ import {
   DropdownItem } from 'reactstrap';
 // import SearchBar from './SearchBar.js'
 
-export default class MainNav extends React.Component {
+class MainNav extends Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
+      currentUser: {
+        name   : 'Jo',
+        isAdmin: true
+      },
       isOpen: false
     };
   }
-  toggle() {
+
+  toggle = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen  : !this.state.isOpen
     });
   }
+
   render() {
     return (
-      <div>
-        <Navbar color="warning" light expand="md">
+      <div className={ this.props.className }>
+        <Navbar light expand="md" className="shadow-sm">
           <NavbarBrand href="/">ladle</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -41,7 +45,7 @@ export default class MainNav extends React.Component {
               </NavItem>
               */}
               <NavItem>
-                <NavLink href="#">Hello, Username</NavLink>
+                <NavLink href="#">Hello, {this.state.currentUser.name}</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -51,10 +55,16 @@ export default class MainNav extends React.Component {
                   <DropdownItem>
                     <NavLink href="/login">Logout</NavLink>
                   </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    <NavLink href="/dashboard">Admin</NavLink>
-                  </DropdownItem>
+                  { this.state.currentUser.isAdmin
+                    ?
+                    <div>
+                      <DropdownItem divider />
+                      <DropdownItem>
+                        <NavLink href="/dashboard">Admin</NavLink>
+                      </DropdownItem>
+                    </div>
+                    : null
+                  }
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -64,3 +74,5 @@ export default class MainNav extends React.Component {
     );
   }
 }
+
+export default MainNav

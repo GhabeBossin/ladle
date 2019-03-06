@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import StyledAppContainer from './styles/appStyles'
-import StyledMainNav from './styles/mainNavStyles'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import StyledAppContainer from '../styles/appStyles'
+import StyledMainNav from '../styles/mainNavStyles'
 import Game from './Game'
-import StyledFooter from './styles/footerStyles'
+import StyledFooter from '../styles/footerStyles'
 
 class App extends Component {
   // state = { username: null };

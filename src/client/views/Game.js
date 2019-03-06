@@ -9,8 +9,8 @@ import {
   CardImg,
   CardBody,
   CardTitle} from 'reactstrap';
-import FlashCardImg from './flash-card.png';
-import './game.css';
+import FlashCardImg from '../flash-card.png';
+import '../styles/game.css';
 
 class Game extends Component {
   constructor(props) {

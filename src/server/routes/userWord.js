@@ -6,10 +6,11 @@ const router  = express.Router();
   module.exports = (knex) => {
 
     router.get("/", (req, res) => {
+      console.log(req.query)
       const id = req.query.id;
       const is_known = false;
       knex("user_words")
-        .select('*')
+        .select('en_words_id')
         .where(knex.raw(`is_known = ${is_known} AND users_id = ${id}`))
         .then((result) => {
           res.json(result)

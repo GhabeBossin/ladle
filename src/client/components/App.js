@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route} from "react-router-dom";
+import { GlobalStyles } from '../styles/globalStyles'
 import StyledAppContainer from '../styles/appStyles'
 import StyledMainNav from '../styles/mainNavStyles'
 import Game from './Game'
@@ -9,7 +10,6 @@ import Login from './Login'
 import StyledFooter from '../styles/footerStyles'
 
 class App extends Component {
-  // state = { username: null };
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   setCurrentUser = userObj => {
-    console.log(userObj)
+    // console.log(userObj)
     this.setState({
       currentUser: {
         id: userObj.data[0].id,
@@ -37,11 +37,10 @@ class App extends Component {
   }
 
   render() {
-    // const { username } = this.state;
     return (
       <div>
+        <GlobalStyles />
         <StyledAppContainer>
-          {/* Pass userObj to StyledMainNav somehow*/}
           <StyledMainNav currentUser={this.state.currentUser}/>
             <div>
               <Switch>

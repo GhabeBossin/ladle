@@ -47,7 +47,6 @@ class Login extends Component {
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) });
     })
-    .then(console.log("current user", this.state))
     .catch((error) => {
       console.log(error);
     });

@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   setCurrentUser = userObj => {
-    // console.log(' USEROBJ: ', userObj)
+    console.log(userObj)
     this.setState({
       currentUser: {
         id: userObj.data[0].id,
@@ -34,7 +34,6 @@ class App extends Component {
     // fetch('/api/getUsername')
     //   .then(res => res.json())
     //   .then(user => this.setState({ username: user.username }));
-    console.log(this.state.currentUser.first_name)
   }
 
   render() {
@@ -46,7 +45,7 @@ class App extends Component {
           <StyledMainNav currentUser={this.state.currentUser}/>
             <div>
               <Switch>
-                <Route exact path="/" component={Game} />
+                <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />
                 <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> } />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/admin/dashboard" component={ AdminDash } />

@@ -16,19 +16,36 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentUser: {},
       x_words: [],
       en_word: "",
       es_word: "",
-      user_word: "",
+      // user_word: "",
       user_word_id: 1,
-      user_id: 2,
+      user_id: null,
       firstFlip: false,
-      flipped  : false
+      flipped  : false,
+      url: 'http://localhost:8080/api'
     }
   }
 
   componentDidMount() {
-    this.getCard(this.state.user_word_id)
+    this.setState({ currentUser: this.props })
+    this.getCard(1)
+    this.userWord(3)
+    
+  }
+
+  userWord = (user_id, url) => {
+    axios.get('http://localhost:8080/userWord', {
+      params: {
+        id: user_id
+      }
+    })
+    .then((response) => {
+      console.log("this is the response", response.data)
+      // this.setState({ userWord: })
+    })
   }
 
   // Post to user_words DB when a word is learned
@@ -38,7 +55,14 @@ class Game extends Component {
         en_word_id: en_word_id,
         is_known: true
     })
+    .then((response) => {
+      this.setState({user_word: response.data[0].rows[0].word })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
+  
 
   updateWord = (wordID, counter) => {
     axios.put("http://localhost:8080/updateWord", {
@@ -59,7 +83,8 @@ class Game extends Component {
       this.setState({es_word: response.data[1].rows[0].word })
     })
     .catch(function (error) {
-      console.log(error);
+      console.log('help')
+      console.log("this is the error", error);
     });
   }
 
@@ -78,7 +103,7 @@ class Game extends Component {
     this.updateWord(num, -1);
     this.marked()
     this.state.x_words.push(num)
-    console.log(this.state.x_words)
+    console.log("current user", this.state.currentUser)
   }
 
   // Update card and cue next card when word is learned
@@ -100,7 +125,6 @@ class Game extends Component {
     this.setState({
       isFlipped: !this.state.isFlipped
     });
-    console.log(this.state.isFlipped)
   }
 
   render() {

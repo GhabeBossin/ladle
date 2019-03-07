@@ -5,7 +5,6 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.put("/", (req, res) => {
-    console.log(req.body)
     knex("en_words")
       .where("id", req.body.id)
       .increment('diff_counter', req.body.diff)

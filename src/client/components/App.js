@@ -18,6 +18,7 @@ class App extends Component {
   }
 
   setCurrentUser = userObj => {
+    // console.log(userObj)
     this.setState({
       currentUser: {
         id: userObj.data[0].id,
@@ -43,12 +44,10 @@ class App extends Component {
           <StyledMainNav currentUser={this.state.currentUser}/>
             <div>
               <Switch>
-                <Route exact path="/" component={Game} />
-                <Route exact path="/login" component={
-                  props => <Login setCurrentUser={ this.setCurrentUser } { ...props } />
-                  } />
+                <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />
+                <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> } />
                 <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/admin/dashboard" component={AdminDash} />
+                <Route exact path="/admin/dashboard" component={ AdminDash } />
               </Switch>
             </div>
         </StyledAppContainer>

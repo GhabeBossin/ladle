@@ -16,18 +16,41 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      x_words: [],
+      user_word: "",
       en_word: "",
       es_word: "",
-      user_word: "",
+      userWords: [],
       user_word_id: 1,
-      user_id: 2,
+      user_id: null,
       firstFlip: false,
-      flipped  : false
+      flipped  : false,
+      url: 'http://localhost:8080/api'
     }
   }
 
+  // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    this.getCard(this.state.user_word_id)
+    this.setState({ user_id: this.props.id })
+    this.drawNewCard(this.props.id)
+    this.userWord(this.props.id)
+  }
+
+  //  Populate user words array in state
+  userWord = (user_id, url) => {
+    axios.get('http://localhost:8080/userWord', {
+      params: {
+        id: user_id
+      }
+    })
+    .then((response) => {
+      let words = response.data;
+      const userWords = [];
+      words.forEach(element => {
+        userWords.push(element.en_words_id)
+        this.setState({ userWords: userWords })
+      })
+    })
   }
 
   // Post to user_words DB when a word is learned
@@ -37,8 +60,15 @@ class Game extends Component {
         en_word_id: en_word_id,
         is_known: true
     })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log("this error is from learnedCard in Game.js", error);
+    });
   }
 
+  // Increment the difficulty counter for the en_word
   updateWord = (wordID, counter) => {
     axios.put("http://localhost:8080/updateWord", {
       id: wordID,
@@ -46,44 +76,49 @@ class Game extends Component {
     })
   }
 
-  // Get the proper card from the deck for current user
-  getCard = (user_word_id) => {
+  // Get the proper card from the deck for current user that is rendered on the page
+  drawNewCard = (user_word_id) => {
+    console.log("cards", this.state.user_id)
     axios.get("http://localhost:8080/game", {
       params: {
         id: user_word_id,
       }
     })
     .then((response) => {
+      // console.log(response.data.rows[0])
       this.setState({en_word: response.data[0].rows[0].word })
       this.setState({es_word: response.data[1].rows[0].word })
     })
     .catch(function (error) {
-      console.log(error);
+      console.log('help')
+      console.log("this is error is in getCard in Game.js", error);
     });
   }
 
-
-  marked = () => {
+  // Grab new word and reset state of card
+  markedCard = () => {
     let num = this.state.user_word_id;
     this.setState({
       user_word_id: num + 1
     })
-    this.getCard(num + 1)
+    this.drawNewCard(num + 1)
     this.setState({firstFlip: false, flipped: this.state.flipped})
   }
 
-  exMark = () => {
+  // User doesn't know the card and clicks the x mark, increase difficulty of card in en_cards table
+  xMark = () => {
     let num = this.state.user_word_id;
     this.updateWord(num, -1);
-    this.marked()
+    this.markedCard()
+    this.state.x_words.push(num)
   }
 
   // Update card and cue next card when word is learned
   checkMark = () => {
-    let num = this.state.user_word_id;
+    let num = this.state.user_id;
     this.updateWord(num, 1);
-    this.marked();
-    this.learnedCard(this.state.user_id, num)
+    this.markedCard();
+    this.learnedCard(num, 1)
   }
 
   firstFlip = () => {
@@ -97,7 +132,6 @@ class Game extends Component {
     this.setState({
       isFlipped: !this.state.isFlipped
     });
-    console.log(this.state.isFlipped)
   }
 
   render() {
@@ -130,7 +164,7 @@ class Game extends Component {
             <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
             :
             <ButtonGroup className="card-answer-btns">
-              <Button onClick={ this.exMark }>✘</Button>
+              <Button onClick={ this.xMark }>✘</Button>
               <Button onClick={ this.flip }>Flip</Button>
               <Button onClick={ this.checkMark }>✔</Button>
             </ButtonGroup> }

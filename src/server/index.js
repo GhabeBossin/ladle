@@ -18,7 +18,7 @@ const signupRoutes = require("./routes/signup");
 const loginRoutes = require("./routes/login");
 const gameRoutes =  require("./routes/game");
 const updateWordRoutes = require("./routes/updateWord");
-
+const userWord = require("./routes/userWord");
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -26,6 +26,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use("/userWord", userWord(knex));
 app.use("/learned", learnedRoutes(knex));
 app.use("/signup", signupRoutes(knex));
 app.use("/game", gameRoutes(knex));

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Switch, Route} from "react-router-dom";
-import { GlobalStyles } from '../styles/globalStyles'
 import StyledAppContainer from '../styles/appStyles'
 import StyledMainNav from '../styles/mainNavStyles'
 import Game from './Game'
@@ -18,9 +17,16 @@ class App extends Component {
   }
 
   setCurrentUser = userObj => {
-    // console.log(userObj)
+    let obj = userObj.data;
+    const achievements = [];
+    obj.forEach(element => {
+      achievements.push({ [element.name]: element.description })
+      
+    })
+
     this.setState({
       currentUser: {
+        achievements: achievements,
         id: userObj.data[0].id,
         first_name: userObj.data[0].first_name,
         last_name: userObj.data[0].last_name,
@@ -37,10 +43,11 @@ class App extends Component {
   }
 
   render() {
+    // const { username } = this.state;
     return (
       <div>
-        <GlobalStyles />
         <StyledAppContainer>
+          {/* Pass userObj to StyledMainNav somehow*/}
           <StyledMainNav currentUser={this.state.currentUser}/>
             <div>
               <Switch>

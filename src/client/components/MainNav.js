@@ -27,7 +27,6 @@ class MainNav extends Component {
   }
 
   render() {
-    console.log(this.props.currentUser)
     return (
       <div className={ this.props.className }>
         <Navbar light expand="md" className="shadow-sm">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import {
   Container,
   Button,
@@ -72,7 +72,8 @@ class Login extends Component {
             Login
           </Button>
         </Form>
-        // New here? Would you like to Signup? Link to='/signup'
+
+        <p>New here? Would you like to<Link to='/signup'> Signup? </Link></p>
       </Container> }
     </>);
   }

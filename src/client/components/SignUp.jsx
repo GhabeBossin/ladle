@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import {
   Container,
   Button,
@@ -39,13 +40,18 @@ class SignUp extends Component {
       <Container>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label for="fname">First Name</Label>
-            <Input type="text" id="fname" ref={(input) => this.input = input} />
+            <Label for="first_name">First Name</Label>
+            <Input type="text" id="first_name" ref={(input) => this.input = input} />
             <h1>{this.state.name} </h1>
           </FormGroup>
           <FormGroup>
-            <Label for="lname">Last Name</Label>
-            <Input type="text" id="lname" ref={(input) => this.input = input} />
+            <Label for="last_name">Last Name</Label>
+            <Input type="text" id="last_name" ref={(input) => this.input = input} />
+            <h1>{this.state.name} </h1>
+          </FormGroup>
+          <FormGroup>
+            <Label for="username">Username</Label>
+            <Input type="text" id="username" ref={(input) => this.input = input} />
             <h1>{this.state.name} </h1>
           </FormGroup>
           <FormGroup>
@@ -53,9 +59,10 @@ class SignUp extends Component {
             <Input type="password" id="pass" ref={(input) => this.input = input} />
             <h1>{this.state.name} </h1>
           </FormGroup>
+          <div></div>
           <Button type="submit" value="Submit">Signup</Button>
+          <p>Already have an account? <Link to='/login'> Login here.</Link></p>
         </Form>
-        // already have an account? Link to='/login'
       </Container>
     );
   }

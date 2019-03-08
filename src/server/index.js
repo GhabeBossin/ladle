@@ -21,6 +21,8 @@ const wordsRoutes = require("./routes/words")
 const gameRoutes =  require("./routes/game");
 const updateWordRoutes = require("./routes/updateWord");
 const userWord = require("./routes/userWord");
+const userAchievements = require("./routes/userAchievements");
+const trophyNames = require("./routes/trophyNames")
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -29,6 +31,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use("/trophyNames", trophyNames(knex));
+app.use("/userAchievements", userAchievements(knex));
 app.use("/userWord", userWord(knex));
 app.use("/learned", learnedRoutes(knex));
 app.use("/signup", signupRoutes(knex));

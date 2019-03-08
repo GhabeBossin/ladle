@@ -6,21 +6,29 @@ import {
   Button,
   ButtonGroup,
   CardImg,
-  CardTitle} from 'reactstrap';
+  CardTitle,
+  Card,
+  CardText,
+  CardBody,
+  CardSubtitle
+  } from 'reactstrap';
 import FlashCardImg from '../flash-card.png';
 // import './game.css';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
+import Trophy from './achievementTrophy';
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      trophies: [],
       x_words: [],
       user_word: "",
       en_word: "",
       es_word: "",
       userWords: [],
+      userAchievements: [],
       user_word_id: 1,
       user_id: null,
       firstFlip: false,
@@ -31,10 +39,41 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
+    this.setState({ userAchievements: this.props.achievements }),
     this.setState({ user_id: this.props.id })
     this.drawNewCard(this.props.id)
     this.userWord(this.props.id)
+    // this.getAchievements(this.props.id)
+
   }
+
+  // Get user achievements from user_achievements table
+  // getAchievements = (user_id) => {
+  //   axios.get('http://localhost:8080/userAchievements', {
+  //     params: {
+  //       id: user_id
+  //     }
+  //   })
+  //   .then((response) => {
+  //     const achievements = response.data;
+  //     const userAchievements = [];
+  //     achievements.forEach(element => {
+  //       userAchievements.push(element.achievements_id)
+  //     })
+  //     this.setState({ userAchievements: userAchievements })
+  //   })
+  // }
+
+  // trophyNames = (achievement_id) => {
+  //   axios.get('http://localhost:8080/trophyNames', {
+  //     params: {
+  //       id: achievement_id
+  //     }
+  //   })
+  //   .then((response) => {
+  //     this.setState({ trophies: response.data })
+  //   })
+  // }
 
   //  Populate user words array in state
   userWord = (user_id, url) => {
@@ -61,7 +100,7 @@ class Game extends Component {
         is_known: true
     })
     .then((response) => {
-      console.log(response)
+      // console.log(response)
     })
     .catch(function (error) {
       console.log("this error is from learnedCard in Game.js", error);
@@ -78,19 +117,16 @@ class Game extends Component {
 
   // Get the proper card from the deck for current user that is rendered on the page
   drawNewCard = (user_word_id) => {
-    console.log("cards", this.state.user_id)
     axios.get("http://localhost:8080/game", {
       params: {
         id: user_word_id,
       }
     })
     .then((response) => {
-      // console.log(response.data.rows[0])
       this.setState({en_word: response.data[0].rows[0].word })
       this.setState({es_word: response.data[1].rows[0].word })
     })
     .catch(function (error) {
-      console.log('help')
       console.log("this is error is in getCard in Game.js", error);
     });
   }
@@ -109,8 +145,8 @@ class Game extends Component {
   xMark = () => {
     let num = this.state.user_word_id;
     this.updateWord(num, -1);
-    this.markedCard()
-    this.state.x_words.push(num)
+    this.markedCard();
+    this.state.x_words.push(num);
   }
 
   // Update card and cue next card when word is learned
@@ -119,6 +155,9 @@ class Game extends Component {
     this.updateWord(num, 1);
     this.markedCard();
     this.learnedCard(num, 1)
+    this.trophyNames(userAchievements);
+    console.log(this.state.userAchievements)
+
   }
 
   firstFlip = () => {
@@ -133,6 +172,16 @@ class Game extends Component {
       isFlipped: !this.state.isFlipped
     });
   }
+
+  // trophy = () => {
+  //   let userAchievements = []
+  //   let achievements = this.state.userAchievements;
+  //   achievements.forEach(element => {
+  //     userAchievements.push(<td><img src={element}/></td>)
+  //   });
+  //   console.log(achievements)
+  //   return userAchievements
+  // }
 
   render() {
     return (
@@ -170,6 +219,14 @@ class Game extends Component {
             </ButtonGroup> }
           </StyledCardButtons>
         </StyledBtnDiv>
+          <Card>
+            <CardBody>
+              <CardTitle>Your amazing achievements!</CardTitle>
+                <Trophy data={this.state.userAchievements} />
+              <CardSubtitle>Card subtitle</CardSubtitle>
+              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+            </CardBody>
+          </Card>
       </Container>
     );
   }

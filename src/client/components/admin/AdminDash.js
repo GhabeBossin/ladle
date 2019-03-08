@@ -3,7 +3,6 @@ import {
   Container,
   Row,
   Col,
-  Card,
   Jumbotron } from 'reactstrap'
 import HardWords from './HardWords'
 import BadUsers from './BadUsers'

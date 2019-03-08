@@ -10,13 +10,11 @@ import {
   Card,
   CardText,
   CardBody,
-  CardSubtitle
-  } from 'reactstrap';
+  CardSubtitle} from 'reactstrap';
 import FlashCardImg from '../flash-card.png';
-// import './game.css';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
-import Trophy from './achievementTrophy';
+import Trophy from './AchievementTrophy';
 
 class Game extends Component {
   constructor(props) {
@@ -219,14 +217,11 @@ class Game extends Component {
             </ButtonGroup> }
           </StyledCardButtons>
         </StyledBtnDiv>
-          <Card>
-            <CardBody>
-              <CardTitle>Your amazing achievements!</CardTitle>
-                <Trophy data={this.state.userAchievements} />
-              <CardSubtitle>Card subtitle</CardSubtitle>
-              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            </CardBody>
-          </Card>
+        <Row>
+          {/* <Col> */}
+            <Trophy data={this.state.userAchievements} />
+          {/* </Col> */}
+        </Row>
       </Container>
     );
   }

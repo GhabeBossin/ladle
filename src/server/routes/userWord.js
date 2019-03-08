@@ -6,7 +6,6 @@ const router  = express.Router();
   module.exports = (knex) => {
 
     router.get("/", (req, res) => {
-      console.log(req.query)
       const id = req.query.id;
       const is_known = false;
       knex("user_words")
@@ -16,7 +15,7 @@ const router  = express.Router();
           res.json(result)
         })
         .catch((error) => {
-          console.log(error)
+          console.log("This error is from routes/userWord:", error)
         })
     });
     return router;

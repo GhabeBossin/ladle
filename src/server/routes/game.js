@@ -2,6 +2,7 @@
 const express = require('express');
 const router  = express.Router();
 
+// Make this a join
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
@@ -16,7 +17,7 @@ module.exports = (knex) => {
     res.json(result)
   })
   .catch((error) => {
-    console.log(error)
+    console.log('this is an error from /routes/game:', error)
   });
   });
 

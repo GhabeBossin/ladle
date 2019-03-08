@@ -6,11 +6,7 @@ import {
   Button,
   ButtonGroup,
   CardImg,
-  CardTitle,
-  Card,
-  CardText,
-  CardBody,
-  CardSubtitle} from 'reactstrap';
+  CardTitle } from 'reactstrap';
 import FlashCardImg from '../flash-card.png';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
@@ -42,7 +38,6 @@ class Game extends Component {
     this.drawNewCard(this.props.id)
     this.userWord(this.props.id)
     // this.getAchievements(this.props.id)
-
   }
 
   // Get user achievements from user_achievements table
@@ -136,7 +131,7 @@ class Game extends Component {
       user_word_id: num + 1
     })
     this.drawNewCard(num + 1)
-    this.setState({firstFlip: false, flipped: this.state.flipped})
+    this.setState({firstFlip: false, isFlipped: false})
   }
 
   // User doesn't know the card and clicks the x mark, increase difficulty of card in en_cards table
@@ -153,8 +148,8 @@ class Game extends Component {
     this.updateWord(num, 1);
     this.markedCard();
     this.learnedCard(num, 1)
-    this.trophyNames(userAchievements);
-    console.log(this.state.userAchievements)
+    // this.trophyNames(userAchievements);
+    // console.log(this.state.userAchievements)
 
   }
 
@@ -217,11 +212,7 @@ class Game extends Component {
             </ButtonGroup> }
           </StyledCardButtons>
         </StyledBtnDiv>
-        <Row>
-          {/* <Col> */}
-            <Trophy data={this.state.userAchievements} />
-          {/* </Col> */}
-        </Row>
+        <Trophy data={this.state.userAchievements} />
       </Container>
     );
   }

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Switch, Route} from "react-router-dom";
 import StyledAppContainer from '../styles/appStyles'
 import StyledMainNav from '../styles/mainNavStyles'
+import StyledFooter from '../styles/footerStyles'
 import Game from './Game'
 import AdminDash from './admin/AdminDash'
 import SignUp from './SignUp.jsx'
 import Login from './Login'
-import StyledFooter from '../styles/footerStyles'
 import AdminWords from './admin/AdminWords'
 import AdminUsers from './admin/AdminUsers'
 
@@ -38,14 +38,7 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-    // fetch('/api/getUsername')
-    //   .then(res => res.json())
-    //   .then(user => this.setState({ username: user.username }));
-  }
-
   render() {
-    // const { username } = this.state;
     return (
       <div>
         <StyledAppContainer>

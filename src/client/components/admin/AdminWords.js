@@ -8,29 +8,7 @@ class AdminWords extends Component {
   constructor() {
     super();
     this.state = {
-      wordData: [
-        {
-          id: '1',
-          en_word: 'Pants',
-          es_word: 'Pantalones',
-          tag: 'Noun',
-          ranking: '2',
-        },
-        {
-          id: '2',
-          en_word: 'Hat',
-          es_word: 'Sombrero',
-          tag: 'Noun',
-          ranking: '5',
-        },
-        {
-          id: '3',
-          en_word: 'Eat',
-          es_word: 'Comer',
-          tag: 'Verb',
-          ranking: '9',
-        },
-      ]
+      wordData: []
     };
   }
 
@@ -41,6 +19,7 @@ class AdminWords extends Component {
   getWordData = () => {
     axios.get("http://localhost:8080/api/words/all")
     .then((response) => {
+      console.log(response)
       this.setState({wordData: [...response.data]});
     })
     .catch((error) => {
@@ -50,15 +29,15 @@ class AdminWords extends Component {
 
   mapRows = data => {
     return data.map(({
-      id, en_word, es_word, tag, ranking
+      id, en_word, es_word, name, ranking
     }) => (
       <tr key={ id }>
         <th scope="row">{ id }</th>
         <td>{ en_word }</td>
         <td>{ es_word }</td>
-        <td>{ tag }</td>
+        <td>{ name }</td>
         <td>{ ranking }</td>
-        <td>(edit icon)</td>
+        <td><img src='/public/icons/edit.png' width='5%'/></td>
       </tr>
     ))
   }

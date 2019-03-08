@@ -10,9 +10,6 @@ module.exports = (knex) => {
       .leftJoin('es_words', 'en_words.id', '=', 'es_words.en_words_id')
       .join('word_tags', 'en_words.id', 'word_tags.en_words_id')
       .select('*', 'en_words.word AS en_word', 'es_words.word AS es_word')
-
-
-
       .returning("*")
       .as("en_words.word")
       .then(result => { res.json(result) })
@@ -20,17 +17,6 @@ module.exports = (knex) => {
         console.log(error)
       });
   })
-
-  // router.get("/all", cors(), (req, res) => {
-  //   knex.select('*')
-  //   .from('')
-  //   .returning('*')
-  //   .then(result => { res.json(result) })
-  //   .catch((error) => {
-  //     console.log(error)
-  //   });
-  // })
-
 
   return router;
 }

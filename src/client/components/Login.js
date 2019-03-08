@@ -38,7 +38,7 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    return axios.get("http://localhost:8080/api/login/", {
+    return axios.get("http://localhost:8080/api/users", {
       params: {
         username: this.state.usernameInput
       }

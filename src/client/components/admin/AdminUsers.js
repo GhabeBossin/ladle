@@ -1,8 +1,55 @@
 import React, { Component } from 'react'
-import { Container, Table, Row, Col} from 'reactstrap'
+import {
+  Container,
+  Table,
+  Row,
+  Col} from 'reactstrap'
 // import SearchBar from './SearchBar'
+import axios from 'axios';
 
 class AdminUsers extends Component {
+  constructor() {
+    super();
+    this.state = {
+      userData: [
+        {
+          id: '1',
+          firstName: 'Trogdor',
+          lastName: 'Burninator',
+          userName: '@BurninatingEverything',
+        }
+      ]
+    };
+  }
+
+  componentDidMount() {
+    this.getUserData()
+  }
+
+  getUserData = () => {
+    axios.get("http://localhost:8080/api/users/all")
+    .then((response) => {
+      this.setState({userData: [...response.data]});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  mapRows = data => {
+    return data.map(({
+      id, first_name, last_name, username
+    }) => (
+      <tr key={ id }>
+        <th scope="row">{ id }</th>
+        <td>{ first_name }</td>
+        <td>{ last_name }</td>
+        <td>{ username }</td>
+        <td>(edit icon)</td>
+      </tr>
+    ))
+  }
+
   render() {
     return (
       <Container>
@@ -21,27 +68,7 @@ class AdminUsers extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>(edit icon)</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>(edit icon)</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>(edit icon)</td>
-                </tr>
+                { this.mapRows(this.state.userData) }
               </tbody>
             </Table>
           </Col>

@@ -4,12 +4,12 @@ import { GlobalStyles } from '../styles/globalStyles'
 import StyledAppContainer from '../styles/appStyles'
 import StyledMainNav from '../styles/mainNavStyles'
 import Game from './Game'
-import AdminDash from './AdminDash'
+import AdminDash from './admin/AdminDash'
 import SignUp from './SignUp.jsx'
 import Login from './Login'
 import StyledFooter from '../styles/footerStyles'
-import AdminWords from './AdminWords'
-import AdminUsers from './AdminUsers'
+import AdminWords from './admin/AdminWords'
+import AdminUsers from './admin/AdminUsers'
 
 class App extends Component {
   constructor(props) {

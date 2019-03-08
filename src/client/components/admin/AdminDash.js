@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
 import { Container, Row, Col} from 'reactstrap'
-import DiffWords from './DifficultWords'
+import HardWords from './HardWords'
+import BadUsers from './BadUsers'
 
 class AdminDash extends Component {
   render() {
     return (
       <Container>
-        <h2>Dashboard</h2>
+        <div>
+          <h3>Dashboard</h3>
+          <p>
+            Monitor overall learning data and student status here.
+          </p>
+        </div>
         <Row>
           <Col>
-          <DiffWords />
+          <HardWords />
           </Col>
           <Col>
+          <BadUsers />
           </Col>
         </Row>
       </Container>

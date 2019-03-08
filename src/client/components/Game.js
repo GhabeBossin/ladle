@@ -161,9 +161,9 @@ class Game extends Component {
           <StyledCardButtons>
           { !this.state.firstFlip
             ?
-            <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
+            <Button onClick={this.firstFlip}>Flip</Button>
             :
-            <ButtonGroup className="card-answer-btns">
+            <ButtonGroup>
               <Button onClick={ this.xMark }>✘</Button>
               <Button onClick={ this.flip }>Flip</Button>
               <Button onClick={ this.checkMark }>✔</Button>

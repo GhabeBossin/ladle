@@ -8,6 +8,8 @@ import AdminDash from './AdminDash'
 import SignUp from './SignUp.jsx'
 import Login from './Login'
 import StyledFooter from '../styles/footerStyles'
+import AdminWords from './AdminWords'
+import AdminUsers from './AdminUsers'
 
 class App extends Component {
   constructor(props) {
@@ -46,8 +48,11 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />
                 <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> } />
-                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/signup" component={ SignUp } />
                 <Route exact path="/admin/dashboard" component={ AdminDash } />
+                <Route exact path="/admin/words" component={ AdminWords } />
+                <Route exact path="/admin/users" component={ AdminUsers } />
+                {/* <Route path="/admin/words/:id" component={ AdminWordEdit } /> */}
               </Switch>
             </div>
         </StyledAppContainer>

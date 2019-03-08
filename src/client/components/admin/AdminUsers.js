@@ -14,9 +14,9 @@ class AdminUsers extends Component {
       userData: [
         {
           id: '1',
-          firstName: 'Trogdor',
-          lastName: 'Burninator',
-          userName: '@BurninatingEverything',
+          firs_name: 'Trogdor',
+          last_name: 'Burninator',
+          username: '@BurninatingEverything',
         }
       ]
     };

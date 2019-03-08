@@ -8,12 +8,29 @@ class AdminWords extends Component {
   constructor() {
     super();
     this.state = {
-      wordData: [{
+      wordData: [
+        {
           id: '1',
-          firstName: 'Trogdor',
-          lastName: 'Burninator',
-          wordName: '@BurninatingEverything',
-        }]
+          en_word: 'Pants',
+          es_word: 'Pantalones',
+          tag: 'Noun',
+          ranking: '2',
+        },
+        {
+          id: '2',
+          en_word: 'Hat',
+          es_word: 'Sombrero',
+          tag: 'Noun',
+          ranking: '5',
+        },
+        {
+          id: '3',
+          en_word: 'Eat',
+          es_word: 'Comer',
+          tag: 'Verb',
+          ranking: '9',
+        },
+      ]
     };
   }
 
@@ -33,13 +50,14 @@ class AdminWords extends Component {
 
   mapRows = data => {
     return data.map(({
-      id, first_name, last_name, wordname
+      id, en_word, es_word, tag, ranking
     }) => (
       <tr key={ id }>
         <th scope="row">{ id }</th>
-        <td>{ first_name }</td>
-        <td>{ last_name }</td>
-        <td>{ wordname }</td>
+        <td>{ en_word }</td>
+        <td>{ es_word }</td>
+        <td>{ tag }</td>
+        <td>{ ranking }</td>
         <td>(edit icon)</td>
       </tr>
     ))
@@ -58,32 +76,13 @@ class AdminWords extends Component {
                   <th>ID</th>
                   <th>English Word</th>
                   <th>Translation</th>
+                  <th>Category</th>
                   <th>Difficulty Rating</th>
                   <th>Edit</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Pants</td>
-                  <td>Pantalones</td>
-                  <td>Easy</td>
-                  <td>(edit icon)</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>(edit icon)</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>(edit icon)</td>
-                </tr>
+              { this.mapRows(this.state.wordData) }
               </tbody>
             </Table>
           </Col>

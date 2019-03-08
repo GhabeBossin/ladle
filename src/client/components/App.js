@@ -19,9 +19,9 @@ class App extends Component {
   setCurrentUser = userObj => {
     let obj = userObj.data;
     const achievements = [];
+    const trophyIds = [];
     obj.forEach(element => {
-      achievements.push({ [element.name]: element.description })
-      
+      achievements.push({ id: element.id, [element.name]: element.description })
     })
 
     this.setState({

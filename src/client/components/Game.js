@@ -7,8 +7,8 @@ import {
   ButtonGroup,
   CardImg,
   CardTitle,
-  Card, 
-  CardText, 
+  Card,
+  CardText,
   CardBody,
   CardSubtitle
   } from 'reactstrap';
@@ -16,8 +16,6 @@ import FlashCardImg from '../flash-card.png';
 // import './game.css';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
-// import 1 from '../icons/1.png';
-// import 2 from '../icons/2.png';
 import Trophy from './achievementTrophy';
 
 class Game extends Component {
@@ -41,41 +39,41 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    this.setState({ user_achievement: this.props.achievements }),
+    this.setState({ userAchievements: this.props.achievements }),
     this.setState({ user_id: this.props.id })
     this.drawNewCard(this.props.id)
     this.userWord(this.props.id)
-    this.getAchievements(this.props.id)
+    // this.getAchievements(this.props.id)
 
   }
 
   // Get user achievements from user_achievements table
-  getAchievements = (user_id) => {
-    axios.get('http://localhost:8080/userAchievements', {
-      params: {
-        id: user_id
-      }
-    })
-    .then((response) => {
-      const achievements = response.data;
-      const userAchievements = [];
-      achievements.forEach(element => {
-        userAchievements.push(element.achievements_id)
-      })
-      this.setState({ userAchievements: userAchievements })
-    })
-  }
+  // getAchievements = (user_id) => {
+  //   axios.get('http://localhost:8080/userAchievements', {
+  //     params: {
+  //       id: user_id
+  //     }
+  //   })
+  //   .then((response) => {
+  //     const achievements = response.data;
+  //     const userAchievements = [];
+  //     achievements.forEach(element => {
+  //       userAchievements.push(element.achievements_id)
+  //     })
+  //     this.setState({ userAchievements: userAchievements })
+  //   })
+  // }
 
-  trophyNames = (achievement_id) => {
-    axios.get('http://localhost:8080/trophyNames', {
-      params: {
-        id: achievement_id
-      }
-    })
-    .then((response) => {
-      this.setState({ trophies: response.data })
-    })
-  }
+  // trophyNames = (achievement_id) => {
+  //   axios.get('http://localhost:8080/trophyNames', {
+  //     params: {
+  //       id: achievement_id
+  //     }
+  //   })
+  //   .then((response) => {
+  //     this.setState({ trophies: response.data })
+  //   })
+  // }
 
   //  Populate user words array in state
   userWord = (user_id, url) => {
@@ -158,6 +156,7 @@ class Game extends Component {
     this.markedCard();
     this.learnedCard(num, 1)
     this.trophyNames(userAchievements);
+    console.log(this.state.userAchievements)
 
   }
 

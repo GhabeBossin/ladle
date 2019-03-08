@@ -190,14 +190,14 @@ class Game extends Component {
           <Col>
           { !this.state.isFlipped
             ?
-            <StyledCard className="text-center flash-card front border-0">
+            <StyledCard className="text-center flash-card front border-0 shadow">
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
               <StyledCardBody className="card-img-overlay">
                 <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
               </StyledCardBody>
             </StyledCard>
             :
-            <StyledCard className="text-center flash-card back border-0">
+            <StyledCard className="text-center flash-card back border-0 shadow">
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
               <StyledCardBody className="card-img-overlay">
                 <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
@@ -210,9 +210,9 @@ class Game extends Component {
           <StyledCardButtons>
           { !this.state.firstFlip
             ?
-            <Button onClick={this.firstFlip} className="card-flip-btn">Flip</Button>
+            <Button onClick={this.firstFlip}>Flip</Button>
             :
-            <ButtonGroup className="card-answer-btns">
+            <ButtonGroup>
               <Button onClick={ this.xMark }>✘</Button>
               <Button onClick={ this.flip }>Flip</Button>
               <Button onClick={ this.checkMark }>✔</Button>

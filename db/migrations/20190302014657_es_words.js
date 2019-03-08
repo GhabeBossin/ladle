@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('word');
     table.integer('en_words_id');
     table.foreign('en_words_id').references('en_words.id');
-  })  
+  })
 };
 
 exports.down = function(knex, Promise) {

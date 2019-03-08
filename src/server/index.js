@@ -13,9 +13,11 @@ app.use(express.static('dist'));
 // app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
+
 const learnedRoutes = require("./routes/learned");
 const signupRoutes = require("./routes/signup");
-const loginRoutes = require("./routes/login");
+const usersRoutes = require("./routes/users");
+const wordsRoutes = require("./routes/words")
 const gameRoutes =  require("./routes/game");
 const updateWordRoutes = require("./routes/updateWord");
 const userWord = require("./routes/userWord");
@@ -36,4 +38,5 @@ app.use("/learned", learnedRoutes(knex));
 app.use("/signup", signupRoutes(knex));
 app.use("/game", gameRoutes(knex));
 app.use("/updateWord", updateWordRoutes(knex));
-app.use("/api/login", loginRoutes(knex));
+app.use("/api/users", usersRoutes(knex));
+app.use("/api/words", wordsRoutes(knex));

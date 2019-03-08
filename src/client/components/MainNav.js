@@ -33,37 +33,53 @@ class MainNav extends Component {
           <Link to="/" className="navbar-brand">
             ladle
           </Link>
+          {/* {
+            this.props.currentUser.first_name ?
+            <NavItem className='nav-link'>Hello{`, ${this.props.currentUser.first_name}`}
+            </NavItem>
+            : null
+          } */}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              { this.props.currentUser.first_name ?
+                <NavItem className='nav-link'>
+                  Hello{`, ${this.props.currentUser.first_name}`}
+                </NavItem>
+                : null
+              }
+              { this.props.currentUser.first_name ?
+                <NavItem>
+                  <NavLink to="/login" className='nav-link'>Logout</NavLink>
+                </NavItem>
+                :
+                <NavItem>
+                  <NavLink to="/login" className="nav-link">Login</NavLink>
+                </NavItem>
+              }
             {/* STRETCH:
               <NavItem>
                 <SearchBar />
-              </NavItem>
-              */}
-              {/* conditional render greeting based on currentUser */}
-              <NavItem className="nav-link">Hello {this.props.currentUser.first_name}
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
+              </NavItem> */}
+              { this.props.currentUser.is_admin ?
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>
+                  Admin
+                  </DropdownToggle>
+                  <DropdownMenu right>
                   <DropdownItem>
-                    <NavLink to="/login" className="nav-link">Logout</NavLink>
+                    <NavLink to="/admin/dashboard" className="nav-link">Dashboard</NavLink>
                   </DropdownItem>
-                  { this.props.currentUser.is_admin
-                    ?
-                    <div>
-                      <DropdownItem divider />
-                      <DropdownItem>
-                        <NavLink to="/admin/dashboard" className="nav-link">Admin</NavLink>
-                      </DropdownItem>
-                    </div>
-                    : null
-                  }
-                </DropdownMenu>
-              </UncontrolledDropdown>
+                  <DropdownItem>
+                    <NavLink to="/admin/words" className="nav-link">Words</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink to="/admin/users" className="nav-link">Users</NavLink>
+                  </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                : null
+              }
             </Nav>
           </Collapse>
         </Navbar>

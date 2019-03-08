@@ -2,18 +2,20 @@
 const url = require('url');
 const cors = require('cors');
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (knex) => {
-  router.get("/spanish", cors(), (req, res) => {
-    knex('es_words')
-    .join('en_words', 'en_words.id', '=', 'es_words.en_words_id')
-    .select('*')
-    .returning('*')
-    .then(result => { res.json(result) })
-    .catch((error) => {
-      console.log(error)
-    });
+  router.get("/all", cors(), (req, res) => {
+    knex('en_words')
+      .leftJoin('es_words', 'en_words.id', '=', 'es_words.en_words_id')
+      .join('word_tags', 'en_words.id', 'word_tags.en_words_id')
+      .select('*', 'en_words.word AS en_word', 'es_words.word AS es_word')
+      .returning("*")
+      .as("en_words.word")
+      .then(result => { res.json(result) })
+      .catch((error) => {
+        console.log(error)
+      });
   })
 
   return router;

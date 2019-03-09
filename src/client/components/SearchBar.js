@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import axios from 'axios';
+import FuzzySearch from './helpers/FuzzySearch'
 
 class SearchBar extends Component {
    constructor(props) {
@@ -28,12 +29,14 @@ class SearchBar extends Component {
   }
   
   render () {
+    console.log("searchbar", this.props)
     return (
       <div>
         <Form onSubmit={ this.handleClick }>
           <InputGroup>
             <Input name='query' />
             <InputGroupAddon addonType="append">
+              <FuzzySearch data={ this.props }/>
               <Button type="submit"  color="primary">Search</Button>
             </InputGroupAddon>
           </InputGroup>

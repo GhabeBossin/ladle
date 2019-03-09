@@ -27,6 +27,7 @@ class MainNav extends Component {
   }
 
   render() {
+    console.log("main nav", this.props)
     return (
       <div className={ this.props.className }>
         <Navbar light expand="md" className="shadow-sm">
@@ -58,7 +59,7 @@ class MainNav extends Component {
                 </NavItem>
               }
               <NavItem>
-                <SearchBar />
+                <SearchBar data={ this.props }/>
               </NavItem>
 
               { this.props.currentUser.is_admin ?

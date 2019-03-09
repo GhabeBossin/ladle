@@ -23,7 +23,7 @@ class App extends Component {
     const achievements = [];
     const trophyIds = [];
     obj.forEach(element => {
-      achievements.push({ id: element.id, [element.name]: element.description })
+      achievements.push({ id: element.id, name: element.name, description: element.description })
     })
 
     this.setState({

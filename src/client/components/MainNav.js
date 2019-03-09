@@ -10,7 +10,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap'
-// import SearchBar from './SearchBar.js'
+import SearchBar from './SearchBar.js'
 
 class MainNav extends Component {
   constructor(props) {
@@ -57,10 +57,10 @@ class MainNav extends Component {
                   <NavLink to="/login" className="nav-link">Login</NavLink>
                 </NavItem>
               }
-            {/* STRETCH:
               <NavItem>
                 <SearchBar />
-              </NavItem> */}
+              </NavItem>
+
               { this.props.currentUser.is_admin ?
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>

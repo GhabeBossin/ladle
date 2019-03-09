@@ -37,7 +37,7 @@ class AdminWords extends Component {
         <td>{ es_word }</td>
         <td>{ name }</td>
         <td>{ ranking }</td>
-        <td><img src='/public/icons/edit.png' width='5%'/></td>
+        <td>✏️</td>
       </tr>
     ))
   }

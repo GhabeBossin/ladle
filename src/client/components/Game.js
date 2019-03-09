@@ -183,14 +183,14 @@ class Game extends Component {
           <Col>
           { !this.state.isFlipped
             ?
-            <StyledCard className="text-center flash-card front border-0 shadow">
+            <StyledCard className="text-center border-0 shadow">
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
               <StyledCardBody className="card-img-overlay">
                 <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
               </StyledCardBody>
             </StyledCard>
             :
-            <StyledCard className="text-center flash-card back border-0 shadow">
+            <StyledCard className="text-center border-0 shadow">
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
               <StyledCardBody className="card-img-overlay">
                 <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>

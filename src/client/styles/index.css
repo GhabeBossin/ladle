@@ -6,13 +6,18 @@
 
 a {
   color: #0635C9;
+  transition: color .15s
+}
+a:hover {
+  text-decoration: none;
+  color: #1AE5BE
 }
 
 .btn {
   background-color: #0635C9;
   border: none;
-  /* MINT color: #1AE5BE; */
 }
+
 .btn:hover {
-  background-color: #042aa5;
+  background-color: #1AE5BE;
 }

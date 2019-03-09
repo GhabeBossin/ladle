@@ -10,7 +10,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap'
-// import SearchBar from './SearchBar.js'
+import SearchBar from './SearchBar.js'
 
 class MainNav extends Component {
   constructor(props) {
@@ -29,16 +29,10 @@ class MainNav extends Component {
   render() {
     return (
       <div className={ this.props.className }>
-        <Navbar light expand="md" className="shadow-sm">
+        <Navbar light expand="md">
           <Link to="/" className="navbar-brand">
             ladle
           </Link>
-          {/* {
-            this.props.currentUser.first_name ?
-            <NavItem className='nav-link'>Hello{`, ${this.props.currentUser.first_name}`}
-            </NavItem>
-            : null
-          } */}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -57,10 +51,6 @@ class MainNav extends Component {
                   <NavLink to="/login" className="nav-link">Login</NavLink>
                 </NavItem>
               }
-            {/* STRETCH:
-              <NavItem>
-                <SearchBar />
-              </NavItem> */}
               { this.props.currentUser.is_admin ?
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -80,6 +70,9 @@ class MainNav extends Component {
                 </UncontrolledDropdown>
                 : null
               }
+              <NavItem>
+                <SearchBar />
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

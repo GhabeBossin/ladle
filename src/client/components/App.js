@@ -42,7 +42,6 @@ class App extends Component {
     return (
       <div>
         <StyledAppContainer>
-          {/* Pass userObj to StyledMainNav somehow*/}
           <StyledMainNav currentUser={this.state.currentUser}/>
             <div>
               <Switch>

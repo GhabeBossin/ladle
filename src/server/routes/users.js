@@ -5,6 +5,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (knex) => {
+
   router.get("/", cors(), (req, res) => {
     knex.select("*")
     .from('users')

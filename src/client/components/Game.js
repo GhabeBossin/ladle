@@ -179,20 +179,21 @@ class Game extends Component {
   render() {
     return (
       <Container>
+        <div>
         <Row>
           <Col>
           { !this.state.isFlipped
             ?
-            <StyledCard className="text-center border-0 shadow">
+            <StyledCard>
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-              <StyledCardBody className="card-img-overlay">
+              <StyledCardBody>
                 <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
               </StyledCardBody>
             </StyledCard>
             :
-            <StyledCard className="text-center border-0 shadow">
+            <StyledCard>
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-              <StyledCardBody className="card-img-overlay">
+              <StyledCardBody>
                 <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
               </StyledCardBody>
             </StyledCard>
@@ -212,7 +213,10 @@ class Game extends Component {
             </ButtonGroup> }
           </StyledCardButtons>
         </StyledBtnDiv>
-        <Trophy data={this.state.userAchievements} />
+        </div>
+        <div>
+          <Trophy data={this.state.userAchievements} />
+        </div>
       </Container>
     );
   }

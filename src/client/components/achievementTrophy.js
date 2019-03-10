@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import {
   Card,
   CardImg,
+  CardHeader,
+  CardBody,
+  CardText,
+  CardGroup,
   Row,
   Col } from 'reactstrap'
 
@@ -13,17 +17,23 @@ class Trophy extends Component {
   render() {
     if (this.props.data) {
       const achievements = this.props.data.map((element, i) =>
-        <Col key = {i} sm='4'>
-          <Card body>
+        <Card key = {i} sm='4'>
+          <CardHeader>{`${element.name}`}</CardHeader>
+          <CardBody>
             <CardImg src={`public/icons/${element.id}.png`}/>
-          </Card>
-        </Col>
+            <CardText>{`${element.description}`}</CardText>
+          </CardBody>
+        </Card>
       )
       return (
         <div>
-          <h3 className='my-3 text-center'>Achievements:</h3>
+          <h4 className='my-5 text-center'>Achievements</h4>
           <Row>
-            {achievements}
+            <Col>
+              <CardGroup>
+                {achievements}
+              </CardGroup>
+            </Col>
           </Row>
         </div>
         )

@@ -8,9 +8,6 @@ const StyledFooter = styled(Footer)`
   justify-self: flex-end;
   justify-content: flex-end;
   opacity: .75;
-  /* & span {
-    color: #1AE5BE !important
-  } */
 `;
 
 export default StyledFooter

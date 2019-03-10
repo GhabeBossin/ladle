@@ -35,7 +35,7 @@ app.use("/trophyNames", trophyNames(knex));
 app.use("/userAchievements", userAchievements(knex));
 app.use("/userWord", userWord(knex));
 app.use("/learned", learnedRoutes(knex));
-app.use("/signup", signupRoutes(knex));
+app.use("/api/signup", signupRoutes(knex));
 app.use("/game", gameRoutes(knex));
 app.use("/updateWord", updateWordRoutes(knex));
 app.use("/api/users", usersRoutes(knex));

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import MainNav from '../components/MainNav'
 
 const StyledMainNav = styled(MainNav).attrs({
-  className: 'shadow-sm'
+  className: 'shadow-sm',
 })`
   display: flex;
   flex: 1;
@@ -12,16 +12,21 @@ const StyledMainNav = styled(MainNav).attrs({
   margin-bottom: 2em;
 
   & > nav {
-    min-width: 100% !important;
+    min-width: 100%;
   }
 
-  & .navbar-brand {
-    color: #0635C9 !important;
-    transition: color .15s !important;
+  &&& .navbar-brand {
+    color: #0635C9;
+    transition: color .3s;
 
     :hover {
-      color: #1AE5BE !important;
+      color: #1AE5BE;
+      transition: color .3s;
     }
+  }
+
+  &&& .nav-link:active {
+
   }
 `;
 

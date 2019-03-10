@@ -20,6 +20,7 @@ class App extends Component {
 
   setCurrentUser = userObj => {
     let obj = userObj.data;
+    console.log('USREROBJ: ', obj)
     const achievements = [];
     const trophyIds = [];
     obj.forEach(element => {
@@ -47,7 +48,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />
                 <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> } />
-                <Route exact path="/signup" component={ SignUp } />
+                <Route exact path="/signup" component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> } />
                 <Route exact path="/admin/dashboard" component={ AdminDash } />
                 <Route exact path="/admin/words" component={ AdminWords } />
                 <Route exact path="/admin/users" component={ AdminUsers } />

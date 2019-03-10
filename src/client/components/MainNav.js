@@ -29,7 +29,7 @@ class MainNav extends Component {
   render() {
     return (
       <div className={ this.props.className }>
-        <Navbar light expand="md">
+        <Navbar light expand="md" color="light">
           <Link to="/" className="navbar-brand">
             ladle
           </Link>

@@ -29,16 +29,13 @@ class MainNav extends Component {
   render() {
     return (
       <div className={ this.props.className }>
-        <Navbar light expand="md" className="shadow-sm">
+        <Navbar light expand="md" color="light">
           <Link to="/" className="navbar-brand">
             ladle
           </Link>
-          {/* {
-            this.props.currentUser.first_name ?
-            <NavItem className='nav-link'>Hello{`, ${this.props.currentUser.first_name}`}
-            </NavItem>
-            : null
-          } */}
+          {/* <NavItem> */}
+            <SearchBar data={ this.props.data }/>
+          {/* </NavItem> */}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -57,10 +54,6 @@ class MainNav extends Component {
                   <NavLink to="/login" className="nav-link">Login</NavLink>
                 </NavItem>
               }
-              <NavItem>
-                <SearchBar data={ this.props.data }/>
-              </NavItem>
-
               { this.props.currentUser.is_admin ?
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>

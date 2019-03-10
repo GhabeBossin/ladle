@@ -1,17 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import {
+  Card,
+  CardImg,
+  CardHeader,
+  CardBody,
+  CardText,
+  CardGroup,
+  Row,
+  Col } from 'reactstrap'
 
-class Trophy extends React.Component {
+class Trophy extends Component {
   constructor() {
-     super()
+    super()
   }
   render() {
-    console.log(this.props.data)
     if (this.props.data) {
-    const achievements = this.props.data.map((element, i) =>
-      <div key = {i}><img src={`public/icons/${element.id}.png`}/></div>
-    )
-    return (<div>{achievements}</div>) 
-    } else { return <h1>You are not logged in.</h1> }
+      const achievements = this.props.data.map((element, i) =>
+        <Card key = {i} sm='4'>
+          <CardHeader>{`${element.name}`}</CardHeader>
+          <CardBody>
+            <CardImg src={`public/icons/${element.id}.png`}/>
+            <CardText>{`${element.description}`}</CardText>
+          </CardBody>
+        </Card>
+      )
+      return (
+        <div>
+          <h4 className='my-5 text-center'>Achievements</h4>
+          <Row>
+            <Col>
+              <CardGroup>
+                {achievements}
+              </CardGroup>
+            </Col>
+          </Row>
+        </div>
+        )
+    } else {
+      return (
+        <Row className='my-5'>
+          <Col>
+            <p className='text-center'>To see your achievements please<Link to='/login'> login.</Link>
+            </p>
+          </Col>
+        </Row>
+      )
+    }
   }
 }
+
 export default Trophy;

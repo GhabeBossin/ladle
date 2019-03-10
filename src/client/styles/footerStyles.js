@@ -8,9 +8,6 @@ const StyledFooter = styled(Footer)`
   justify-self: flex-end;
   justify-content: flex-end;
   opacity: .75;
-  & > footer {
-    min-width: 100% !important;
-  }
 `;
 
 export default StyledFooter

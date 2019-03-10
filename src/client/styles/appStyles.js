@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-const StyledAppContainer = styled.div.attrs({
-  className: "shadow-sm",
-})`
+const StyledAppContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 100vw;

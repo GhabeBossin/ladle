@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Lucida', 'Verdana', 'Tahoma', 'Arial';
+}
+
+a {
+  color: #0635C9;
+  transition: color .15s
+}
+a:hover {
+  text-decoration: none;
+  color: #1AE5BE
+}
+
+.btn {
+  background-color: #0635C9;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #1AE5BE;
+}

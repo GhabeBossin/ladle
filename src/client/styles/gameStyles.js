@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledCard = styled.div.attrs({
-  className: "card text-center flash-card front border-0",
+  className: "card text-center border-0 shadow",
 })`
   margin: 1em 0 3em;
 `;
@@ -15,7 +15,9 @@ const StyledCardBody = styled.div.attrs({
   font-size: 2em;
 `;
 
-const StyledBtnDiv = styled.div`
+const StyledBtnDiv = styled.div.attrs({
+  className: 'pb-5 border-bottom'
+})`
   display:flex;
   justify-content: center;
 `;

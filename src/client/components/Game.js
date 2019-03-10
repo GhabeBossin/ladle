@@ -6,17 +6,11 @@ import {
   Button,
   ButtonGroup,
   CardImg,
-  CardTitle,
-  Card,
-  CardText,
-  CardBody,
-  CardSubtitle
-  } from 'reactstrap';
+  CardTitle } from 'reactstrap';
 import FlashCardImg from '../flash-card.png';
-// import './game.css';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
-import Trophy from './achievementTrophy';
+import Trophy from './AchievementTrophy';
 
 class Game extends Component {
   constructor(props) {
@@ -44,7 +38,6 @@ class Game extends Component {
     this.drawNewCard(this.props.id)
     this.userWord(this.props.id)
     // this.getAchievements(this.props.id)
-
   }
 
   // Get user achievements from user_achievements table
@@ -138,7 +131,7 @@ class Game extends Component {
       user_word_id: num + 1
     })
     this.drawNewCard(num + 1)
-    this.setState({firstFlip: false, flipped: this.state.flipped})
+    this.setState({firstFlip: false, isFlipped: false})
   }
 
   // User doesn't know the card and clicks the x mark, increase difficulty of card in en_cards table
@@ -181,26 +174,27 @@ class Game extends Component {
   // }
 
   render() {
-    
+
     if (!this.state.user_id) {
-     return <h1>You need to log in</h1>
+      return <h1>You need to log in</h1>
     } else {
     return (
       <Container>
+        <div>
         <Row>
           <Col>
           { !this.state.isFlipped
             ?
-            <StyledCard className="text-center flash-card front border-0 shadow">
+            <StyledCard>
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-              <StyledCardBody className="card-img-overlay">
+              <StyledCardBody>
                 <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
               </StyledCardBody>
             </StyledCard>
             :
-            <StyledCard className="text-center flash-card back border-0 shadow">
+            <StyledCard>
               <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-              <StyledCardBody className="card-img-overlay">
+              <StyledCardBody>
                 <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
               </StyledCardBody>
             </StyledCard>
@@ -220,14 +214,10 @@ class Game extends Component {
             </ButtonGroup> }
           </StyledCardButtons>
         </StyledBtnDiv>
-          <Card>
-            <CardBody>
-              <CardTitle>Your amazing achievements!</CardTitle>
-                <Trophy data={this.state.userAchievements} />
-              <CardSubtitle>Card subtitle</CardSubtitle>
-              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            </CardBody>
-          </Card>
+        </div>
+        <div>
+          <Trophy data={this.state.userAchievements} />
+        </div>
       </Container>
     );
   }

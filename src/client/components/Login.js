@@ -3,10 +3,13 @@ import { Redirect, Link } from 'react-router-dom'
 import {
   Container,
   Button,
-  Form,
   FormGroup,
+  Form,
   Input,
   Label } from 'reactstrap'
+import {
+  StyledDiv,
+  StyledSpan } from '../styles/signInUpStyles'
 import axios from 'axios';
 
 class Login extends Component {
@@ -44,6 +47,7 @@ class Login extends Component {
       }
     })
     .then((response) => {
+      // console.log('HELLO RESPONSE', response)
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) });
     })
@@ -68,12 +72,13 @@ class Login extends Component {
             <Label htmlFor="pass">Password</Label>
             <Input type="password" name='pass' id="pass" onChange={ this.handleInputChange } value={ this.state.passwordInput } />
           </FormGroup>
-          <Button type="button" onClick={ this.handleSubmit }>
-            Login
-          </Button>
+          <StyledDiv>
+            <Button type="button" onClick={ this.handleSubmit }>
+              Login
+            </Button>
+            <StyledSpan>New here? Would you like to <Link to='/signup'>Signup?</Link></StyledSpan>
+          </StyledDiv>
         </Form>
-
-        <p>New here? Would you like to<Link to='/signup'> Signup? </Link></p>
       </Container> }
     </>);
   }

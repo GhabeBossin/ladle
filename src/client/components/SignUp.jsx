@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import {
   Container,
   Button,
@@ -7,64 +7,118 @@ import {
   FormGroup,
   Input,
   Label } from 'reactstrap'
+import {
+  StyledDiv,
+  StyledSpan } from '../styles/signInUpStyles'
 import axios from 'axios';
 
 class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  constructor({ setCurrentUser }) {
+    super();
+    this.setCurrentUser = setCurrentUser;
     this.state = {
-      name: ""
+      validated: false,
+      firstNameInput: '',
+      lastNameInput: '',
+      usernameInput: '',
+      passwordInput: '',
+      currentUser: {
+        first_name: ''
+      }
     }
   }
 
-  handleSubmit(e) {
-    this.setState ({ name: this.input.value});
+  handleInputChange = ({ target }) => {
+    const { name, value } = target;
+    name === 'username' ?
+    this.setState({
+      usernameInput: value
+    })
+    : name === 'first_name' ?
+    this.setState({
+      firstNameInput: value
+    })
+    : name === 'last_name' ?
+    this.setState({
+      lastNameInput: value
+    })
+    : name === 'pass' ?
+    this.setState({
+      passwordInput: value
+    })
+    :null
+  }
 
-    let data = this.input.value;
+  handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state)
 
-    axios.post("http://localhost:8080/signup", {
-      name: data,
+    const firstData = this.state.firstNameInput;
+    const lastData = this.state.lastNameInput;
+    const unameData = this.state.usernameInput;
+    const passData = this.state.passwordInput;
+
+    return axios.post("http://localhost:8080/api/signup", {
+      first_name: firstData,
+      last_name: lastData,
+      username: usameData,
+      password: passData,
     })
-    .then(function (response) {
-      console.log(response);
+    .then((response) => {
+      console.log("RESPONSE ", response)
+      this.setState({ validated: true },
+        () => {
+          this.setCurrentUser(
+            {data: [{
+              first_name: firstData,
+              last_name: lastData,
+              username: unameData,
+            }]}
+          )
+        });
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     });
   }
 
   render() {
-    return (
-      <Container>
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <Label for="first_name">First Name</Label>
-            <Input type="text" id="first_name" ref={(input) => this.input = input} />
-            <h1>{this.state.name} </h1>
-          </FormGroup>
-          <FormGroup>
-            <Label for="last_name">Last Name</Label>
-            <Input type="text" id="last_name" ref={(input) => this.input = input} />
-            <h1>{this.state.name} </h1>
-          </FormGroup>
-          <FormGroup>
-            <Label for="username">Username</Label>
-            <Input type="text" id="username" ref={(input) => this.input = input} />
-            <h1>{this.state.name} </h1>
-          </FormGroup>
-          <FormGroup>
-            <Label for="pass">Password</Label>
-            <Input type="password" id="pass" ref={(input) => this.input = input} />
-            <h1>{this.state.name} </h1>
-          </FormGroup>
-          <div></div>
-          <Button type="submit" value="Submit">Signup</Button>
-          <p>Already have an account? <Link to='/login'> Login here.</Link></p>
-        </Form>
-      </Container>
-    );
+    return (<>
+      { this.state.validated
+        ?
+        <Redirect to='/' />
+        :
+        <Container>
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label htmlFor="first_name">First Name</Label>
+              <Input type="text" name='first_name' id="first_name" onChange={ this.handleInputChange } value={ this.state.firstNameInput }/>
+              <h1>{this.state.name} </h1>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="last_name">Last Name</Label>
+              <Input type="text" name='last_name' id="last_name" onChange={ this.handleInputChange } value={ this.state.lastNameInput }/>
+              <h1>{this.state.name} </h1>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="username">Username</Label>
+              <Input type="text" name='username' id="username" onChange={ this.handleInputChange } value={ this.state.usernameInput } />
+              <h1>{this.state.name} </h1>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="pass">Password</Label>
+              <Input type="password" name='pass' id="pass" onChange={ this.handleInputChange } value={ this.state.passwordInput } />
+              <h1>{this.state.name} </h1>
+            </FormGroup>
+            <StyledDiv>
+            <Button type="submit" onClick={ this.handleSubmit }>
+              Signup
+            </Button>
+            <StyledSpan>Already have an account? <Link to='/login'> Login here.</Link></StyledSpan>
+            </StyledDiv>
+          </Form>
+      </Container> }
+    </>);
   }
 }
 

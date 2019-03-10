@@ -22,12 +22,10 @@ class App extends Component {
 
   setCurrentUser = userObj => {
     let obj = userObj.data;
-    const achievements = [];
-    const trophyIds = [];
-    obj.forEach(element => {
+    let achievements = [];
+    !userObj.data[0].achievements ? achievements = [] : obj.forEach(element => {
       achievements.push({ id: element.id, name: element.name, description: element.description })
     })
-
     this.setState({
       currentUser: {
         achievements: achievements,
@@ -54,11 +52,15 @@ class App extends Component {
     this.getWordData()
   }
 
+  handleLogoutClick = () => {
+    this.setState({ currentUser: {} })
+    console.log("lllloooogggg", this.state.currentUser)
+  }
   render() {
     return (
       <div>
         <StyledAppContainer>
-          <StyledMainNav data={ this.state.wordData } currentUser={this.state.currentUser}/>
+          <StyledMainNav onClick={ this.handleLogoutClick } data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
                 <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />

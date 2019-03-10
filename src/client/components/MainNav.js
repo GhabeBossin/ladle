@@ -20,11 +20,15 @@ class MainNav extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log(this.props)
+  }
   toggle = () => {
     this.setState({
       isOpen  : !this.state.isOpen
     });
   }
+
 
   render() {
     return (
@@ -47,7 +51,8 @@ class MainNav extends Component {
               }
               { this.props.currentUser.first_name ?
                 <NavItem>
-                  <NavLink to="/login" className='nav-link'>Logout</NavLink>
+                  
+                  <NavLink to="/login" className='nav-link' onClick={this.props.onClick} >Logout</NavLink>
                 </NavItem>
                 :
                 <NavItem>

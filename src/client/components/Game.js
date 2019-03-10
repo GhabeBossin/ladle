@@ -37,36 +37,9 @@ class Game extends Component {
     this.setState({ user_id: this.props.id })
     this.drawNewCard(this.props.id)
     this.userWord(this.props.id)
+    
     // this.getAchievements(this.props.id)
   }
-
-  // Get user achievements from user_achievements table
-  // getAchievements = (user_id) => {
-  //   axios.get('http://localhost:8080/userAchievements', {
-  //     params: {
-  //       id: user_id
-  //     }
-  //   })
-  //   .then((response) => {
-  //     const achievements = response.data;
-  //     const userAchievements = [];
-  //     achievements.forEach(element => {
-  //       userAchievements.push(element.achievements_id)
-  //     })
-  //     this.setState({ userAchievements: userAchievements })
-  //   })
-  // }
-
-  // trophyNames = (achievement_id) => {
-  //   axios.get('http://localhost:8080/trophyNames', {
-  //     params: {
-  //       id: achievement_id
-  //     }
-  //   })
-  //   .then((response) => {
-  //     this.setState({ trophies: response.data })
-  //   })
-  // }
 
   //  Populate user words array in state
   userWord = (user_id, url) => {
@@ -163,18 +136,7 @@ class Game extends Component {
     });
   }
 
-  // trophy = () => {
-  //   let userAchievements = []
-  //   let achievements = this.state.userAchievements;
-  //   achievements.forEach(element => {
-  //     userAchievements.push(<td><img src={element}/></td>)
-  //   });
-  //   console.log(achievements)
-  //   return userAchievements
-  // }
-
   render() {
-
     if (!this.state.user_id) {
       return <h1>You need to log in</h1>
     } else {

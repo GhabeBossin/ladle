@@ -10,9 +10,9 @@ module.exports = (knex) => {
     const data = req.body;
     knex("users")
     .insert([{first_name: data.first_name, last_name: data.last_name, username: data.username, password: data.password}])
-    .then(res.status(200))
-    .then(res.send("successfully signed up user"))
+    .returning("*")
     .then(result => res.json(result))
+    .then(res.status(200))
     .catch((error) => {
       console.log("this error is from routes/signup", error)
     });

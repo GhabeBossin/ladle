@@ -51,6 +51,9 @@ class MainNav extends Component {
                   <NavLink to="/login" className="nav-link">Login</NavLink>
                 </NavItem>
               }
+              <NavItem>
+                <SearchBar data={ this.props.data }/>
+              </NavItem>
               { this.props.currentUser.is_admin ?
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>

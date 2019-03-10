@@ -9,11 +9,13 @@ import SignUp from './SignUp.jsx'
 import Login from './Login'
 import AdminWords from './admin/AdminWords'
 import AdminUsers from './admin/AdminUsers'
+import axios from 'axios'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      wordData: {},
       currentUser: {}
     }
   }
@@ -37,13 +39,29 @@ class App extends Component {
         is_admin: userObj.data[0].is_admin,
       }
     })
+
+  }
+  
+  getWordData = () => {
+    axios.get("http://localhost:8080/api/words/all")
+    .then((response) => {
+      console.log(response)
+      this.setState({wordData: [...response.data]});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  componentDidMount() {
+    this.getWordData()
   }
 
   render() {
     return (
       <div>
         <StyledAppContainer>
-          <StyledMainNav currentUser={this.state.currentUser}/>
+          <StyledMainNav data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
                 <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />

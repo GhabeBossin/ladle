@@ -43,6 +43,7 @@ class AdminWords extends Component {
   }
 
   render() {
+
     return (
       <Container>
         <h2>Words</h2>

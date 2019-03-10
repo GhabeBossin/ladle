@@ -23,7 +23,7 @@ class Game extends Component {
       es_word: "",
       userWords: [],
       userAchievements: [],
-      user_word_id: 1,
+      user_word_id: null,
       user_id: null,
       firstFlip: false,
       flipped  : false,
@@ -148,9 +148,6 @@ class Game extends Component {
     this.updateWord(num, 1);
     this.markedCard();
     this.learnedCard(num, 1)
-    // this.trophyNames(userAchievements);
-    // console.log(this.state.userAchievements)
-
   }
 
   firstFlip = () => {
@@ -177,6 +174,10 @@ class Game extends Component {
   // }
 
   render() {
+
+    if (!this.state.user_id) {
+      return <h1>You need to log in</h1>
+    } else {
     return (
       <Container>
         <div>
@@ -220,6 +221,7 @@ class Game extends Component {
       </Container>
     );
   }
+}
 };
 
 export default Game;

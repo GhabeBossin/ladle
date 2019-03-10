@@ -7,21 +7,18 @@ class SearchBar extends Component {
    constructor(props) {
      super(props)
      this.handleClick = this.handleClick.bind(this);
+     this.state = {
+       words: this.props.data
+     }
    }
-  handleClick(e) {
-    e.preventDefault();
-    let wordToLookup = event.currentTarget.query.value
-
+  handleClick(word) {
     axios.get("http://localhost:8080/api/words/search", {
       params: {
-        id: wordToLookup
+        id: word
       }
     })
     .then((response) => {
-
-      alert("The translation for " + " " + `"${wordToLookup}"` + " is " + `"${response.data[0].word}"`)
-      // this.setState({en_word: response.data[0].rows[0].word })
-      // this.setState({es_word: response.data[1].rows[0].word })
+      alert("The translation for " + " " + `"${word}"` + " is " + `"${response.data[0].word}"`)
     })
     .catch(function (error) {
       console.log("this is error is in getCard in Login.js", error);
@@ -29,19 +26,11 @@ class SearchBar extends Component {
   }
   
   render () {
-    console.log("searchbar", this.props)
     return (
       <div>
-        <Form onSubmit={ this.handleClick }>
-          <InputGroup>
-            <Input name='query' />
-            <InputGroupAddon addonType="append">
-              <FuzzySearch data={ this.props }/>
-              <Button type="submit"  color="primary">Search</Button>
-            </InputGroupAddon>
-          </InputGroup>
-          </Form>
-      </div>)
+       {this.props.data[0] && <FuzzySearch name='query' placeholder="Translate" handleClick={ this.handleClick } data={ this.props.data } /> }
+     </div>
+    )
   }
 };
 

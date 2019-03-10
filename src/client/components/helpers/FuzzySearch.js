@@ -1,44 +1,59 @@
 import React, { Component } from "react";
 import fuzzyFilterFactory from "react-fuzzy-filter";
+import { Form, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 
 // these components share state and can even live in different components
 const { InputFilter, FilterResults, changeInputValue } = fuzzyFilterFactory();
 
-
 class FuzzySearch extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      words: []
+      words: [],
+      searchWord: ""
     }
+    this.handleEnter = this.handleEnter.bind(this)
   }
 
   componentDidMount() {
-    console.log("this is data fro search", this.props)
     this.createWordsArray()
   }
-  createWordsArray = () => {
-    let wordArray = this.props;
-    // wordArray.forEach((element) =>
-      console.log("elements", this.props)
-    // )
 
+  createWordsArray = () => {
+    let wordArray = [];
+    this.props.data.forEach((element) =>
+    wordArray.push({name: element.en_word, meta: element.en_word })
+    )
+    this.setState({ words: wordArray })
   }
+
+  handleEnter = (e) => {
+    if (e.key === 'Enter') {
+    this.props.handleClick(this.state.searchWord)
+    changeInputValue()
+  }
+  }
+
+  onChange = (word) => {
+    this.setState({ searchWord: word })
+    return word
+  }
+
+  onClick = () => {
+    this.props.handleClick(this.state.searchWord)
+    this.setState({  })
+  }
+
   render() {
-    const items = [
-      // { name: this.props.data, meta: this.props.data, tag: "a" }
-      // { en_word: "first", meta: "first|123", tag: "a" },
-      // { name: "second", meta: "second|443", tag: "b" },
-      // { name: "third", meta: "third|623", tag: "a" },
-    ];
+    console.log("elements", Array.isArray(this.state.words))
+    const items = this.state.words
     const fuseConfig = {
       keys: ["meta", "tag"],
     };
     return (
       <div>
-        <InputFilter debounceTime={200} />
-        <div>Translate Word</div>
-        <FilterResults items={items} fuseConfig={fuseConfig}>
+        <InputFilter inputProps={{placeholder: this.props.placeholder, name: this.props.name, onKeyUp: this.handleEnter }} onChange={this.onChange} debounceTime={200} />
+        <FilterResults defaultAllItems={false} items={items} fuseConfig={fuseConfig}>
           {filteredItems => {
             return (
               <div>
@@ -49,6 +64,7 @@ class FuzzySearch extends Component {
             );
           }}
         </FilterResults>
+        <Button type="button" onClick={this.onClick} color="primary">Search</Button>
       </div>
     );
   }

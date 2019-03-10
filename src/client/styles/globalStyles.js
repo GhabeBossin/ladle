@@ -13,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
 
   .btn {
     color: #0635C9;
-    /* MINT color: #1AE5BE; */
   }
 `;
 

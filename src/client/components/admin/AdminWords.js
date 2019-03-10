@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { 
+import {
   Container,
   Table,
   Row,
-  Col} from 'reactstrap'
+  Col } from 'reactstrap'
+import { StyledEditBtn } from '../../styles/adminWordsUsersStyles'
 // import SearchBar from './SearchBar'
 import axios from 'axios';
 

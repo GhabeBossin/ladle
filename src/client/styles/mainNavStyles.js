@@ -17,16 +17,12 @@ const StyledMainNav = styled(MainNav).attrs({
 
   &&& .navbar-brand {
     color: #0635C9;
-    transition: color .3s;
+    /* transition: color .3s; */
 
-    :hover {
+  & :hover {
       color: #1AE5BE;
-      transition: color .3s;
+      transition: color .15s;
     }
-  }
-
-  &&& .nav-link:active {
-
   }
 `;
 

@@ -6,6 +6,8 @@ import {
   Row,
   Col,
   Button } from 'reactstrap'
+import { StyledEditBtn } from '../../styles/adminWordsUsersStyles'
+
 // import SearchBar from './SearchBar'
 import axios from 'axios';
 
@@ -41,9 +43,9 @@ class AdminUsers extends Component {
         <td >  { last_name }</td>
         <td >  { username }</td>
         <td>
-          <Button size='sm' outline>
+          <StyledEditBtn>
             <Link to='/admin/:username/edit'>✏️</Link>
-          </Button>
+          </StyledEditBtn>
         </td>
       </tr>
     ))

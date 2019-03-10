@@ -8,6 +8,7 @@ a {
   color: #0635C9;
   transition: color .15s
 }
+
 a:hover {
   text-decoration: none;
   color: #1AE5BE
@@ -20,4 +21,5 @@ a:hover {
 
 .btn:hover {
   background-color: #1AE5BE;
+  border: none;
 }

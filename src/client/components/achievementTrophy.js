@@ -15,7 +15,6 @@ class Trophy extends Component {
     super()
   }
   render() {
-    console.log(this.props.data)
     if (this.props.data) {
       const achievements = this.props.data.map((element, i) =>
         <Card key = {i} sm='4'>

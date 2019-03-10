@@ -22,7 +22,6 @@ class App extends Component {
 
   setCurrentUser = userObj => {
     let obj = userObj.data;
-    console.log('USREROBJ: ', obj)
     const achievements = [];
     const trophyIds = [];
     obj.forEach(element => {
@@ -39,13 +38,11 @@ class App extends Component {
         is_admin: userObj.data[0].is_admin,
       }
     })
-
   }
-  
+
   getWordData = () => {
     axios.get("http://localhost:8080/api/words/all")
     .then((response) => {
-      console.log(response)
       this.setState({wordData: [...response.data]});
     })
     .catch((error) => {

@@ -47,7 +47,7 @@ class Login extends Component {
       }
     })
     .then((response) => {
-      console.log('HELLO RESPONSE', response)
+      // console.log('HELLO RESPONSE', response)
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) });
     })

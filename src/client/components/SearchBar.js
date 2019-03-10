@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import { Form, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
+// import { Form, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import axios from 'axios';
 import FuzzySearch from './helpers/FuzzySearch'
 
 class SearchBar extends Component {
   constructor(props) {
     super(props)
-      this.handleClick = this.handleClick.bind(this);
-      this.state = {
-        words: this.props.data
+    this.state = {
+      words: this.props.data
     }
   }
-  handleClick(word) {
+
+  handleClick = (word) => {
     axios.get("http://localhost:8080/api/words/search", {
       params: {
         id: word
       }
     })
     .then((response) => {
-      alert("The translation for " + " " + `"${word}"` + " is " + `"${response.data[0].word}"`)
+      alert("The translation for " + ` "${word}"` + " is " + `"${response.data[0].word}"`)
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log("this is error is in getCard in Login.js", error);
     });
   }

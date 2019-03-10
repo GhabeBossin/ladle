@@ -12,7 +12,6 @@ class FuzzySearch extends Component {
       words: [],
       searchWord: ""
     }
-    this.handleEnter = this.handleEnter.bind(this)
   }
 
   componentDidMount() {
@@ -31,7 +30,7 @@ class FuzzySearch extends Component {
     if (e.key === 'Enter') {
     this.props.handleClick(this.state.searchWord)
     changeInputValue()
-  }
+    }
   }
 
   onChange = (word) => {
@@ -45,15 +44,20 @@ class FuzzySearch extends Component {
   }
 
   render() {
-    console.log("elements", Array.isArray(this.state.words))
+    // console.log("elements", Array.isArray(this.state.words))
     const items = this.state.words
     const fuseConfig = {
       keys: ["meta", "tag"],
     };
     return (
       <div>
-        <InputFilter inputProps={{placeholder: this.props.placeholder, name: this.props.name, onKeyUp: this.handleEnter }} onChange={this.onChange} debounceTime={200} />
-        <FilterResults defaultAllItems={false} items={items} fuseConfig={fuseConfig}>
+        <InputGroup>
+          <InputFilter inputProps={{placeholder: this.props.placeholder, name: this.props.name, onKeyUp: this.handleEnter }} onChange={this.onChange} debounceTime={200} className='input'/>
+            <InputGroupAddon addonType="append">
+              <Button type="button" onClick={this.onClick} color="primary">Search</Button>
+            </InputGroupAddon>
+          </InputGroup>
+          <FilterResults defaultAllItems={false} items={items} fuseConfig={fuseConfig}>
           {filteredItems => {
             return (
               <div>
@@ -64,7 +68,6 @@ class FuzzySearch extends Component {
             );
           }}
         </FilterResults>
-        <Button type="button" onClick={this.onClick} color="primary">Search</Button>
       </div>
     );
   }

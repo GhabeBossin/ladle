@@ -51,7 +51,6 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
 
     const firstData = this.state.firstNameInput;
     const lastData = this.state.lastNameInput;
@@ -61,7 +60,7 @@ class SignUp extends Component {
     return axios.post("http://localhost:8080/api/signup", {
       first_name: firstData,
       last_name: lastData,
-      username: usameData,
+      username: unameData,
       password: passData,
     })
     .then((response) => {

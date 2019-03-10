@@ -28,7 +28,7 @@ class Trophy extends Component {
       return (
         <div>
           <h4 className='my-5 text-center'>Achievements</h4>
-          <Row>
+          <Row className='mb-5'>
             <Col>
               <CardGroup>
                 {achievements}

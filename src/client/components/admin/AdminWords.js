@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Table, Row, Col} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { 
+  Container,
+  Table,
+  Row,
+  Col} from 'reactstrap'
 // import SearchBar from './SearchBar'
 import axios from 'axios';
 
@@ -37,7 +42,9 @@ class AdminWords extends Component {
         <td>{ es_word }</td>
         <td>{ name }</td>
         <td>{ ranking }</td>
-        <td>✏️</td>
+        <td>
+          <Link to='/admin/:es_word/edit'>✏️</Link>
+        </td>
       </tr>
     ))
   }

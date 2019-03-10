@@ -9,6 +9,8 @@ import SignUp from './SignUp.jsx'
 import Login from './Login'
 import AdminWords from './admin/AdminWords'
 import AdminUsers from './admin/AdminUsers'
+import AdminUserEdit from './admin/AdminUserEdit'
+import AdminWordEdit from './admin/AdminWordEdit'
 import axios from 'axios'
 
 class App extends Component {
@@ -61,13 +63,20 @@ class App extends Component {
           <StyledMainNav data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
-                <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />
-                <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> } />
-                <Route exact path="/signup" component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> } />
+                <Route exact path="/" render={(props) =>
+                <Game {...this.state.currentUser}/>
+                }/>
+                <Route exact path="/login" component={ props =>
+                  <Login setCurrentUser={ this.setCurrentUser } { ...props } />
+                }/>
+                <Route exact path="/signup" component={ props =>
+                  <SignUp setCurrentUser={ this.setCurrentUser } { ...props } />
+                }/>
                 <Route exact path="/admin/dashboard" component={ AdminDash } />
                 <Route exact path="/admin/words" component={ AdminWords } />
                 <Route exact path="/admin/users" component={ AdminUsers } />
-                {/* <Route path="/admin/words/:id" component={ AdminWordEdit } /> */}
+                <Route exact path="/admin/:es_word/edit" component={ AdminWordEdit } />
+                <Route exact path="/admin/:username/edit" component={ AdminUserEdit } />
               </Switch>
             </div>
         </StyledAppContainer>

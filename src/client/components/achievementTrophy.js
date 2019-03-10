@@ -5,6 +5,7 @@ class Trophy extends React.Component {
      super()
   }
   render() {
+    console.log(this.props.data)
     if (this.props.data) {
     const achievements = this.props.data.map((element, i) =>
       <div key = {i}><img src={`public/icons/${element.id}.png`}/></div>

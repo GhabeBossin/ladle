@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import {
   Container,
   Table,
   Row,
-  Col} from 'reactstrap'
+  Col,
+  Button } from 'reactstrap'
+// import { StyledTable } from '../../styles/adminWordsUsersStyles'
+
 // import SearchBar from './SearchBar'
 import axios from 'axios';
 
@@ -11,14 +15,7 @@ class AdminUsers extends Component {
   constructor() {
     super();
     this.state = {
-      userData: [
-        {
-          id: '1',
-          firs_name: 'Trogdor',
-          last_name: 'Burninator',
-          username: '@BurninatingEverything',
-        }
-      ]
+      userData: []
     };
   }
 
@@ -42,10 +39,12 @@ class AdminUsers extends Component {
     }) => (
       <tr key={ id }>
         <th scope="row">{ id }</th>
-        <td>{ first_name }</td>
-        <td>{ last_name }</td>
-        <td>{ username }</td>
-        <td>(edit icon)</td>
+        <td >  { first_name }</td>
+        <td >  { last_name }</td>
+        <td >  { username }</td>
+        <td>
+          <Link to='/admin/:username/edit'>✏️</Link>
+        </td>
       </tr>
     ))
   }

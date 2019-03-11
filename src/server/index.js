@@ -14,15 +14,17 @@ app.use(express.static('dist'));
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
 
-const learnedRoutes = require("./routes/learned");
-const signupRoutes = require("./routes/signup");
-const usersRoutes = require("./routes/users");
-const wordsRoutes = require("./routes/words")
-const gameRoutes =  require("./routes/game");
+const learnedRoutes  = require("./routes/learned");
+const signupRoutes   = require("./routes/signup");
+const usersRoutes    = require("./routes/users");
+const wordsRoutes    = require("./routes/words")
+const gameRoutes     =  require("./routes/game");
 const updateWordRoutes = require("./routes/updateWord");
-const userWord = require("./routes/userWord");
+const userWord       = require("./routes/userWord");
 const userAchievements = require("./routes/userAchievements");
-const trophyNames = require("./routes/trophyNames")
+const trophyNames    = require("./routes/trophyNames");
+const wordEditRoutes = require("./routes/wordEdit");
+// const userEdit = require("./routes/userEdit")
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -40,3 +42,4 @@ app.use("/game", gameRoutes(knex));
 app.use("/updateWord", updateWordRoutes(knex));
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/words", wordsRoutes(knex));
+app.use("/api/wordEdit", wordEditRoutes(knex));

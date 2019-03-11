@@ -9,7 +9,7 @@ module.exports = (knex) => {
   router.post("/", cors(), (req, res) => {
     const data = req.body;
     knex("users")
-    .insert([{first_name: data.first_name, last_name: data.last_name, username: data.username, password: data.password}])
+    .insert([{first_name: data.first_name, last_name: data.last_name, username: data.username, password: data.password, achievements: data.achievements, is_new: true }])
     .returning("*")
     .then(result => res.json(result))
     .then(res.status(200))
@@ -18,5 +18,21 @@ module.exports = (knex) => {
     });
   });
 
+  router.post("/userWords", cors(), (req, res) => {
+    console.log(">>>>>>>>>>>>>>>>>>>>", req.body.data)
+    knex('user_words')
+    .insert(req.body.data)
+    .then(result => res.json(result))
+  })
+
+  router.get("/allWords", cors(), (req, res) => {
+    console.log(req.body, "this is a request")
+
+    knex('en_words')
+    .select('*')
+    .then(result => res.json(result))
+  })
+
+  // router.put("/isNew")
   return router;
 };

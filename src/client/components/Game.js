@@ -11,12 +11,13 @@ import FlashCardImg from '../flash-card.png';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
 import Trophy from './AchievementTrophy';
+// import  promises  from 'fs';
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trophies: [],
+      currentUser: {
       x_words: [],
       user_word: "",
       en_word: "",
@@ -24,7 +25,9 @@ class Game extends Component {
       userWords: [],
       userAchievements: [],
       user_word_id: null,
-      user_id: null,
+      user_id: null
+      },
+      populateWords: [],
       firstFlip: false,
       flipped  : false,
       url: 'http://localhost:8080/api'
@@ -33,14 +36,40 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    this.setState({ userAchievements: this.props.achievements }),
-    this.setState({ user_id: this.props.id })
+    console.log(this.props, "lfksjleeeeeeeeeeeeeeee")
+    this.setState({ currentUser: this.props }),
     this.drawNewCard(this.props.id)
-    this.userWord(this.props.id)
-    
-    // this.getAchievements(this.props.id)
+    // if user is new run initial setup if not get word
+    this.props.is_new === true ? 
+      this.initialSetup(this.props.id) : this.userWord(this.props.id)
   }
 
+  // Populate user_words table with all words and associate them with new userID
+  initialSetup = (id) => {
+    let thus = this
+    return new Promise(function(resolve){
+      thus.populateUserWords(id);
+    })
+    .then(thus.userWord(id))
+  }
+
+  populateUserWords = (id, cb) => {
+    axios.get("http://localhost:8080/api/signup/allWords", {
+    })
+    .then((response) => {
+      let data = response.data
+      let words = []
+      data.map((element) => {
+        words.push({ users_id: id, en_words_id: element.id })
+      })
+      axios.post("http://localhost:8080/api/signup/userWords", {
+      data: words
+      })
+      axios.put("http://localhost:url/signup/isNew", {
+
+      })
+    })
+  }
   //  Populate user words array in state
   userWord = (user_id, url) => {
     axios.get('http://localhost:8080/userWord', {
@@ -53,8 +82,10 @@ class Game extends Component {
       const userWords = [];
       words.forEach(element => {
         userWords.push(element.en_words_id)
-        this.setState({ userWords: userWords })
+        this.setState({ currentUser: {...this.state.currentUser, "userWords": userWords}} )
       })
+      this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
+      console.log(this.state.currentUser.userWords)
     })
   }
 
@@ -89,38 +120,56 @@ class Game extends Component {
       }
     })
     .then((response) => {
-      this.setState({en_word: response.data[0].rows[0].word })
-      this.setState({es_word: response.data[1].rows[0].word })
+      this.setState({ en_word: response.data[0].rows[0].word })
+      this.setState({ es_word: response.data[1].rows[0].word })
     })
     .catch(function (error) {
       console.log("this is error is in getCard in Game.js", error);
     });
   }
 
+  arrayMove = (arr, old_index, new_index) => {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr;
+  };
+
   // Grab new word and reset state of card
-  markedCard = () => {
-    let num = this.state.user_word_id;
-    this.setState({
-      user_word_id: num + 1
-    })
-    this.drawNewCard(num + 1)
+  markedCard = (increment) => {
+    let num = this.state.currentUser.userWords[0];
+    this.updateWord(num, increment)
+    // console.log(user_word_id)
+    // this.setState({
+    //   user_word_id: num + 1
+    // })
+    console.log(this.state.populateWords, "dffffjewo_________________________________________")
+    this.drawNewCard(num)
     this.setState({firstFlip: false, isFlipped: false})
   }
 
   // User doesn't know the card and clicks the x mark, increase difficulty of card in en_cards table
   xMark = () => {
-    let num = this.state.user_word_id;
-    this.updateWord(num, -1);
-    this.markedCard();
-    this.state.x_words.push(num);
+    let num = this.state.currentUser.userWords;
+    // this.updateWord(num, -1);
+    this.markedCard(-1);
+    this.arrayMove(num, 0, 3)
+    // this.state.currentUser.xWords.push(num[0]);
+    // console.log(this.state.currentUser.xWords)
   }
 
   // Update card and cue next card when word is learned
   checkMark = () => {
-    let num = this.state.user_id;
-    this.updateWord(num, 1);
-    this.markedCard();
-    this.learnedCard(num, 1)
+    let num = this.state.currentUser.userWords;
+    this.markedCard(1);
+    this.learnedCard(num[0], 1)
+    console.log(num)
+    this.arrayMove(num, 0, num.length -1)
+    console.log(num)
   }
 
   firstFlip = () => {
@@ -137,7 +186,7 @@ class Game extends Component {
   }
 
   render() {
-    if (!this.state.user_id) {
+    if (!this.state.currentUser.id) {
       return <h1>You need to log in</h1>
     } else {
     return (
@@ -178,7 +227,7 @@ class Game extends Component {
         </StyledBtnDiv>
         </div>
         <div>
-          <Trophy data={this.state.userAchievements} />
+          <Trophy data={this.state.currentUser.achievements} />
         </div>
       </Container>
     );

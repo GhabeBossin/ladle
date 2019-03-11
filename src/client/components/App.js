@@ -34,9 +34,11 @@ class App extends Component {
         last_name: userObj.data[0].last_name,
         username: userObj.data[0].username,
         is_admin: userObj.data[0].is_admin,
+        is_new: userObj.data[0].is_new
       }
     })
   }
+
 
   getWordData = () => {
     axios.get("http://localhost:8080/api/words/all")
@@ -54,8 +56,8 @@ class App extends Component {
 
   handleLogoutClick = () => {
     this.setState({ currentUser: {} })
-    console.log("lllloooogggg", this.state.currentUser)
   }
+
   render() {
     return (
       <div>

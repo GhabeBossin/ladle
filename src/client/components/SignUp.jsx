@@ -17,6 +17,8 @@ class SignUp extends Component {
     super();
     this.setCurrentUser = setCurrentUser;
     this.state = {
+      allWords: [],
+      userId: null,
       validated: false,
       firstNameInput: '',
       lastNameInput: '',
@@ -49,27 +51,49 @@ class SignUp extends Component {
     :null
   }
 
+  componentDidMount() {
+    // this.setState({ allWords: this.populateUserWords() })
+  }
+
+  populateUserWords = (id) => {
+    axios.get("http://localhost:8080/api/signup/allWords", {
+    })
+    .then((response) => {
+      let data = response.data
+      let words = []
+      data.map((element) => {
+        words.push({ id: id, word: element.word })
+      })
+      return words
+    })
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     const firstData = this.state.firstNameInput;
     const lastData = this.state.lastNameInput;
     const unameData = this.state.usernameInput;
     const passData = this.state.passwordInput;
-
     return axios.post("http://localhost:8080/api/signup", {
       first_name: firstData,
       last_name: lastData,
       username: unameData,
       password: passData,
-      achievements: false
+      achievements: false,
     })
     .then((response) => {
-      console.log(response)
+      // let id = response.data[0].id
       this.setState({ validated: true },
         () => {
           this.setCurrentUser(response)
+          // this.setState({ userId: id })
         });
     })
+    // .then(
+    // console.log(this.state.allWords, "ussser"),
+    // axios.post("http://localhost:8080/api/signup/userWords", {
+    //     data: 5//this.populateUserWords(5)
+
+    //  }))
     .catch((error) => {
       console.log(error);
     });

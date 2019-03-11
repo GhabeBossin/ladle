@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledEditBtn = styled.button.attrs({
+const StyledWordEdit = styled.button.attrs({
   type: 'button',
   className: 'btn btn-sm',
 })`
@@ -14,16 +14,6 @@ const StyledEditBtn = styled.button.attrs({
   }
 `;
 
-const StyledTable = styled.button.attrs({
-  className: 'rounded table'
-})`
-  &&& {
-    border: 1px solid lightgray;
-  }
-`;
-
-
 export {
-  StyledEditBtn,
   StyledTable
 }

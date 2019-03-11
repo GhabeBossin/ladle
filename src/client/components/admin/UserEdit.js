@@ -7,7 +7,7 @@ import {
   Col } from 'reactstrap'
 import axios from 'axios';
 
-class AdminWordEdit extends Component {
+class UserEdit extends Component {
   constructor() {
     super();
     this.state = {
@@ -18,10 +18,10 @@ class AdminWordEdit extends Component {
   render() {
     return (
       <Container>
-        <h2>This is the Admin Word Edit Page</h2>
+        <h2>This is the Admin User Edit Page</h2>
       </Container>
     )
   }
 }
 
-export default AdminWordEdit
+export default UserEdit

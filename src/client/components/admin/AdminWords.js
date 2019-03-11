@@ -4,10 +4,24 @@ import {
   Container,
   Table,
   Row,
-  Col } from 'reactstrap'
-import { StyledEditBtn } from '../../styles/adminWordsUsersStyles'
+  Col,
+  Card } from 'reactstrap'
+import WordEdit from './WordEdit'
+import styled from 'styled-components'
 // import SearchBar from './SearchBar'
 import axios from 'axios';
+
+const Example = styled.tr`
+  ${ ({ enabled }) => (
+    enabled === false ?
+    `color: rgba(0, 0, 0, 0.5);`
+    :
+    `color: black;`
+  )}
+  & * {
+    color: black
+  }
+`
 
 
 class AdminWords extends Component {
@@ -33,32 +47,48 @@ class AdminWords extends Component {
     });
   }
 
+
+  updateWord = (state) => {
+    return axios.post("http://localhost:8080/api/wordedit", {
+      en_word: state.en_word,
+      es_word: state.es_word,
+      enabled: state.enabled
+    })
+    .then(() => {
+      this.getWordData()
+    })
+    .catch((error) => {
+      console.log('Error in AdminWordEdit updateWord: ', error);
+    });
+  }
+
+
+
   mapRows = data => {
-    return data.map(({
-      id, en_word, es_word, name, ranking
-    }) => (
-      <tr key={ id }>
-        <th scope="row">{ id }</th>
-        <td>{ en_word }</td>
-        <td>{ es_word }</td>
-        <td>{ name }</td>
-        <td>{ ranking }</td>
-        <td>
-          <Link to='/admin/:es_word/edit'>✏️</Link>
-        </td>
-      </tr>
-    ))
+    return data.map((row) => {
+      const { id, en_word, es_word, name, ranking } = row;
+      return (
+        <Example key={ id }>
+          <th scope="row">{ id }</th>
+          <td>{ en_word }</td>
+          <td>{ es_word }</td>
+          <td>{ name }</td>
+          <td>{ ranking }</td>
+          <td>
+            <WordEdit updateWord={this.updateWord} data={ row }/>
+          </td>
+        </Example>
+    )})
   }
 
   render() {
-
     return (
       <Container>
         <h2>Words</h2>
         <Row>
           <Col>
         {/* <SearchBar /> */}
-            <Table striped bordered>
+            <Table striped>
               <thead>
                 <tr>
                   <th>ID</th>

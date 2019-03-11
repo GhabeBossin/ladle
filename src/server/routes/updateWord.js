@@ -3,7 +3,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (knex) => {
-
+// update card word difficulty while playing
   router.put("/", (req, res) => {
     knex("en_words")
       .where("id", req.body.id)
@@ -11,5 +11,6 @@ module.exports = (knex) => {
       .then(res.status(200))
       .then(res.send("DB updated"))
   })
+
   return router;
 };

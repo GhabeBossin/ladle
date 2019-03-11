@@ -9,8 +9,8 @@ import SignUp from './SignUp'
 import Login from './Login'
 import AdminWords from './admin/AdminWords'
 import AdminUsers from './admin/AdminUsers'
-import AdminUserEdit from './admin/AdminUserEdit'
-import AdminWordEdit from './admin/AdminWordEdit'
+import UserEdit from './admin/UserEdit'
+import WordEdit from './admin/WordEdit'
 import axios from 'axios'
 
 class App extends Component {
@@ -69,8 +69,8 @@ class App extends Component {
                 <Route exact path="/admin/dashboard" component={ AdminDash } />
                 <Route exact path="/admin/words" component={ AdminWords } />
                 <Route exact path="/admin/users" component={ AdminUsers } />
-                <Route exact path="/admin/:es_word/edit" component={ AdminWordEdit } />
-                <Route exact path="/admin/:username/edit" component={ AdminUserEdit } />
+                <Route exact path="/admin/:es_word/edit" component={ WordEdit } />
+                <Route exact path="/admin/:username/edit" component={ UserEdit } />
               </Switch>
             </div>
         </StyledAppContainer>

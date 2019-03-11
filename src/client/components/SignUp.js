@@ -66,18 +66,18 @@ class SignUp extends Component {
     .then((response) => {
       console.log("RESPONSE ", response)
       this.setState({ validated: true },
-        () => {
-          this.setCurrentUser(
-            {data: [{
-              first_name: firstData,
-              last_name: lastData,
-              username: unameData,
-            }]}
-          )
-        });
+        () => { this.setCurrentUser({
+          data: [{
+            first_name: firstData,
+            last_name: lastData,
+            username: unameData,
+            }]
+          })
+        }
+      );
     })
     .catch((error) => {
-      console.log(error);
+      console.log('Error in Signup handleSubmit', error);
     });
   }
 

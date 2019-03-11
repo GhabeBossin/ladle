@@ -26,13 +26,19 @@ module.exports = (knex) => {
   })
 
   router.get("/allWords", cors(), (req, res) => {
-    console.log(req.body, "this is a request")
 
     knex('en_words')
     .select('*')
     .then(result => res.json(result))
   })
 
-  // router.put("/isNew")
+  router.put("/isNew", cors(), (req, res) => {
+    console.log(req.body.id, "this is a request")
+    const id = req.body.id
+    knex("users")
+    .where("id", req.body.id)
+    .update({ is_new: false })
+    .then(res.status(200))
+  })
   return router;
 };

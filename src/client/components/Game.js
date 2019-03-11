@@ -53,6 +53,7 @@ class Game extends Component {
     .then(thus.userWord(id))
   }
 
+  // Populate user_words table and flip new_user to false
   populateUserWords = (id, cb) => {
     axios.get("http://localhost:8080/api/signup/allWords", {
     })
@@ -63,10 +64,12 @@ class Game extends Component {
         words.push({ users_id: id, en_words_id: element.id })
       })
       axios.post("http://localhost:8080/api/signup/userWords", {
-      data: words
+        data: words
       })
-      axios.put("http://localhost:url/signup/isNew", {
-
+      console.log(data, "lllllllllllllllllllllllllllllllllllllllllllllllllll")
+      axios.put("http://localhost:8080/api/signup/isNew", {
+        new_user: false,  
+        id: id
       })
     })
   }
@@ -128,6 +131,7 @@ class Game extends Component {
     });
   }
 
+  // Take word and place it further into the words array
   arrayMove = (arr, old_index, new_index) => {
     if (new_index >= arr.length) {
         var k = new_index - arr.length + 1;

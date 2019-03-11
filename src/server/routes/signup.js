@@ -19,21 +19,21 @@ module.exports = (knex) => {
   });
 
   router.post("/userWords", cors(), (req, res) => {
-    console.log(">>>>>>>>>>>>>>>>>>>>", req.body.data)
     knex('user_words')
     .insert(req.body.data)
     .then(result => res.json(result))
+    .catch((error) => {
+      console.log("this error is from routes/signup/userWords")
+    })
   })
 
   router.get("/allWords", cors(), (req, res) => {
-
     knex('en_words')
     .select('*')
     .then(result => res.json(result))
   })
 
   router.put("/isNew", cors(), (req, res) => {
-    console.log(req.body.id, "this is a request")
     const id = req.body.id
     knex("users")
     .where("id", req.body.id)

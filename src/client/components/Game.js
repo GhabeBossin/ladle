@@ -11,7 +11,7 @@ import FlashCardImg from '../flash-card.png';
 import axios from 'axios';
 import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
 import Trophy from './AchievementTrophy';
-// import  promises  from 'fs';
+// import { promises } from 'fs';
 
 class Game extends Component {
   constructor(props) {
@@ -47,14 +47,17 @@ class Game extends Component {
   // Populate user_words table with all words and associate them with new userID
   initialSetup = (id) => {
     let thus = this
-    return new Promise(function(resolve){
-      thus.populateUserWords(id);
-    })
-    .then(thus.userWord(id))
+    return new Promise((resolve) => {
+      
+      resolve(this.populateUserWords(id))
+      })
+      .then(() =>  this.userWord(id))
+
   }
 
   // Populate user_words table and flip new_user to false
-  populateUserWords = (id, cb) => {
+  populateUserWords = (id, cb) => { 
+    let promise = new Promise(() => {
     axios.get("http://localhost:8080/api/signup/allWords", {
     })
     .then((response) => {
@@ -66,15 +69,17 @@ class Game extends Component {
       axios.post("http://localhost:8080/api/signup/userWords", {
         data: words
       })
-      console.log(data, "lllllllllllllllllllllllllllllllllllllllllllllllllll")
       axios.put("http://localhost:8080/api/signup/isNew", {
         new_user: false,  
         id: id
       })
     })
-  }
+  })
+  return promise
+}
   //  Populate user words array in state
   userWord = (user_id, url) => {
+    let promise = new Promise(() =>{
     axios.get('http://localhost:8080/userWord', {
       params: {
         id: user_id
@@ -88,9 +93,10 @@ class Game extends Component {
         this.setState({ currentUser: {...this.state.currentUser, "userWords": userWords}} )
       })
       this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
-      console.log(this.state.currentUser.userWords)
     })
-  }
+  })
+  return promise
+}
 
   // Post to user_words DB when a word is learned
   learnedCard = (user_id, en_word_id) => {
@@ -151,7 +157,6 @@ class Game extends Component {
     // this.setState({
     //   user_word_id: num + 1
     // })
-    console.log(this.state.populateWords, "dffffjewo_________________________________________")
     this.drawNewCard(num)
     this.setState({firstFlip: false, isFlipped: false})
   }
@@ -168,6 +173,7 @@ class Game extends Component {
 
   // Update card and cue next card when word is learned
   checkMark = () => {
+    console.log("userWords", this.state.currentUser.userWords)
     let num = this.state.currentUser.userWords;
     this.markedCard(1);
     this.learnedCard(num[0], 1)

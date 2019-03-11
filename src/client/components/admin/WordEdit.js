@@ -7,39 +7,19 @@ import {
   Input,
   Label,
   Button } from 'reactstrap'
-
-const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: 2;
-`;
-
-const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  max-width: 60%;
-  overflow: scroll;
-  border-radius: 5px;
-`;
+import { 
+  ModalContainer, 
+  ModalWrapper } from '../../styles/modalStyles'
 
 class WordEdit extends Component {
   constructor({updateWord, data}) {
     super();
     this.updateWord = updateWord;
     this.state = {
-      id: data.id,
-      en_word: data.en_word,
-      es_word: data.es_word,
-      enabled: data.enabled,
+      id        : data.id,
+      en_word   : data.en_word,
+      es_word   : data.es_word,
+      enabled   : data.enabled,
       modal_open: false
     };
   }
@@ -105,7 +85,8 @@ class WordEdit extends Component {
                 <Button type="button"
                   onClick={() => {
                     this.updateWord(this.state),
-                    this.buttonToggle() }}>
+                    this.buttonToggle(),
+                    console.log('After .getWordData updates', this.state.enabled) }}>
                   Update
                 </Button>
               </Form>

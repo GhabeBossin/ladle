@@ -9,16 +9,13 @@ import styled from 'styled-components'
 // import SearchBar from './SearchBar'
 import axios from 'axios';
 
-const StyledRows = styled.tr`
+const StyledTR = styled.tr`
   ${ ({ enabled }) => (
     enabled === false ?
     `color: rgba(0, 0, 0, 0.5);`
     :
     `color: black;`
   )}
-  & * {
-    color: black
-  }
 `;
 
 class AdminWords extends Component {
@@ -30,16 +27,13 @@ class AdminWords extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
     this.getWordData()
   }
 
   getWordData = () => {
     axios.get("http://localhost:8080/api/words/all")
     .then((response) => {
-      console.log('RESPONSE IN getWordData', response)
       this.setState({wordData: [...response.data]});
-      console.log('STATE after setState in getWordData', this.state)
     })
     .catch((error) => {
       console.log(error);
@@ -47,17 +41,17 @@ class AdminWords extends Component {
   }
 
   updateWord = (state) => {
-    console.log(state, "this is state")
+    // console.log(state, "this is state")
     return axios.put("http://localhost:8080/api/wordEdit/update", {
+      id     :      state.id,
       en_word: state.en_word,
       es_word: state.es_word,
-      enabled: state.enabled,
-      id:      state.id
+      enabled: state.enabled
 
     })
     .then(() => {
+      console.log('Before .getWordData updates', this.state.wordData[0].enabled)
       this.getWordData()
-      console.log('After .getWordData in .updateWord', this.state)
     })
     .catch((error) => {
       console.log('Error in AdminWordEdit updateWord: ', error);
@@ -65,19 +59,19 @@ class AdminWords extends Component {
   }
 
   mapRows = data => {
-    return data.map((row) => {
+    return data.map((row, i) => {
       const { id, en_word, es_word, name, ranking } = row;
       return (
-        <StyledRows key={ id }>
+        <StyledTR key={ id } enabled={ data[i].enabled } >
           <th scope="row">{ id }</th>
           <td>{ en_word }</td>
           <td>{ es_word }</td>
           <td>{ name }</td>
           <td>{ ranking }</td>
           <td>
-            <WordEdit updateWord={this.updateWord} data={ row }/>
+            <WordEdit updateWord={this.updateWord} data={ row } />
           </td>
-        </StyledRows>
+        </StyledTR>
     )})
   }
 

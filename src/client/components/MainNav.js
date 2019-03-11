@@ -6,7 +6,7 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  UncontrolledDropdown,
+  UncontrolledDropdown, 
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap'
@@ -21,8 +21,9 @@ class MainNav extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    // console.log(this.props)
   }
+
   toggle = () => {
     this.setState({
       isOpen  : !this.state.isOpen

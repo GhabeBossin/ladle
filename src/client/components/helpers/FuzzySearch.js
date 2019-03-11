@@ -44,7 +44,6 @@ class FuzzySearch extends Component {
   }
 
   render() {
-    // console.log("elements", Array.isArray(this.state.words))
     const items = this.state.words
     const fuseConfig = {
       keys: ["meta", "tag"],

@@ -39,43 +39,42 @@ class Game extends Component {
     this.setState({ currentUser: this.props }),
     this.drawNewCard(this.props.id)
     // if user is new run initial setup if not get word
-    this.props.is_new === true ? 
+    this.props.is_new === true ?
       this.initialSetup(this.props.id) : this.userWord(this.props.id)
   }
 
   // Populate user_words table with all words and associate them with new userID
   initialSetup = (id) => {
-    return new Promise((resolve) => {
-      resolve(this.populateUserWords(id))
-      })
-      .then(() =>  this.userWord(id))
+    return this.populateUserWords(id).then(() =>  this.userWord(id))
   }
 
   // Populate user_words table and flip new_user to false
-  populateUserWords = (id, cb) => { 
-    let promise = new Promise(() => {
-    axios.get("http://localhost:8080/api/signup/allWords", {
-    })
+  populateUserWords = (id, cb) => {
+    // let promise = new Promise(() => {
+    return axios.get("http://localhost:8080/api/signup/allWords" )
     .then((response) => {
       let data = response.data
       let words = []
+
       data.map((element) => {
         words.push({ users_id: id, en_words_id: element.id })
       })
+
       axios.post("http://localhost:8080/api/signup/userWords", {
         data: words
       })
-      axios.put("http://localhost:8080/api/signup/isNew", {
-        new_user: false,  
-        id: id
+      .then(() => {
+        axios.put("http://localhost:8080/api/signup/isNew", {
+          new_user: false,
+          id: id
+        })
       })
-    })
-  })
-  return promise
+    }
+  )
 }
   //  Populate user words array in state
   userWord = (user_id, url) => {
-    let promise = new Promise(() => {
+    console.log("i fired")
     axios.get('http://localhost:8080/userWord', {
       params: {
         id: user_id
@@ -84,15 +83,14 @@ class Game extends Component {
     .then((response) => {
       let words = response.data;
       const userWords = [];
+
       words.forEach(element => {
         userWords.push(element.en_words_id)
         this.setState({ currentUser: {...this.state.currentUser, "userWords": userWords}} )
       })
       this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
     })
-  })
-  return promise
-}
+  }
 
   // Post to user_words DB when a word is learned
   learnedCard = (user_id, en_word_id) => {
@@ -141,6 +139,7 @@ class Game extends Component {
             arr.push(undefined);
         }
     }
+    // make new arr instead and setState to that array instead of mutating state
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr;
   };
@@ -163,6 +162,7 @@ class Game extends Component {
     // this.updateWord(num, -1);
     this.markedCard(-1);
     this.arrayMove(num, 0, 3)
+    console.log(num)
     // this.state.currentUser.xWords.push(num[0]);
   }
 
@@ -171,7 +171,7 @@ class Game extends Component {
     let num = this.state.currentUser.userWords;
     this.markedCard(1);
     this.learnedCard(num[0], 1)
-    this.arrayMove(num, 0, num.length -1)
+    num.splice(0, 1)
   }
 
   firstFlip = () => {

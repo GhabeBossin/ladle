@@ -4,19 +4,11 @@ import {
   Table,
   Row,
   Col } from 'reactstrap'
+  import { StyledTR } from '../../styles/adminStyles'
 import WordEdit from './WordEdit'
-import styled from 'styled-components'
 // import SearchBar from './SearchBar'
 import axios from 'axios';
 
-const StyledTR = styled.tr`
-  ${ ({ enabled }) => (
-    enabled === false ?
-    `color: rgba(0, 0, 0, 0.5);`
-    :
-    `color: black;`
-  )}
-`;
 
 class AdminWords extends Component {
   constructor() {
@@ -41,9 +33,8 @@ class AdminWords extends Component {
   }
 
   updateWord = (state) => {
-    // console.log(state, "this is state")
     return axios.put("http://localhost:8080/api/wordEdit/update", {
-      id     :      state.id,
+      id     : state.id,
       en_word: state.en_word,
       es_word: state.es_word,
       enabled: state.enabled

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import {
   Container,
   Form,
@@ -7,68 +6,48 @@ import {
   Input,
   Label,
   Button } from 'reactstrap'
-
-const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: 2;
-`;
-
-const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  max-width: 60%;
-  overflow: scroll;
-  border-radius: 5px;
-`;
+import { 
+  ModalContainer, 
+  ModalWrapper } from '../../styles/adminStyles'
 
 class UserEdit extends Component {
   constructor({updateUser, data}) {
     super();
     this.updateUser = updateUser;
     this.state = {
-      id: data.id,
-      username: data.user,
-      first_name: data.first_name,
-      last_name: data.last_name,
-      password: data.password,
-      is_admin: data.is_admin,
-      game_mode: data.game_mode,
-      group: data.group,
-      modal_open: false
+      id           : data.id,
+      username     : data.username,
+      first_name   : data.first_name,
+      last_name    : data.last_name,
+      password     : data.password,
+      // is_admin     : data.is_admin,
+      // mode_setting : data.game_mode,
+      // group        : data.group,
+      modal_open   : false
     };
   }
 
   handleInputChange = ({target}) => {
     const { name, value } = target;
-    name === 'en_word' ?
-    this.setState({
-      en_word: value
-    })
-    :
-    this.setState({
-      es_word: value
-    })
-  }
-
-  handleCheckboxChange = () => {
-    this.state.enabled ?
-    this.setState({
-      enabled: false
-    })
-    :
-    this.setState({
-      enabled: true
-    })
+    switch (name) {
+      case 'first_name': 
+        this.setState({
+          first_name: value
+        })
+        break
+      case 'last_name':
+        this.setState({
+          last_name: value
+        })
+        break
+      case 'username':
+        this.setState({
+          username: value
+        })
+        break
+      default:
+        console.log(Invalid)
+    }
   }
 
   buttonToggle = () => {
@@ -77,9 +56,10 @@ class UserEdit extends Component {
 
   render() {
     return (<>
-      <div onClick={this.buttonToggle}>
+      {/* cursor: pointer */}
+      <span onClick={this.buttonToggle}>
         ✏️
-      </div>
+      </span>
 
       { this.state.modal_open && (
         <ModalContainer>
@@ -89,26 +69,27 @@ class UserEdit extends Component {
               <h4 className='border-bottom mb-4'>Edit This User</h4>
               <Form>
                 <FormGroup>
-                  <Label htmlFor="en_word">English</Label>
-                  <Input type="text" name="en_word" id="en_word" value={ this.state.en_word } onChange={ this.handleInputChange }/>
+                  <Label htmlFor="first_name">First Name</Label>
+                  <Input type="text" name="first_name" id="first_name" value={ this.state.first_name } onChange={ this.handleInputChange }/>
                 </FormGroup>
                 <FormGroup>
-                <Label htmlFor="es_word">Spanish</Label>
-                  <Input type="text" name="es_word" id="es_word" value={ this.state.es_word } onChange={ this.handleInputChange }/>
+                  <Label htmlFor="last_name">Last Name</Label>
+                  <Input type="text" name="last_name" id="last_name" value={ this.state.last_name } onChange={ this.handleInputChange }/>
                 </FormGroup>
-                <FormGroup check className='mb-3'>
-                  <Label check>
-                  <Input type="checkbox" onChange={this.handleCheckboxChange}/>{' '}
-                  { this.state.enabled ?
-                    "Disable User"
-                    :
-                    "Enable User"
-                  }
-                  </Label>
+                <FormGroup>
+                  <Label htmlFor="username">Username</Label>
+                  <Input type="text" name="username" id="username" value={ this.state.username } onChange={ this.handleInputChange }/>
+                </FormGroup>
+                {/* { this.state.id === currentUser.id ?
+                  <FormGroup>
+                    <Label htmlFor="password">Password</Label>
+                    <Input type="text" name="password" id="password" value={ this.state.password } onChange={ this.handleInputChange }/>
                   </FormGroup>
+                  : null
+                } */}
                 <Button type="button"
                   onClick={() => {
-                    this.updateWord(this.state),
+                    this.updateUser(this.state),
                     this.buttonToggle() }}>
                   Update
                 </Button>

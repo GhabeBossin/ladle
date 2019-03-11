@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import {
   Container,
   Table,
   Row,
-  Col,
-  Card } from 'reactstrap'
+  Col } from 'reactstrap'
 import WordEdit from './WordEdit'
 import styled from 'styled-components'
 // import SearchBar from './SearchBar'
@@ -86,8 +84,8 @@ class AdminWords extends Component {
         <h2>Words</h2>
         <Row>
           <Col>
-        {/* <SearchBar /> */}
-            <Table striped>
+            {/* <SearchBar /> */}
+            <Table striped bordered>
               <thead>
                 <tr>
                   <th>ID</th>

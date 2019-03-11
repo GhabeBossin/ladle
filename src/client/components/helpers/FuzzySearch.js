@@ -30,7 +30,8 @@ class FuzzySearch extends Component {
     if (e.key === 'Enter') {
     this.props.handleClick(this.state.searchWord)
     changeInputValue()
-    }
+    
+  }
   }
 
   onChange = (word) => {

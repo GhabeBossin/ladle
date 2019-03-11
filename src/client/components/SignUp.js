@@ -17,6 +17,8 @@ class SignUp extends Component {
     super();
     this.setCurrentUser = setCurrentUser;
     this.state = {
+      allWords: [],
+      userId: null,
       validated: false,
       firstNameInput: '',
       lastNameInput: '',
@@ -51,7 +53,6 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     const firstData = this.state.firstNameInput;
     const lastData = this.state.lastNameInput;
     const unameData = this.state.usernameInput;
@@ -62,18 +63,11 @@ class SignUp extends Component {
       last_name: lastData,
       username: unameData,
       password: passData,
+      achievements: false,
     })
     .then((response) => {
-      console.log("RESPONSE ", response)
       this.setState({ validated: true },
-        () => { this.setCurrentUser({
-          data: [{
-            first_name: firstData,
-            last_name: lastData,
-            username: unameData,
-            }]
-          })
-        }
+        () => { this.setCurrentUser(response) }
       );
     })
     .catch((error) => {
@@ -85,7 +79,10 @@ class SignUp extends Component {
     return (<>
       { this.state.validated
         ?
-        <Redirect to='/' />
+        <Redirect to={{
+          pathname:'/',
+          state: {currentUser: this.state.usernameInput}
+          }} />
         :
         <Container>
           <Form onSubmit={this.handleSubmit}>

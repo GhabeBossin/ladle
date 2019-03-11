@@ -5,3 +5,4 @@ dist
 yarn.lock
 .env
 .DS_store
+package-lock.json

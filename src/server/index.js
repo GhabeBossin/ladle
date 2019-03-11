@@ -42,4 +42,4 @@ app.use("/game", gameRoutes(knex));
 app.use("/updateWord", updateWordRoutes(knex));
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/words", wordsRoutes(knex));
-app.use("/api/editword", wordEditRoutes(knex));
+app.use("/api/wordEdit", wordEditRoutes(knex));

@@ -10,7 +10,8 @@ module.exports = (knex) => {
       .increment('diff_counter', req.body.diff)
       .then(res.status(200))
       .then(res.send("DB updated"))
-  })
+    }
+  )
 
   return router;
 };

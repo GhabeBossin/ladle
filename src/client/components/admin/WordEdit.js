@@ -8,7 +8,6 @@ import {
   Input,
   Label,
   Button } from 'reactstrap'
-import axios from 'axios';
 
 const ModalContainer = styled.div`
   display: flex;
@@ -106,7 +105,7 @@ class WordEdit extends Component {
                   </FormGroup>
                 <Button type="button"
                   onClick={() => {
-                    this.updateWord(this.state)
+                    this.updateWord(this.state),
                     this.buttonToggle() }}>
                   Update
                 </Button>

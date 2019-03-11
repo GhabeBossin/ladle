@@ -11,7 +11,7 @@ import styled from 'styled-components'
 // import SearchBar from './SearchBar'
 import axios from 'axios';
 
-const Example = styled.tr`
+const StyledRows = styled.tr`
   ${ ({ enabled }) => (
     enabled === false ?
     `color: rgba(0, 0, 0, 0.5);`
@@ -21,8 +21,7 @@ const Example = styled.tr`
   & * {
     color: black
   }
-`
-
+`;
 
 class AdminWords extends Component {
   constructor() {
@@ -33,42 +32,42 @@ class AdminWords extends Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount')
     this.getWordData()
   }
 
   getWordData = () => {
     axios.get("http://localhost:8080/api/words/all")
     .then((response) => {
-      console.log(response)
+      console.log('RESPONSE IN getWordData', response)
       this.setState({wordData: [...response.data]});
+      console.log('STATE after setState in getWordData', this.state)
     })
     .catch((error) => {
       console.log(error);
     });
   }
 
-
   updateWord = (state) => {
-    return axios.post("http://localhost:8080/api/wordedit", {
+    return axios.put("http://localhost:8080/api/wordEdit/update", {
       en_word: state.en_word,
       es_word: state.es_word,
       enabled: state.enabled
     })
     .then(() => {
       this.getWordData()
+      console.log('After .getWordData in .updateWord', this.state)
     })
     .catch((error) => {
       console.log('Error in AdminWordEdit updateWord: ', error);
     });
   }
 
-
-
   mapRows = data => {
     return data.map((row) => {
       const { id, en_word, es_word, name, ranking } = row;
       return (
-        <Example key={ id }>
+        <StyledRows key={ id }>
           <th scope="row">{ id }</th>
           <td>{ en_word }</td>
           <td>{ es_word }</td>
@@ -77,7 +76,7 @@ class AdminWords extends Component {
           <td>
             <WordEdit updateWord={this.updateWord} data={ row }/>
           </td>
-        </Example>
+        </StyledRows>
     )})
   }
 

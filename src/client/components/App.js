@@ -22,12 +22,10 @@ class App extends Component {
 
   setCurrentUser = userObj => {
     let obj = userObj.data;
-    const achievements = [];
-    const trophyIds = [];
-    obj.forEach(element => {
+    let achievements = [];
+    !userObj.data[0].achievements ? achievements = [] : obj.forEach(element => {
       achievements.push({ id: element.id, name: element.name, description: element.description })
     })
-
     this.setState({
       currentUser: {
         achievements: achievements,
@@ -36,9 +34,11 @@ class App extends Component {
         last_name: userObj.data[0].last_name,
         username: userObj.data[0].username,
         is_admin: userObj.data[0].is_admin,
+        is_new: userObj.data[0].is_new
       }
     })
   }
+
 
   getWordData = () => {
     axios.get("http://localhost:8080/api/words/all")
@@ -54,11 +54,15 @@ class App extends Component {
     this.getWordData()
   }
 
+  handleLogoutClick = () => {
+    this.setState({ currentUser: {} })
+  }
+
   render() {
     return (
       <div>
         <StyledAppContainer>
-          <StyledMainNav data={ this.state.wordData } currentUser={this.state.currentUser}/>
+          <StyledMainNav onClick={ this.handleLogoutClick } data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
                 <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/>} />

@@ -17,6 +17,8 @@ class SignUp extends Component {
     super();
     this.setCurrentUser = setCurrentUser;
     this.state = {
+      allWords: [],
+      userId: null,
       validated: false,
       firstNameInput: '',
       lastNameInput: '',
@@ -51,30 +53,22 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
-
     const firstData = this.state.firstNameInput;
     const lastData = this.state.lastNameInput;
     const unameData = this.state.usernameInput;
     const passData = this.state.passwordInput;
-
+    
     return axios.post("http://localhost:8080/api/signup", {
       first_name: firstData,
       last_name: lastData,
-      username: usameData,
+      username: unameData,
       password: passData,
-    })
+      achievements: false,
+    })  
     .then((response) => {
-      console.log("RESPONSE ", response)
       this.setState({ validated: true },
         () => {
-          this.setCurrentUser(
-            {data: [{
-              first_name: firstData,
-              last_name: lastData,
-              username: unameData,
-            }]}
-          )
+          this.setCurrentUser(response)
         });
     })
     .catch((error) => {
@@ -86,7 +80,10 @@ class SignUp extends Component {
     return (<>
       { this.state.validated
         ?
-        <Redirect to='/' />
+        <Redirect to={{
+          pathname:'/',
+          state: {currentUser: this.state.usernameInput}
+          }} />
         :
         <Container>
           <Form onSubmit={this.handleSubmit}>

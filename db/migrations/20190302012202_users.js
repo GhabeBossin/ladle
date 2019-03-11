@@ -13,6 +13,8 @@ exports.up = function(knex, Promise) {
     table.integer('wrong_counter');
     table.string('mode_setting');
     table.boolean('is_admin')
+    table.boolean('achievements')
+    table.boolean('is_new')
   })
 };
 

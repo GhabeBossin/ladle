@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Table, Row, Col} from 'reactstrap'
-// import SearchBar from './SearchBar'
+import SearchBar from '../SearchBar'
 import axios from 'axios';
 
 
@@ -49,7 +49,7 @@ class AdminWords extends Component {
         <h2>Words</h2>
         <Row>
           <Col>
-        {/* <SearchBar /> */}
+        <SearchBar />
             <Table striped bordered>
               <thead>
                 <tr>

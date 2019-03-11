@@ -38,6 +38,7 @@ class Game extends Component {
   componentDidMount() {
     this.setState({ currentUser: this.props }),
     this.drawNewCard(this.props.id)
+    this.userWord(this.props.id)
     // if user is new run initial setup if not get word
     this.props.is_new === true ? 
       this.initialSetup(this.props.id) : this.userWord(this.props.id)
@@ -75,7 +76,6 @@ class Game extends Component {
 }
   //  Populate user words array in state
   userWord = (user_id, url) => {
-    let promise = new Promise(() => {
     axios.get('http://localhost:8080/userWord', {
       params: {
         id: user_id
@@ -90,9 +90,7 @@ class Game extends Component {
       })
       this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
     })
-  })
-  return promise
-}
+  }
 
   // Post to user_words DB when a word is learned
   learnedCard = (user_id, en_word_id) => {
@@ -171,7 +169,7 @@ class Game extends Component {
     let num = this.state.currentUser.userWords;
     this.markedCard(1);
     this.learnedCard(num[0], 1)
-    this.arrayMove(num, 0, num.length -1)
+    num.splice(0, 1)
   }
 
   firstFlip = () => {

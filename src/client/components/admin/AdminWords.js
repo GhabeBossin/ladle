@@ -47,10 +47,13 @@ class AdminWords extends Component {
   }
 
   updateWord = (state) => {
+    console.log(state, "this is state")
     return axios.put("http://localhost:8080/api/wordEdit/update", {
       en_word: state.en_word,
       es_word: state.es_word,
-      enabled: state.enabled
+      enabled: state.enabled,
+      id:      state.id
+
     })
     .then(() => {
       this.getWordData()

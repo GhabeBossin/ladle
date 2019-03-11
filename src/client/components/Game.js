@@ -38,6 +38,7 @@ class Game extends Component {
   componentDidMount() {
     this.setState({ currentUser: this.props }),
     this.drawNewCard(this.props.id)
+    this.userWord(this.props.id)
     // if user is new run initial setup if not get word
     this.props.is_new === true ?
       this.initialSetup(this.props.id) : this.userWord(this.props.id)
@@ -74,7 +75,6 @@ class Game extends Component {
 }
   //  Populate user words array in state
   userWord = (user_id, url) => {
-    console.log("i fired")
     axios.get('http://localhost:8080/userWord', {
       params: {
         id: user_id

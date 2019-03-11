@@ -19,6 +19,7 @@ class Game extends Component {
     this.state = {
       currentUser: {
       x_words: [],
+      currentWord: null,
       user_word: "",
       en_word: "",
       es_word: "",
@@ -36,66 +37,64 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    this.setState({ currentUser: this.props }),
-    this.drawNewCard(this.props.id)
-    this.userWord(this.props.id)
+    this.setState({ currentUser: this.props })
+    
+    this.userWord(this.props.id)//.then(this.drawNewCard(this.state.currentUser.currentWord[0]))
     // if user is new run initial setup if not get word
-    this.props.is_new === true ?
-      this.initialSetup(this.props.id) : this.userWord(this.props.id)
+    // this.props.is_new === true ?
+    //   this.initialSetup(this.props.id) : this.userWord(this.props.id).then(() => this.drawNewCard(this.state.currentUser.currentWord))
   }
 
   // Populate user_words table with all words and associate them with new userID
   initialSetup = (id) => {
-    return this.populateUserWords(id).then(() =>  this.userWord(id))
+    return this.populateUserWords(id).then(() =>  this.userWord(id)).then(() => this.drawNewCard(this.state.currentUser.currentWord))
   }
 
-  // Populate user_words table and flip new_user to false
-  populateUserWords = (id, cb) => {
-    // let promise = new Promise(() => {
-    return axios.get("http://localhost:8080/api/signup/allWords" )
-    .then((response) => {
-      let data = response.data
-      let words = []
-
-      data.map((element) => {
-        words.push({ users_id: id, en_words_id: element.id })
-      })
-
-      axios.post("http://localhost:8080/api/signup/userWords", {
-        data: words
-      })
-      .then(() => {
-        axios.put("http://localhost:8080/api/signup/isNew", {
-          new_user: false,
-          id: id
-        })
-      })
-    }
-  )
-}
   //  Populate user words array in state
   userWord = (user_id, url) => {
-    axios.get('http://localhost:8080/userWord', {
+    return axios.get('http://localhost:8080/api/userWord', {
       params: {
         id: user_id
       }
     })
     .then((response) => {
+      console.log(response, "reuseofjreoifjeofjeofj")
       let words = response.data;
       const userWords = [];
 
       words.forEach(element => {
         userWords.push(element.en_words_id)
-        this.setState({ currentUser: {...this.state.currentUser, "userWords": userWords}} )
+        this.setState({ currentUser: {...this.state.currentUser, "userWords": userWords, 'currentWord': userWords[0]}} )
       })
       this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
+      console.log(userWords, "ufeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+      this.drawNewCard(userWords[0])
+
     })
+      }
+
+  // Get the proper card from the deck for current user that is rendered on the page
+  drawNewCard = (user_word_id) => {
+    console.log(this.state.currentUser)
+    return axios.get("http://localhost:8080/game", {
+      params: {
+        id: user_word_id,
+      }
+    })
+    .then((response) => {
+      this.setState({ en_word: response.data[0].rows[0].word })
+      this.setState({ es_word: response.data[1].rows[0].word })
+    })
+    .catch(function (error) {
+      console.log("this is error is in getCard in Game.js", error);
+    });
   }
 
   // Post to user_words DB when a word is learned
-  learnedCard = (user_id, en_word_id) => {
+  learnedCard = (en_word_id) => {
+    console.log("stureefefefe", en_word_id, this.state.currentUser.id)
     axios.put("http://localhost:8080/learned", {
-        user_id: user_id,
+        user_id: this.state.currentUser.id,
         en_word_id: en_word_id,
         is_known: true
     })
@@ -113,22 +112,6 @@ class Game extends Component {
       id: wordID,
       diff: counter
     })
-  }
-
-  // Get the proper card from the deck for current user that is rendered on the page
-  drawNewCard = (user_word_id) => {
-    axios.get("http://localhost:8080/game", {
-      params: {
-        id: user_word_id,
-      }
-    })
-    .then((response) => {
-      this.setState({ en_word: response.data[0].rows[0].word })
-      this.setState({ es_word: response.data[1].rows[0].word })
-    })
-    .catch(function (error) {
-      console.log("this is error is in getCard in Game.js", error);
-    });
   }
 
   // Take word and place it further into the words array
@@ -152,17 +135,17 @@ class Game extends Component {
     // this.setState({
     //   user_word_id: num + 1
     // })
-    this.drawNewCard(num)
+    this.drawNewCard(num + 1)
     this.setState({firstFlip: false, isFlipped: false})
   }
 
   // User doesn't know the card and clicks the x mark, increase difficulty of card in en_cards table
   xMark = () => {
-    let num = this.state.currentUser.userWords;
+    let num = this.state.currentUser.userWords.slice();
     // this.updateWord(num, -1);
     this.markedCard(-1);
     this.arrayMove(num, 0, 3)
-    console.log(num)
+    this.setState({ currentUser: {...this.state.currentUser, "userWords": num}})
     // this.state.currentUser.xWords.push(num[0]);
   }
 

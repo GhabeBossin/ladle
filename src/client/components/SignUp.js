@@ -57,22 +57,21 @@ class SignUp extends Component {
     const lastData = this.state.lastNameInput;
     const unameData = this.state.usernameInput;
     const passData = this.state.passwordInput;
-    
+
     return axios.post("http://localhost:8080/api/signup", {
       first_name: firstData,
       last_name: lastData,
       username: unameData,
       password: passData,
       achievements: false,
-    })  
+    })
     .then((response) => {
       this.setState({ validated: true },
-        () => {
-          this.setCurrentUser(response)
-        });
+        () => { this.setCurrentUser(response) }
+      );
     })
     .catch((error) => {
-      console.log(error);
+      console.log('Error in Signup handleSubmit', error);
     });
   }
 

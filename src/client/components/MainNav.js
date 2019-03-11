@@ -33,13 +33,11 @@ class MainNav extends Component {
   render() {
     return (
       <div className={ this.props.className }>
-        <Navbar light expand="md" color="light">
+        <Navbar light expand="md" color="light" className="ml-auto" >
           <Link to="/" className="navbar-brand">
             ladle
           </Link>
-          {/* <NavItem> */}
-            <SearchBar data={ this.props.data }/>
-          {/* </NavItem> */}
+          <SearchBar data={ this.props.data } />
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

@@ -8,6 +8,7 @@ a {
   color: #0635C9;
   transition: color .15s
 }
+
 a:hover {
   text-decoration: none;
   color: #1AE5BE
@@ -20,4 +21,20 @@ a:hover {
 
 .btn:hover {
   background-color: #1AE5BE;
+  border: none;
+}
+
+#root > div > div > div.mainNavStyles__StyledMainNav-sc-1w0kour-0.shadow-sm.cSNvUw > nav > div:nth-child(2) > div > div.input-group > input {
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }

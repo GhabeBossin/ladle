@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (knex) => {
+  // populates AdminWords table
   router.get("/all", cors(), (req, res) => {
     knex('en_words')
       .leftJoin('es_words', 'en_words.id', '=', 'es_words.en_words_id')

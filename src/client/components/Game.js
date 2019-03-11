@@ -36,7 +36,6 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    console.log(this.props, "lfksjleeeeeeeeeeeeeeee")
     this.setState({ currentUser: this.props }),
     this.drawNewCard(this.props.id)
     // if user is new run initial setup if not get word
@@ -46,13 +45,10 @@ class Game extends Component {
 
   // Populate user_words table with all words and associate them with new userID
   initialSetup = (id) => {
-    let thus = this
     return new Promise((resolve) => {
-      
       resolve(this.populateUserWords(id))
       })
       .then(() =>  this.userWord(id))
-
   }
 
   // Populate user_words table and flip new_user to false
@@ -79,7 +75,7 @@ class Game extends Component {
 }
   //  Populate user words array in state
   userWord = (user_id, url) => {
-    let promise = new Promise(() =>{
+    let promise = new Promise(() => {
     axios.get('http://localhost:8080/userWord', {
       params: {
         id: user_id
@@ -168,18 +164,14 @@ class Game extends Component {
     this.markedCard(-1);
     this.arrayMove(num, 0, 3)
     // this.state.currentUser.xWords.push(num[0]);
-    // console.log(this.state.currentUser.xWords)
   }
 
   // Update card and cue next card when word is learned
   checkMark = () => {
-    console.log("userWords", this.state.currentUser.userWords)
     let num = this.state.currentUser.userWords;
     this.markedCard(1);
     this.learnedCard(num[0], 1)
-    console.log(num)
     this.arrayMove(num, 0, num.length -1)
-    console.log(num)
   }
 
   firstFlip = () => {

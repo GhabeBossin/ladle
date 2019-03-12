@@ -32,23 +32,34 @@ class SignUp extends Component {
 
   handleInputChange = ({ target }) => {
     const { name, value } = target;
-    name === 'username' ?
-    this.setState({
-      usernameInput: value
-    })
-    : name === 'first_name' ?
-    this.setState({
-      firstNameInput: value
-    })
-    : name === 'last_name' ?
-    this.setState({
-      lastNameInput: value
-    })
-    : name === 'pass' ?
+    switch (name) {
+      case 'first_name': 
+        this.setState({
+          firstNameInput: value
+        })
+        break
+      case 'last_name':
+        this.setState({
+          lastNameInput: value
+        })
+        break
+      case 'username':
+        this.setState({
+          usernameInput: value
+        })
+        break
+      default:
+        console.log('Invalid')
+    }
+  }
+
+  handlePasswordChange = ({target}) => {
+    const {type, value} = target;
+    type === 'password' ?
     this.setState({
       passwordInput: value
     })
-    :null
+    : null
   }
 
   populateUserWords = (id, cb) => {
@@ -115,22 +126,18 @@ class SignUp extends Component {
             <FormGroup>
               <Label htmlFor="first_name">First Name</Label>
               <Input type="text" name='first_name' id="first_name" onChange={ this.handleInputChange } value={ this.state.firstNameInput }/>
-              <h1>{this.state.name} </h1>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="last_name">Last Name</Label>
               <Input type="text" name='last_name' id="last_name" onChange={ this.handleInputChange } value={ this.state.lastNameInput }/>
-              <h1>{this.state.name} </h1>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="username">Username</Label>
               <Input type="text" name='username' id="username" onChange={ this.handleInputChange } value={ this.state.usernameInput } />
-              <h1>{this.state.name} </h1>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="pass">Password</Label>
-              <Input type="password" name='pass' id="pass" onChange={ this.handleInputChange } value={ this.state.passwordInput } />
-              <h1>{this.state.name} </h1>
+              <Input type="password" name='pass' id="pass" onChange={ this.handlePasswordChange } value={ this.state.passwordInput } />
             </FormGroup>
             <StyledDiv>
             <Button type="submit" onClick={ this.handleSubmit }>

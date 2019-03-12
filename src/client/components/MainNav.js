@@ -6,7 +6,7 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  UncontrolledDropdown,
+  UncontrolledDropdown, 
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap'
@@ -21,8 +21,9 @@ class MainNav extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    // console.log(this.props)
   }
+
   toggle = () => {
     this.setState({
       isOpen  : !this.state.isOpen
@@ -47,10 +48,9 @@ class MainNav extends Component {
                 </NavItem>
                 : null
               }
-              { this.props.currentUser.first_name ?
+              { this.props.currentUser ?
                 <NavItem>
-                  
-                  <NavLink to="/login" className='nav-link' onClick={this.props.onClick} >Logout</NavLink>
+                  <NavLink to="/login" className='nav-link' onClick={this.props.handleLogoutClick }>Logout</NavLink>
                 </NavItem>
                 :
                 <NavItem>

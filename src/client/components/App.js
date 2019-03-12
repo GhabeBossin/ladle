@@ -9,8 +9,6 @@ import SignUp from './SignUp'
 import Login from './Login'
 import AdminWords from './admin/AdminWords'
 import AdminUsers from './admin/AdminUsers'
-import UserEdit from './admin/UserEdit'
-import WordEdit from './admin/WordEdit'
 import axios from 'axios'
 
 class App extends Component {
@@ -41,7 +39,6 @@ class App extends Component {
     })
   }
 
-
   getWordData = () => {
     axios.get("http://localhost:8080/api/words/all")
     .then((response) => {
@@ -57,14 +54,22 @@ class App extends Component {
   }
 
   handleLogoutClick = () => {
-    this.setState({ currentUser: {} })
+    this.setState({ currentUser: {
+      achievements: null,
+      id: null,
+      first_name: null,
+      last_name: null,
+      username: null,
+      is_admin: null,
+      is_new: null
+    }});
   }
 
   render() {
     return (
       <div>
         <StyledAppContainer>
-          <StyledMainNav onClick={ this.handleLogoutClick } data={ this.state.wordData } currentUser={this.state.currentUser}/>
+          <StyledMainNav handleLogoutClick={ this.handleLogoutClick } data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
                 <Route exact path="/" render={ props => <Game {...props} data={this.state.currentUser}  /> }/>
@@ -72,9 +77,11 @@ class App extends Component {
                 <Route exact path="/signup" component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route exact path="/admin/dashboard" component={ AdminDash } />
                 <Route exact path="/admin/words" component={ AdminWords } />
-                <Route exact path="/admin/users" component={ AdminUsers } />
-                <Route exact path="/admin/:es_word/edit" component={ WordEdit } />
-                <Route exact path="/admin/:username/edit" component={ UserEdit } />
+                <Route exact path="/admin/users" component={ props => <AdminUsers currentUser={ this.state.currentUser } { ...props } /> } />
+                {/* <Route exact path="/admin/users" component={ AdminUsers } /> */}
+                {/* <Route exact path="/admin/word/edit" component={ WordEdit } /> */}
+                {/* <Route exact path="/admin/user/edit" component={ props => <UserEdit currentUser={ this.state.currentUser } { ...props } /> } /> */}
+                {/* <Route exact path="/admin/user/edit" component={ UserEdit } /> */}
               </Switch>
             </div>
         </StyledAppContainer>

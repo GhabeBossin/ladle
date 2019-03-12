@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 
 app.use("/trophyNames", trophyNames(knex));
 app.use("/userAchievements", userAchievements(knex));
-app.use("/userWord", userWord(knex));
+app.use("/api/userWord", userWord(knex));
 app.use("/learned", learnedRoutes(knex));
 app.use("/api/signup", signupRoutes(knex));
 app.use("/game", gameRoutes(knex));

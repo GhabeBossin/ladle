@@ -25,6 +25,7 @@ class AdminWords extends Component {
     axios.get("http://localhost:8080/api/words/all")
     .then((response) => {
       this.setState({wordData: [...response.data]});
+      // console.log('STATE after setState in getWordData', this.state)
     })
     .catch((error) => {
       console.log(error);
@@ -39,8 +40,8 @@ class AdminWords extends Component {
       enabled: state.enabled
 
     })
-    .then(() => {
-      console.log('Before .getWordData updates', this.state.wordData[0].enabled)
+    .then((response) => {
+      // console.log(response, "reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
       this.getWordData()
     })
     .catch((error) => {

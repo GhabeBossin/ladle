@@ -4,7 +4,7 @@ import {
   InputGroup,
   InputGroupAddon, 
   Button} from 'reactstrap';
-// import { ModalContainer, ModalWrapper } from "../styles/adminStyles";
+  import { FuzzyDDF } from '../styles/appStyles'
 
 // these components share state and can even live in different components
 const { InputFilter, FilterResults, changeInputValue } = fuzzyFilterFactory();
@@ -63,11 +63,11 @@ class FuzzySearch extends Component {
           <FilterResults defaultAllItems={false} items={items} fuseConfig={fuseConfig}>
           {filteredItems => {
             return (
-              <div>
+              <FuzzyDDF>
                 {filteredItems.map(item => (
                   <div key={item.name}>{item.name}</div>
                 ))}
-              </div>
+              </FuzzyDDF>
             );
           }}
         </FilterResults>

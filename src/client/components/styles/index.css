@@ -39,6 +39,6 @@ a:hover {
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-#root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.hMxLlm > nav > div:nth-child(2) > div > div:nth-child(2) {
+/* #root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.hMxLlm > nav > div:nth-child(2) > div > div:nth-child(2) {
   z-index: 1;
-}
+} */

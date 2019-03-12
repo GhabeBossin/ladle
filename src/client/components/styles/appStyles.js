@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Footer from '../user/Footer'
 import MainNav from '../user/MainNav'
+import AdminDash from '../admin/AdminDash';
 
 const StyledAppContainer = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ const StyledMainNav = styled(MainNav).attrs({
   min-width: 100%;
   justify-self: flex-start;
   margin-bottom: 2em;
+  position: relative;
 
   & > nav {
     min-width: 100%;
@@ -43,12 +45,19 @@ const StyledMainNav = styled(MainNav).attrs({
   }
 `;
 
-const FuzzyFilter = styled.div`
+const FuzzyDDF = styled.div`
+  position: absolute;
+  background-color: white;
+  max-width: fit-content;
   z-index: 1;
+  padding: 1em;
+  border: 1px solid lightgray;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 `;
 
 export {
-  FuzzyFilter,
+  FuzzyDDF,
   StyledMainNav,
   StyledAppContainer,
   StyledFooter

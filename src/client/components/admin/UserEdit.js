@@ -90,8 +90,8 @@ class UserEdit extends Component {
                 }
                 <Button type="button"
                   onClick={() => {
-                    this.updateUser(this.state)
-                    this.buttonToggle() }}> 
+                  this.updateUser(this.state)
+                  this.buttonToggle() }}> 
                   Update 
                 </Button>
               </Form>

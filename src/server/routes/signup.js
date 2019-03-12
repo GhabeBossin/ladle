@@ -14,7 +14,7 @@ module.exports = (knex) => {
     .then(result => res.json(result))
     .then(res.status(200))
     .catch((error) => {
-      console.log("this error is from routes/signup", error)
+      console.log("Error is from routes/signup: ", error)
     });
   });
 
@@ -23,7 +23,7 @@ module.exports = (knex) => {
     .insert(req.body.data)
     .then(result => res.json(result))
     .catch((error) => {
-      console.log("this error is from routes/signup/userWords")
+      console.log("Error is from routes/signup/userWords: ", error)
     })
   })
 
@@ -42,7 +42,6 @@ module.exports = (knex) => {
   })
   
   router.post('/newAward', cors(), (req,res) => {
-    console.log(req.body)
     knex('user_achievements')
     .insert([{ user_id: req.body.id, achievements_id: req.body.achievement }])
     .then(result => res.json(result))

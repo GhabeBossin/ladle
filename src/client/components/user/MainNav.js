@@ -43,7 +43,7 @@ class MainNav extends Component {
                 </NavItem>
                 : null
               }
-              { this.props.currentUser ?
+              { this.props.currentUser.id ?
                 <NavItem>
                   <NavLink to="/login" className='nav-link' onClick={this.props.handleLogoutClick }>Logout</NavLink>
                 </NavItem>

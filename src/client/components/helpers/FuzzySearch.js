@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import fuzzyFilterFactory from "react-fuzzy-filter";
-import { Form, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
-import { ModalContainer } from "../../styles/adminStyles";
+import { 
+  InputGroup,
+  InputGroupAddon, 
+  Button} from 'reactstrap';
+import { ModalContainer, ModalWrapper } from "../../styles/adminStyles";
 
 // these components share state and can even live in different components
 const { InputFilter, FilterResults, changeInputValue } = fuzzyFilterFactory();
@@ -60,7 +63,6 @@ class FuzzySearch extends Component {
           <FilterResults defaultAllItems={false} items={items} fuseConfig={fuseConfig}>
           {filteredItems => {
             return (
-              
               <div>
                 {filteredItems.map(item => (
                   <div key={item.name}>{item.name}</div>

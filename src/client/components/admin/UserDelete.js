@@ -29,11 +29,12 @@ class UserDelete extends Component {
       <span onClick={this.buttonToggle} className="ml-2">
         ❌
       </span>
-
+      
       { this.state.modal_open && (
         <ModalContainer>
           <ModalWrapper>
             <Container>
+              <Card>
               <Button close onClick={this.buttonToggle}/>
               <h3>Are You Sure?</h3>
               <CardText>This action cannot be undone!</CardText>
@@ -46,6 +47,7 @@ class UserDelete extends Component {
                   Delete User 
                 </DelBtn>
               </BtnDiv>
+              </Card>
             </Container>
           </ModalWrapper>
         </ModalContainer>

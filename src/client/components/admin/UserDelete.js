@@ -10,8 +10,8 @@ import {
   // figure out wtf is up with deleteUser being undefined, then make deleteUser routes
 class UserDelete extends Component {
   constructor({deleteUser, data}) {
-    // this.deleteUser = deleteUser
     super();
+    this.deleteUser = deleteUser
     this.state = {
       id        : data.id,
       username  : data.username,
@@ -42,7 +42,7 @@ class UserDelete extends Component {
               <Button onClick={this.buttonToggle}>Cancel</Button>
               <Button 
                   onClick={() => {
-                    // console.log('UserDelete state', this.state)
+                    console.log('UserDelete state', this.state)
                   this.deleteUser(this.state)
                   this.buttonToggle() }}> 
                 Delete User 

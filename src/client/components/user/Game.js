@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import {
   Container,
   Row,
@@ -13,6 +14,7 @@ import {
   StyledCard, 
   StyledCardBody, 
   StyledCardButtons } from '../styles/gameStyles'
+// import StyledSpan from '../styles/signInUpStyles'
 import Trophy from './AchievementTrophy';
 import axios from 'axios';
 
@@ -149,7 +151,13 @@ class Game extends Component {
 
   render() {
     if (!this.state.currentUser.id) {
-      return <h1>You need to log in</h1>
+      return (
+        <Container>
+          <span>
+            Already have an account? <Link to='/login'> Login here.</Link>
+          </span>
+        </Container>
+      )
     } else {
     return (
       <Container>
@@ -191,7 +199,8 @@ class Game extends Component {
         <div>
           <Trophy data={this.state.currentUser.achievements} />
         </div>
-      </Container>);
+      </Container>
+      );
     }
   }
 };

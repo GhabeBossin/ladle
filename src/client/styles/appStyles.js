@@ -9,7 +9,6 @@ const StyledAppContainer = styled.div`
   min-height: calc(100vh - 2.5em);
 `;
 
-
 const StyledFooter = styled(Footer)`
   display: flex;
   flex: 1;
@@ -18,7 +17,6 @@ const StyledFooter = styled(Footer)`
   justify-content: flex-end;
   opacity: .75;
 `;
-
 
 const StyledMainNav = styled(MainNav).attrs({
   className: 'shadow-sm',

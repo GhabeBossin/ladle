@@ -18,14 +18,12 @@ class Game extends Component {
     super(props);
     this.state = {
       currentUser: {
-      x_words: [],
-      user_word: "",
-      en_word: "",
-      es_word: "",
       userAchievements: [],
       user_word_id: null,
       user_id: null
       },
+      en_word: "",
+      es_word: "",
       userWords: [],
       currentWord: null,
       populateWords: [],
@@ -37,8 +35,10 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    this.userWord(this.props.data.id)
+    
     this.setState({ currentUser: this.props.data })
+    this.userWord(this.props.data.id)
+    console.log(this.props.data, "0000000000000000000000000000000000000000000")
   }
 
   //  Populate user words array in state

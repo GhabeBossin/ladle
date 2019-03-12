@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { 
+import {
   Card,
-  CardText, 
+  CardText,
   Button } from 'reactstrap'
-import { 
-  ModalContainer, 
+import {
+  ModalContainer,
   ModalWrapper } from '../../styles/adminStyles';
 
   // figure out wtf is up with deleteUser being undefined, then make deleteUser routes
@@ -31,7 +31,7 @@ class UserDelete extends Component {
       <span onClick={this.buttonToggle} className="ml-2">
         ❌
       </span>
-      
+
       { this.state.modal_open && (
         <ModalContainer>
           <ModalWrapper>
@@ -40,12 +40,12 @@ class UserDelete extends Component {
               <h3>Are You Sure?</h3>
               <CardText>This action cannot be undone!</CardText>
               <Button onClick={this.buttonToggle}>Cancel</Button>
-              <Button 
+              <Button
                   onClick={() => {
                     console.log('UserDelete state', this.state)
                   this.deleteUser(this.state)
-                  this.buttonToggle() }}> 
-                Delete User 
+                  this.buttonToggle() }}>
+                Delete User
               </Button>
             </Card>
           </ModalWrapper>

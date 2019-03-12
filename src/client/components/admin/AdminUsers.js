@@ -4,7 +4,7 @@ import {
   Table,
   Row,
   Col } from 'reactstrap'
-import { StyledTR } from "../../styles/adminStyles";
+import { StyledTR } from "../styles/adminStyles";
 import axios from 'axios';
 import UserEdit from './UserEdit';
 import UserDelete from './UserDelete'

@@ -7,7 +7,7 @@ import {
   ModalContainer, 
   ModalWrapper, 
   BtnDiv,
-  DelBtn} from '../../styles/adminStyles';
+  DelBtn} from '../styles/adminStyles';
 
 class UserDelete extends Component {
   constructor({deleteUser, data}) {

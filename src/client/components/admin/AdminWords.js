@@ -4,7 +4,7 @@ import {
   Table,
   Row,
   Col } from 'reactstrap'
-  import { StyledTR } from '../../styles/adminStyles'
+  import { StyledTR } from '../styles/adminStyles'
 import WordEdit from './WordEdit'
 import axios from 'axios';
 

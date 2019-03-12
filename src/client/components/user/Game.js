@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom'
 import {
   Container,
   Row,
@@ -8,10 +9,14 @@ import {
   CardImg,
   CardTitle } from 'reactstrap';
 import FlashCardImg from '../../flash-card.png'
-import axios from 'axios';
-import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../../styles/gameStyles'
+import { 
+  StyledBtnDiv, 
+  StyledCard, 
+  StyledCardBody, 
+  StyledCardButtons } from '../styles/gameStyles'
 import Trophy from './AchievementTrophy';
-// import { promises } from 'fs';
+import axios from 'axios';
+import Welcome from './Welcome';
 
 class Game extends Component {
   constructor(props) {
@@ -175,7 +180,9 @@ class Game extends Component {
 
   render() {
     if (!this.state.currentUser.id) {
-      return <h1>You need to log in</h1>
+      return (
+        <Welcome />
+      )
     } else {
     return (
       <Container>
@@ -217,7 +224,8 @@ class Game extends Component {
         <div>
           <Trophy data={this.state.achievements} />
         </div>
-      </Container>);
+      </Container>
+      );
     }
   }
 };

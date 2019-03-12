@@ -5,7 +5,7 @@ import {
 import { 
   StyledAppContainer,
   StyledMainNav,
-  StyledFooter } from '../../styles/appStyles'
+  StyledFooter } from '../styles/appStyles'
 import Game from './Game'
 import Login from './Login'
 import SignUp from './SignUp'

@@ -9,7 +9,7 @@ import {
   Label } from 'reactstrap'
 import {
   StyledDiv,
-  StyledSpan } from '../../styles/signInUpStyles'
+  StyledSpan } from '../styles/signInUpStyles'
 import axios from 'axios';
 
 class SignUp extends Component {
@@ -56,9 +56,9 @@ class SignUp extends Component {
   handlePasswordChange = ({target}) => {
     const {type, value} = target;
     type === 'password' ?
-    this.setState({
-      passwordInput: value
-    })
+      this.setState({
+        passwordInput: value
+      })
     : null
   }
 
@@ -114,6 +114,12 @@ class SignUp extends Component {
     });
   }
 
+  handleEnter = (e) => {
+    if(e.key === 'Enter'){
+      this.handleSubmit()
+    }
+  }
+
   render() {
     return (<>
       { this.state.validated
@@ -135,14 +141,14 @@ class SignUp extends Component {
               <Input type="text" name='username' id="username" onChange={ this.handleInputChange } value={ this.state.usernameInput } />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="pass">Password</Label>
-              <Input type="password" name='pass' id="pass" onChange={ this.handlePasswordChange } value={ this.state.passwordInput } />
+              <Label htmlFor='password'>Password</Label>
+              <Input type='password' name='password' id="password" onChange={ this.handlePasswordChange } value={ this.state.passwordInput } onKeyUp={this.handleEnter}/>
             </FormGroup>
             <StyledDiv>
-            <Button type="submit" onClick={ this.handleSubmit }>
-              Signup
-            </Button>
-            <StyledSpan>Already have an account? <Link to='/login'> Login here.</Link></StyledSpan>
+              <Button type="submit" onClick={ this.handleSubmit }>
+                Signup
+              </Button>
+              <StyledSpan>Already have an account? <Link to='/login'> Login here.</Link></StyledSpan>
             </StyledDiv>
           </Form>
       </Container> }

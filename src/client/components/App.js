@@ -23,8 +23,8 @@ class App extends Component {
   setCurrentUser = userObj => {
     let obj = userObj.data;
     let achievements = [];
-    !userObj.data[0].achievements ? achievements = [] : obj.forEach(element => {
-      achievements.push({ id: element.id, name: element.name, description: element.description })
+    obj.forEach(element => {
+      achievements.push({ id: element.achievement_id, name: element.achievement_name, description: element.achievement_description })
     })
     this.setState({
       currentUser: {
@@ -34,7 +34,6 @@ class App extends Component {
         last_name: userObj.data[0].last_name,
         username: userObj.data[0].username,
         is_admin: userObj.data[0].is_admin,
-        // is_new: userObj.data[0].is_new
       }
     })
   }

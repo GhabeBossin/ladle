@@ -30,7 +30,7 @@ class AdminUsers extends Component {
     });
   }
 
-  updateUser = (state) => {
+  updateUser = (state) => { 
     return axios.put("http://localhost:8080/api/userEdit/update", {
       id        : state.id,
       username  : state.username,
@@ -40,7 +40,7 @@ class AdminUsers extends Component {
 
     })
     .then(() => {
-      console.log('Before .getWordData updates', this.state.userData[0].enabled)
+      // console.log('Before .getWordData updates', this.state.userData[0].enabled)
       this.getUserData()
     })
     .catch((error) => {
@@ -49,7 +49,7 @@ class AdminUsers extends Component {
   }
 
   mapRows = data => {
-    console.log('user1 @data[0]: ', data[0], ' \n user2 @data[1]: ', data[1], ' \n user3 @data[2]: ',data[2])
+    // console.log('user1 @data[0]: ', data[0], ' \n user2 @data[1]: ', data[1], ' \n user3 @data[2]: ',data[2])
     return data.map((row, i) => {
       id, first_name, last_name, username
       const { id, first_name, last_name, username } = row;

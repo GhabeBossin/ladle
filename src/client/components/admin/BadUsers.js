@@ -15,9 +15,7 @@ class BadUsers extends Component {
           These students are struggling the most to learn new words.
         </CardText>
         <ListGroup flush>
-          <ListGroupItem>
-            Tim Timmeh
-          </ListGroupItem>
+          <ListGroupItem>Tim Timmeh</ListGroupItem>
           <ListGroupItem>Anne Bolin</ListGroupItem>
           <ListGroupItem>David Tennant</ListGroupItem>
           <ListGroupItem>Another Student</ListGroupItem>

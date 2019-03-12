@@ -8,10 +8,13 @@ import {
   CardImg,
   CardTitle } from 'reactstrap';
 import FlashCardImg from '../../flash-card.png'
-import axios from 'axios';
-import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../../styles/gameStyles'
+import { 
+  StyledBtnDiv, 
+  StyledCard, 
+  StyledCardBody, 
+  StyledCardButtons } from '../styles/gameStyles'
 import Trophy from './AchievementTrophy';
-// import { promises } from 'fs';
+import axios from 'axios';
 
 class Game extends Component {
   constructor(props) {

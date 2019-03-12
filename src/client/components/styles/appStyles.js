@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Footer from '../components/user/Footer'
-import MainNav from '../components/user/MainNav'
+import Footer from '../user/Footer'
+import MainNav from '../user/MainNav'
 
 const StyledAppContainer = styled.div`
   display: flex;
@@ -43,7 +43,12 @@ const StyledMainNav = styled(MainNav).attrs({
   }
 `;
 
+const FuzzyFilter = styled.div`
+  z-index: 1;
+`;
+
 export {
+  FuzzyFilter,
   StyledMainNav,
   StyledAppContainer,
   StyledFooter

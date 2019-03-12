@@ -8,7 +8,7 @@ import {
   Button } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../../styles/modalStyles'
+  ModalWrapper } from '../styles/modalStyles'
 
 class WordEdit extends Component {
   constructor({updateWord, data}) {

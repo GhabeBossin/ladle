@@ -9,7 +9,7 @@ import {
   Label } from 'reactstrap'
 import {
   StyledDiv,
-  StyledSpan } from '../../styles/signInUpStyles'
+  StyledSpan } from '../styles/signInUpStyles'
 import axios from 'axios';
 
 class Login extends Component {
@@ -54,6 +54,12 @@ class Login extends Component {
     });
   }
 
+  handleEnter = (e) => {
+    if(e.key === 'Enter'){
+      this.handleSubmit()
+    }
+  }
+
   render() {
     return (<>
     { this.state.validated
@@ -68,10 +74,10 @@ class Login extends Component {
           </FormGroup>
           <FormGroup>
             <Label htmlFor="pass">Password</Label>
-            <Input type="password" name='pass' id="pass" onChange={ this.handleInputChange } value={ this.state.passwordInput } />
+            <Input type="password" name='pass' id="pass" onChange={ this.handleInputChange } value={ this.state.passwordInput } onKeyUp={this.handleEnter}/>
           </FormGroup>
           <StyledDiv>
-            <Button type="button" onClick={ this.handleSubmit }>
+          <Button type="submit" onClick={ this.handleSubmit }>
               Login
             </Button>
             <StyledSpan>New here? Would you like to <Link to='/signup'>Signup?</Link></StyledSpan>

@@ -4,7 +4,7 @@ import {
   InputGroup,
   InputGroupAddon, 
   Button} from 'reactstrap';
-import { ModalContainer, ModalWrapper } from "../../styles/adminStyles";
+// import { ModalContainer, ModalWrapper } from "../styles/adminStyles";
 
 // these components share state and can even live in different components
 const { InputFilter, FilterResults, changeInputValue } = fuzzyFilterFactory();

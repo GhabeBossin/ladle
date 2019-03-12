@@ -84,8 +84,7 @@ class WordEdit extends Component {
                 <Button type="button"
                   onClick={() => {
                     this.updateWord(this.state),
-                    this.buttonToggle(),
-                    console.log('After .getWordData updates', this.state.enabled) }}>
+                    this.buttonToggle() }}>
                   Update
                 </Button>
               </Form>

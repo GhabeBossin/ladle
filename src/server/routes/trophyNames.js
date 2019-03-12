@@ -13,7 +13,7 @@ module.exports = (knex) => {
     // .returning('*')
     .then(result => { res.json(result) })
     .catch((error) => {
-      console.log("This is an error from routes/getTrophy:", error)
+      console.log("Error from routes/getTrophy: ", error)
     })
   })
 

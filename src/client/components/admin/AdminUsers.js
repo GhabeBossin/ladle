@@ -7,7 +7,6 @@ import {
 import { StyledTR } from "../../styles/adminStyles";
 import axios from 'axios';
 import UserEdit from './UserEdit';
-// import DeleteModal from './UserDelete';
 import UserDelete from './UserDelete'
 
 class AdminUsers extends Component {
@@ -44,7 +43,7 @@ class AdminUsers extends Component {
       this.getUserData()
     })
     .catch((error) => {
-      console.log('Error in AdminUsers updateUser: ', error);
+      console.log('Error in AdminUsers updateUser method: ', error);
     });
   }
 

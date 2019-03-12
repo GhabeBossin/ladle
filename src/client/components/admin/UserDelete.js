@@ -19,9 +19,6 @@ class UserDelete extends Component {
     }
   }
 
-  componentDidMount() {
-  }
-
   buttonToggle = () => {
     this.setState({ modal_open: !this.state.modal_open})
   }
@@ -42,7 +39,6 @@ class UserDelete extends Component {
               <Button onClick={this.buttonToggle}>Cancel</Button>
               <Button 
                   onClick={() => {
-                    // console.log('UserDelete state', this.state)
                   this.deleteUser(this.state)
                   this.buttonToggle() }}> 
                 Delete User 

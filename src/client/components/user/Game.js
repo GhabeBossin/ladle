@@ -70,7 +70,7 @@ class Game extends Component {
       this.setState({ es_word: response.data[1].rows[0].word })
     })
     .catch(function (error) {
-      console.log("this is error is in getCard in Game.js", error);
+      console.log("Error in getCard in Game.js: ", error);
     });
   }
 
@@ -82,7 +82,7 @@ class Game extends Component {
         is_known: true
     })
     .catch(function (error) {
-      console.log("this error is from learnedCard in Game.js", error);
+      console.log("Error in learnedCard in Game.js: ", error);
     });
   }
 

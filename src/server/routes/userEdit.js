@@ -9,9 +9,10 @@ module.exports = (knex) => {
   router.put("/update", cors(), (req, res) => {
     console.log(req.body)
     knex
-      .with('firstUpdate', knex.raw('?', [knex('first_name').update({ first_name: req.body.first_name}).where('id', req.body.id)]))
-      .with('secondUpdate', knex.raw('?', [knex('last_name').update({ user: req.body.es_word }).where('id', req.body.id)]))
-      .with('thirdUpdate', knex.raw('?', [knex('username').update({ user: req.body.es_word }).where('id', req.body.id)]))
+      .with('firstUpdate', knex.raw('?', [knex('users').update({ first_name: req.body.first_name}).where('id', req.body.id)]))
+      .with('secondUpdate', knex.raw('?', [knex('users').update({ last_name: req.body.last_name }).where('id', req.body.id)]))
+      .with('thirdUpdate', knex.raw('?', [knex('users').update({ username: req.body.username }).where('id', req.body.id)]))
+      .with('fourthUpdate', knex.raw('?', [knex('users').update({ password: req.body.password }).where('id', req.body.id)]))
       .select(1)
       .returning("*")
       .then(res.status(200))

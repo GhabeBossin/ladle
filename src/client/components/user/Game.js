@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom'
 import {
   Container,
   Row,
@@ -15,6 +16,7 @@ import {
   StyledCardButtons } from '../styles/gameStyles'
 import Trophy from './AchievementTrophy';
 import axios from 'axios';
+import Welcome from './Welcome';
 
 class Game extends Component {
   constructor(props) {
@@ -149,7 +151,9 @@ class Game extends Component {
 
   render() {
     if (!this.state.currentUser.id) {
-      return <h1>You need to log in</h1>
+      return (
+        <Welcome />
+      )
     } else {
     return (
       <Container>
@@ -191,7 +195,8 @@ class Game extends Component {
         <div>
           <Trophy data={this.state.currentUser.achievements} />
         </div>
-      </Container>);
+      </Container>
+      );
     }
   }
 };

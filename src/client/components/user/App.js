@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Switch, Route} from "react-router-dom";
-import StyledAppContainer from '../styles/appStyles'
-import StyledMainNav from '../styles/mainNavStyles'
-import StyledFooter from '../styles/footerStyles'
+import StyledAppContainer from '../../styles/appStyles'
+import StyledMainNav from '../../styles/mainNavStyles'
+import StyledFooter from '../../styles/footerStyles'
 import Game from './Game'
-import AdminDash from './admin/AdminDash'
+import AdminDash from '../admin/AdminDash'
 import SignUp from './SignUp'
 import Login from './Login'
-import AdminWords from './admin/AdminWords'
-import AdminUsers from './admin/AdminUsers'
+import AdminWords from '../admin/AdminWords'
+import AdminUsers from '../admin/AdminUsers'
 import axios from 'axios'
 
 class App extends Component {

@@ -8,7 +8,7 @@ import {
   ModalWrapper } from '../../styles/adminStyles';
 
   // figure out wtf is up with deleteUser being undefined, then make deleteUser routes
-class DeleteModal extends Component {
+class UserDelete extends Component {
   constructor({deleteUser, data}) {
     // this.deleteUser = deleteUser
     super();
@@ -17,6 +17,9 @@ class DeleteModal extends Component {
       username  : data.username,
       modal_open: false
     }
+  }
+
+  componentDidMount() {
   }
 
   buttonToggle = () => {
@@ -39,7 +42,8 @@ class DeleteModal extends Component {
               <Button onClick={this.buttonToggle}>Cancel</Button>
               <Button 
                   onClick={() => {
-                  // this.deleteUser(this.state),
+                    // console.log('UserDelete state', this.state)
+                  this.deleteUser(this.state)
                   this.buttonToggle() }}> 
                 Delete User 
               </Button>
@@ -52,4 +56,4 @@ class DeleteModal extends Component {
   }
 }
 
-export default DeleteModal
+export default UserDelete

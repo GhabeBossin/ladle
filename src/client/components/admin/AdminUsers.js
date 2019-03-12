@@ -7,7 +7,8 @@ import {
 import { StyledTR } from "../../styles/adminStyles";
 import axios from 'axios';
 import UserEdit from './UserEdit';
-import DeleteModal from '../helpers/DeleteModal';
+// import DeleteModal from './UserDelete';
+import UserDelete from './UserDelete'
 
 class AdminUsers extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class AdminUsers extends Component {
   deleteUser = (state) => {
     return axios.delete("http://localhost:8080/api/user/delete", {
       id      : state.id,
-      username: state.username,
+      // username: state.username,
     })
     .then((response) => {
       // const userData = response.data;
@@ -77,7 +78,7 @@ class AdminUsers extends Component {
           <td>
             <UserEdit updateUser={this.updateUser} data={ row } currentUser={this.props.currentUser}/>
             { this.props.currentUser.id !== data[i].id ?
-              <DeleteModal deleteUser={this.deleteUser} data={ row }/>
+              <UserDelete deleteUser={this.deleteUser} data={ row }/>
               : null
             }
           </td>

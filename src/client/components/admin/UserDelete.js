@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { 
-  Card,
+import {
   CardText, 
   Button,
   Container } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../../styles/adminStyles';
+  ModalWrapper, 
+  BtnDiv,
+  DelBtn} from '../../styles/adminStyles';
 
 class UserDelete extends Component {
   constructor({deleteUser, data}) {
@@ -37,15 +38,16 @@ class UserDelete extends Component {
               <Button close onClick={this.buttonToggle}/>
               <h3>Are You Sure?</h3>
               <CardText>This action cannot be undone!</CardText>
-              <Button onClick={this.buttonToggle}>Cancel</Button>
-              <Button 
+              <BtnDiv>
+                <Button onClick={this.buttonToggle}>Cancel</Button>
+                <DelBtn 
                   onClick={() => {
-                    console.log('UserDelete state', this.state)
                   this.deleteUser(this.state)
                   this.buttonToggle() }}> 
-                Delete User 
-              </Button>
-            </Card>
+                  Delete User 
+                </DelBtn>
+              </BtnDiv>
+              </Card>
             </Container>
           </ModalWrapper>
         </ModalContainer>

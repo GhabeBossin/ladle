@@ -8,6 +8,8 @@ exports.seed = function(knex, Promise) {
         { achievements_id: 1, user_id: 1 },
         { achievements_id: 2, user_id: 1 },
         { achievements_id: 2, user_id: 3 },
+        { achievements_id: 2, user_id: 2 },
+ 
         { achievements_id: 1, user_id: 3 },
         { achievements_id: 1, user_id: 4 },
         { achievements_id: 2, user_id: 4 },

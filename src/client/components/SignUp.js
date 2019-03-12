@@ -51,6 +51,29 @@ class SignUp extends Component {
     :null
   }
 
+  populateUserWords = (id, cb) => {
+    return axios.get("http://localhost:8080/api/signup/allWords" )
+    .then((response) => {
+      let data = response.data
+      let words = []
+
+      data.map((element) => {
+        words.push({ users_id: id, en_words_id: element.id, is_known: false })
+      })
+
+      axios.post("http://localhost:8080/api/signup/userWords", {
+        data: words,
+        is_known: false
+      })
+      .then(() => {
+        axios.put("http://localhost:8080/api/signup/isNew", {
+          new_user: false,
+          id: id
+        })
+      })
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const firstData = this.state.firstNameInput;
@@ -63,12 +86,18 @@ class SignUp extends Component {
       last_name: lastData,
       username: unameData,
       password: passData,
-      achievements: false,
+      achievements: true,
     })
     .then((response) => {
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) }
       );
+    this.populateUserWords(response.data[0].id)
+    axios.post('http://localhost:8080/api/signup/newAward', {
+      id: response.data[0].id,
+      achievement: 4
+    })
+        
     })
     .catch((error) => {
       console.log('Error in Signup handleSubmit', error);
@@ -79,10 +108,7 @@ class SignUp extends Component {
     return (<>
       { this.state.validated
         ?
-        <Redirect to={{
-          pathname:'/',
-          state: {currentUser: this.state.usernameInput}
-          }} />
+        <Redirect to={{ pathname:'/' }} />
         :
         <Container>
           <Form onSubmit={this.handleSubmit}>

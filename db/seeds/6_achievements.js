@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('achievements').insert([
+        { name: 'Welcome', description: 'Thanks for joining', },
         { name: 'WordsWorth', description: 'Fantastic Job! You learned 5 words!'},
         { name: 'Word Doctor', description: 'Congratulations! You learned 10 words!'},
         { name: 'Wordy!', description: 'Nice job! You learned your first word!'}

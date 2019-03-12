@@ -19,7 +19,6 @@ class Game extends Component {
     this.state = {
       currentUser: {
       x_words: [],
-
       user_word: "",
       en_word: "",
       es_word: "",
@@ -28,7 +27,6 @@ class Game extends Component {
       user_id: null
       },
       userWords: [],
-
       currentWord: null,
       populateWords: [],
       firstFlip: false,
@@ -132,7 +130,6 @@ class Game extends Component {
     newWords.splice(0, 1)
     this.markedCard(1, newWords)
     this.learnedCard(this.state.currentWord, 1)
-
   }
 
   firstFlip = () => {

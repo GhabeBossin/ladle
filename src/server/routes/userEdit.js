@@ -41,5 +41,3 @@ module.exports = (knex) => {
   })
   return router;
 }
-
-// add options to update password if present ??

@@ -35,6 +35,7 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
+    console.log("this is props", this.props.data)
     this.setState({ currentUser: this.props.data })
     this.userWord(this.props.data.id)
   }

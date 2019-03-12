@@ -7,9 +7,7 @@ const router = express.Router();
 module.exports = (knex) => {
   // updates word in db for WordEdit component in AdminWords
   router.put("/update", cors(), (req, res) => {
-    console.log(req.body.id, "request body")
     const data = req.body
-    console.log("data", data)
     knex('users')
       .where({ 'id': data.id })
       .update({

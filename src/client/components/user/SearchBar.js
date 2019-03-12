@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import { Form, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import axios from 'axios';
-import FuzzySearch from './helpers/FuzzySearch'
+import FuzzySearch from '../helpers/FuzzySearch'
 
 class SearchBar extends Component {
   constructor(props) {

@@ -9,7 +9,7 @@ import {
   Label } from 'reactstrap'
 import {
   StyledDiv,
-  StyledSpan } from '../styles/signInUpStyles'
+  StyledSpan } from '../../styles/signInUpStyles'
 import axios from 'axios';
 
 class SignUp extends Component {
@@ -104,11 +104,10 @@ class SignUp extends Component {
         () => { this.setCurrentUser(response) }
       );
     this.populateUserWords(response.data[0].id)
-    axios.post('http://localhost:8080/api/signup/newAward', {
-      id: response.data[0].id,
-      achievement: 4
-    })
-        
+      axios.post('http://localhost:8080/api/signup/newAward', {
+        id: response.data[0].id,
+        achievement: 4
+      })
     })
     .catch((error) => {
       console.log('Error in Signup handleSubmit', error);

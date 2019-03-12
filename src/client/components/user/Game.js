@@ -7,9 +7,9 @@ import {
   ButtonGroup,
   CardImg,
   CardTitle } from 'reactstrap';
-import FlashCardImg from '../flash-card.png';
+import FlashCardImg from '../../flash-card.png'
 import axios from 'axios';
-import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../styles/gameStyles'
+import { StyledBtnDiv, StyledCard, StyledCardBody, StyledCardButtons } from '../../styles/gameStyles'
 import Trophy from './AchievementTrophy';
 // import { promises } from 'fs';
 
@@ -35,10 +35,8 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    
     this.setState({ currentUser: this.props.data })
     this.userWord(this.props.data.id)
-    console.log(this.props.data, "0000000000000000000000000000000000000000000")
   }
 
   //  Populate user words array in state

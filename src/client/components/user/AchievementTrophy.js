@@ -15,6 +15,7 @@ class Trophy extends Component {
   constructor() {
     super()
   }
+
   render() {
     if (this.props.data) {
       const achievements = this.props.data.map((element, i) =>

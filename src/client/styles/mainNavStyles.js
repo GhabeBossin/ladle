@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import MainNav from '../components/MainNav'
+import MainNav from '../components/user/MainNav'
 
 const StyledMainNav = styled(MainNav).attrs({
   className: 'shadow-sm',

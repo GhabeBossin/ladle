@@ -9,7 +9,7 @@ import {
   Label } from 'reactstrap'
 import {
   StyledDiv,
-  StyledSpan } from '../styles/signInUpStyles'
+  StyledSpan } from '../../styles/signInUpStyles'
 import axios from 'axios';
 
 class Login extends Component {

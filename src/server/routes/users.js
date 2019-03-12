@@ -23,7 +23,7 @@ module.exports = (knex) => {
       )
     .then(result => res.json(result))
     .catch((error) => {
-      console.log("this error is from routes/users", error)
+      console.log("Error is from routes/users/: ", error)
     });
   })
 
@@ -34,7 +34,7 @@ module.exports = (knex) => {
     .returning('*')
     .then(result => { res.json(result) })
     .catch((error) => {
-      console.log(error)
+      console.log("Error is from routes/users/all: ", error)
     });
   })
 

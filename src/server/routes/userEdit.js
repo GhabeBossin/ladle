@@ -36,7 +36,7 @@ module.exports = (knex) => {
       .then(res.status(200))
       .then(res.send("user deleted"))
       .catch((error) => {
-      console.log("this is an error with userEdit route /delete", error)
+      console.log("Error in userEdit route /delete", error)
     })
   })
   return router;

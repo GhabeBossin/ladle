@@ -7,7 +7,6 @@ const router = express.Router();
 module.exports = (knex) => {
   // updates word in db for WordEdit component in AdminWords
   router.put("/update", cors(), (req, res) => {
-    console.log(req.body)
     knex
       .with('firstUpdate', knex.raw('?', [knex('en_words').update({ word: req.body.en_word, enabled: req.body.enabled }).where('id', req.body.id)]))
       .with('secondUpdate', knex.raw('?', [knex('es_words').update({ word: req.body.es_word }).where('id', req.body.id)]))
@@ -16,7 +15,7 @@ module.exports = (knex) => {
       .then(res.status(200))
       .then(res.send("DB updated"))
       .catch((error) => {
-        console.log('Error in wordEdit query', error)
+        console.log('Error in wordEdit routes/wordEdit/update', error)
       }
     );
   })

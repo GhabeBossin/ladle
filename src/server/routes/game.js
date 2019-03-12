@@ -17,7 +17,7 @@ module.exports = (knex) => {
     res.json(result)
   })
   .catch((error) => {
-    console.log('this is an error from /routes/game:', error)
+    console.log('Error from /routes/game:', error)
   });
   });
 

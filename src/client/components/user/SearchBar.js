@@ -20,7 +20,7 @@ class SearchBar extends Component {
       alert("The translation for " + ` "${word}"` + " is " + `"${response.data[0].word}"`)
     })
     .catch((error) => {
-      console.log("this is error is in getCard in Login.js", error);
+      console.log("Error in getCard in Login.js: ", error);
     });
   }
 

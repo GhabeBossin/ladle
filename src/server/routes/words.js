@@ -15,7 +15,7 @@ module.exports = (knex) => {
       .as("en_words.word")
       .then(result => { res.json(result) })
       .catch((error) => {
-        console.log(error)
+        console.log('Error in routes/words/all: ',error)
       });
   })
 
@@ -26,7 +26,7 @@ module.exports = (knex) => {
       .where({ 'en_words.word': req.query.id })
       .then(result => { res.json(result) })
       .catch((error) => {
-        console.log(error)
+        console.log('Error in routes/words/search: ', error)
       });
   })
 

@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Footer from '../components/user/Footer'
+import MainNav from '../components/user/MainNav'
 
 const StyledAppContainer = styled.div`
   display: flex;
@@ -7,4 +9,43 @@ const StyledAppContainer = styled.div`
   min-height: calc(100vh - 2.5em);
 `;
 
-export default StyledAppContainer
+const StyledFooter = styled(Footer)`
+  display: flex;
+  flex: 1;
+  min-width: 100%;
+  justify-self: flex-end;
+  justify-content: flex-end;
+  opacity: .75;
+`;
+
+const StyledMainNav = styled(MainNav).attrs({
+  className: 'shadow-sm',
+})`
+  display: flex;
+  flex: 1;
+  max-height: fit-content;
+  min-width: 100%;
+  justify-self: flex-start;
+  margin-bottom: 2em;
+
+  & > nav {
+    min-width: 100%;
+  }
+
+  &&& .navbar-brand {
+    color: #0635C9;
+    transition: color .15s;
+
+  & :hover {
+      color: #1AE5BE;
+      transition: color .15s;
+    }
+  }
+`;
+
+export {
+  StyledMainNav,
+  StyledAppContainer,
+  StyledFooter
+}
+

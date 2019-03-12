@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { Switch, Route} from "react-router-dom";
-import StyledAppContainer from '../../styles/appStyles'
-import StyledMainNav from '../../styles/mainNavStyles'
-import StyledFooter from '../../styles/footerStyles'
+import { 
+  Switch, 
+  Route} from "react-router-dom";
+import { 
+  StyledAppContainer,
+  StyledMainNav,
+  StyledFooter } from '../../styles/appStyles'
 import Game from './Game'
-import AdminDash from '../admin/AdminDash'
-import SignUp from './SignUp'
 import Login from './Login'
+import SignUp from './SignUp'
+import AdminDash from '../admin/AdminDash'
 import AdminWords from '../admin/AdminWords'
 import AdminUsers from '../admin/AdminUsers'
 import axios from 'axios'
@@ -77,10 +80,6 @@ class App extends Component {
                 <Route exact path="/admin/dashboard" component={ AdminDash } />
                 <Route exact path="/admin/words" component={ AdminWords } />
                 <Route exact path="/admin/users" component={ props => <AdminUsers currentUser={ this.state.currentUser } { ...props } /> } />
-                {/* <Route exact path="/admin/users" component={ AdminUsers } /> */}
-                {/* <Route exact path="/admin/word/edit" component={ WordEdit } /> */}
-                {/* <Route exact path="/admin/user/edit" component={ props => <UserEdit currentUser={ this.state.currentUser } { ...props } /> } /> */}
-                {/* <Route exact path="/admin/user/edit" component={ UserEdit } /> */}
               </Switch>
             </div>
         </StyledAppContainer>

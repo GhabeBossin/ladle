@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { 
   Card,
   CardText, 
-  Button } from 'reactstrap'
+  Button,
+  Container } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../../styles/adminStyles';
+  ModalWrapper, 
+  BtnDiv,
+  DelBtn} from '../../styles/adminStyles';
 
-  // figure out wtf is up with deleteUser being undefined, then make deleteUser routes
 class UserDelete extends Component {
   constructor({deleteUser, data}) {
     super();
@@ -17,9 +19,6 @@ class UserDelete extends Component {
       username  : data.username,
       modal_open: false
     }
-  }
-
-  componentDidMount() {
   }
 
   buttonToggle = () => {
@@ -35,19 +34,20 @@ class UserDelete extends Component {
       { this.state.modal_open && (
         <ModalContainer>
           <ModalWrapper>
-            <Card outline className="custom-ui" body>
+            <Container>
               <Button close onClick={this.buttonToggle}/>
-              <h3>Are You Sure?</h3>
-              <CardText>This action cannot be undone!</CardText>
-              <Button onClick={this.buttonToggle}>Cancel</Button>
-              <Button 
-                  onClick={() => {
-                    console.log('UserDelete state', this.state)
-                  this.deleteUser(this.state)
-                  this.buttonToggle() }}> 
-                Delete User 
-              </Button>
-            </Card>
+                <h3>Are You Sure?</h3>
+                <CardText>This action cannot be undone!</CardText>
+                <BtnDiv>
+                  <Button onClick={this.buttonToggle}>Cancel</Button>
+                  <DelBtn 
+                    onClick={() => {
+                    this.deleteUser(this.state)
+                    this.buttonToggle() }}> 
+                    Delete User 
+                  </DelBtn>
+                </BtnDiv>
+            </Container>
           </ModalWrapper>
         </ModalContainer>
       )}

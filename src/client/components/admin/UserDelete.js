@@ -10,7 +10,6 @@ import {
   BtnDiv,
   DelBtn} from '../../styles/adminStyles';
 
-  // figure out wtf is up with deleteUser being undefined, then make deleteUser routes
 class UserDelete extends Component {
   constructor({deleteUser, data}) {
     super();
@@ -42,9 +41,9 @@ class UserDelete extends Component {
                 <BtnDiv>
                   <Button onClick={this.buttonToggle}>Cancel</Button>
                   <DelBtn 
-                      onClick={() => {
-                      this.deleteUser(this.state)
-                      this.buttonToggle() }}> 
+                    onClick={() => {
+                    this.deleteUser(this.state)
+                    this.buttonToggle() }}> 
                     Delete User 
                   </DelBtn>
                 </BtnDiv>

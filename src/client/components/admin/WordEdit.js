@@ -83,8 +83,8 @@ class WordEdit extends Component {
                   </FormGroup>
                 <Button type="button"
                   onClick={() => {
-                    this.updateWord(this.state),
-                    this.buttonToggle() }}>
+                  this.updateWord(this.state),
+                  this.buttonToggle() }}>
                   Update
                 </Button>
               </Form>

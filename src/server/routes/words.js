@@ -24,8 +24,6 @@ module.exports = (knex) => {
       .leftJoin('es_words', 'en_words.id', 'es_words.en_words_id')
       .select('*')
       .where({ 'en_words.word': req.query.id })
-      // .returning("*")
-      // .as("en_words.word")
       .then(result => { res.json(result) })
       .catch((error) => {
         console.log(error)

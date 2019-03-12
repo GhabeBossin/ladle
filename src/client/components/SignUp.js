@@ -35,17 +35,17 @@ class SignUp extends Component {
     switch (name) {
       case 'first_name': 
         this.setState({
-          first_name: value
+          firstNameInput: value
         })
         break
       case 'last_name':
         this.setState({
-          last_name: value
+          lastNameInput: value
         })
         break
       case 'username':
         this.setState({
-          username: value
+          usernameInput: value
         })
         break
       default:
@@ -57,7 +57,7 @@ class SignUp extends Component {
     const {type, value} = target;
     type === 'password' ?
     this.setState({
-      password: value
+      passwordInput: value
     })
     : null
   }

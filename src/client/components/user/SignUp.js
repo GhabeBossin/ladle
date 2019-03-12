@@ -145,10 +145,10 @@ class SignUp extends Component {
               <Input type='password' name='password' id="password" onChange={ this.handlePasswordChange } value={ this.state.passwordInput } onKeyUp={this.handleEnter}/>
             </FormGroup>
             <StyledDiv>
-            <Button type="submit" onClick={ this.handleSubmit }>
-              Signup
-            </Button>
-            <StyledSpan>Already have an account? <Link to='/login'> Login here.</Link></StyledSpan>
+              <Button type="submit" onClick={ this.handleSubmit }>
+                Signup
+              </Button>
+              <StyledSpan>Already have an account? <Link to='/login'> Login here.</Link></StyledSpan>
             </StyledDiv>
           </Form>
       </Container> }

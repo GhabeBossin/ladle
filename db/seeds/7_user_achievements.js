@@ -20,6 +20,8 @@ exports.seed = function(knex, Promise) {
         { achievements_id: 1, user_id: 8 },
         { achievements_id: 2, user_id: 8 },
         { achievements_id: 3, user_id: 8 },
+        { achievements_id: 1, user_id: 10 },
+        
       ]);
     });
 };

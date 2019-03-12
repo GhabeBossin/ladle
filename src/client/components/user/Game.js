@@ -38,9 +38,10 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    console.log("this is props", this.props.data)
+
     this.setState({ currentUser: this.props.data })
     this.userWord(this.props.data.id)
+    this.setState({ achievements: this.props.data.achievements})
   }
 
   //  Populate user words array in state
@@ -79,15 +80,42 @@ class Game extends Component {
   }
 
   // Post to user_words DB when a word is learned
-  learnedCard = (en_word_id) => {
-    axios.put("http://localhost:8080/learned", {
+  learnedCard = (en_word_id, increment) => {
+    axios.put("http://localhost:8080/api/learned", {
         user_id: this.state.currentUser.id,
         en_word_id: en_word_id,
-        is_known: true
+        is_known: true,
+        increment: increment
+    })
+    .then((response) => {
+      let played = response.data[0].cards_played + 1
+      console.log("played", played / 5)
+      if (played % 5 === 0) {
+        axios.post(this.state.url + "/userAchievements/awards", {
+          user_id: this.state.currentUser.id,
+          award_id: (played / 5)
+      })
+        .then(() => {
+        axios.get("http://localhost:8080/api/users", {
+          params: {
+          username: this.state.currentUser.username
+          }
+        })
+          .then((response) => {
+            let obj = response.data;
+            let achievements = this.state.achievements.splice();
+            obj.forEach(element => {
+              achievements.push({ id: element.achievement_id, name: element.achievement_name, description: element.achievement_description })
+            })
+            this.setState({ achievements: achievements })
+          })
+        })
+      }
     })
     .catch(function (error) {
       console.log("Error in learnedCard in Game.js: ", error);
     });
+    
   }
 
   // Increment the difficulty counter for the en_word
@@ -132,6 +160,7 @@ class Game extends Component {
     newWords.splice(0, 1)
     this.markedCard(1, newWords)
     this.learnedCard(this.state.currentWord, 1)
+  
   }
 
   firstFlip = () => {
@@ -189,7 +218,7 @@ class Game extends Component {
         </StyledBtnDiv>
         </div>
         <div>
-          <Trophy data={this.state.currentUser.achievements} />
+          <Trophy data={this.state.achievements} />
         </div>
       </Container>);
     }

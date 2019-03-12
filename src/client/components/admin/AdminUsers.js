@@ -7,6 +7,7 @@ import {
 import { StyledTR } from "../../styles/adminStyles";
 import axios from 'axios';
 import UserEdit from './UserEdit';
+import DeleteModal from '../helpers/DeleteModal';
 
 class AdminUsers extends Component {
   constructor(props) {
@@ -46,12 +47,15 @@ class AdminUsers extends Component {
     });
   }
 
-  deleteUser = () => {
-    return axios.delete("http://localhost:8080/api/user/delete")
+  deleteUser = (state) => {
+    return axios.delete("http://localhost:8080/api/user/delete", {
+      id      : state.id,
+      username: state.username,
+    })
     .then((response) => {
-      const userData = response.data;
-      this.setState({ userData });
-      // this.setState({userData: [...response.data]});
+      // const userData = response.data;
+      // this.setState({ userData });
+      this.setState({userData: [...response.data]});
     })
     .then(() => {
       this.getUserData()
@@ -71,11 +75,9 @@ class AdminUsers extends Component {
           <td>{ last_name }</td>
           <td>{ username }</td>
           <td>
-            {/* give currentUser.password to this so user can update their password if it is their account */}
             <UserEdit updateUser={this.updateUser} data={ row } currentUser={this.props.currentUser}/>
-            {/* turn into delete user button, only appears in for rows not that user */}
             { this.props.currentUser.id !== data[i].id ?
-              <span onClick={this.deleteUser} className="ml-2">❌</span>
+              <DeleteModal deleteUser={this.deleteUser} data={ row }/>
               : null
             }
           </td>

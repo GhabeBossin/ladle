@@ -30,6 +30,7 @@ module.exports = (knex) => {
   router.get("/all", cors(), (req, res) => {
     knex.select('*')
     .from('users')
+    .orderBy('id', 'asc')
     .returning('*')
     .then(result => { res.json(result) })
     .catch((error) => {

@@ -32,7 +32,7 @@ class AdminUsers extends Component {
     });
   }
 
-  updateUser = (state) => {
+  updateUser = (state) => { 
     return axios.put("http://localhost:8080/api/userEdit/update", {
       id        : state.id,
       username  : state.username,

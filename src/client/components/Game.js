@@ -40,17 +40,11 @@ class Game extends Component {
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
     this.setState({ currentUser: this.props })
-    
     this.userWord(this.props.id)//.then(this.drawNewCard(this.state.currentUser.currentWord[0]))
     // if user is new run initial setup if not get word
     // this.props.is_new === true ?
     //   this.initialSetup(this.props.id) : this.userWord(this.props.id).then(() => this.drawNewCard(this.state.currentUser.currentWord))
   }
-
-  // Populate user_words table with all words and associate them with new userID
-  // initialSetup = (id) => {
-  //   return this.populateUserWords(id).then(() =>  this.userWord(id)).then(() => this.drawNewCard(this.state.currentUser.currentWord))
-  // }
 
   //  Populate user words array in state
   userWord = (user_id, url) => {
@@ -67,15 +61,13 @@ class Game extends Component {
         userWords.push(element.en_words_id)
         this.setState({ userWords: userWords, currentWord: userWords[0] } )
       })
-      // this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
       this.drawNewCard(userWords[0])
 
     })
-      }
+  }
 
   // Get the proper card from the deck for current user that is rendered on the page
   drawNewCard = (user_word_id) => {
-    // console.log(this.state.currentUser)
     return axios.get("http://localhost:8080/game", {
       params: {
         id: user_word_id,
@@ -85,7 +77,6 @@ class Game extends Component {
       console.log("this is the resposne to drawnewcard", response.data[0].rows[0])
       this.setState({ en_word: response.data[0].rows[0].word })
       this.setState({ es_word: response.data[1].rows[0].word })
-      // this.setState({ currentWord: response.data[0].rows[0].id })
     })
     .catch(function (error) {
       console.log("this is error is in getCard in Game.js", error);
@@ -98,9 +89,6 @@ class Game extends Component {
         user_id: this.state.currentUser.id,
         en_word_id: en_word_id,
         is_known: true
-    })
-    .then((response) => {
-      // console.log(response)
     })
     .catch(function (error) {
       console.log("this error is from learnedCard in Game.js", error);
@@ -118,17 +106,12 @@ class Game extends Component {
   // Take word and place it further into the words array
   arrayMove = (arr, old_index, new_index) => {
     if (new_index >= arr.length) {
-        var k = new_index - arr.length + 1;
-        while (k--) {
-            arr.push(undefined);
-        }
+      var k = new_index - arr.length + 1;
+      while (k--) {
+          arr.push(undefined);
+      }
     }
-    // make new arr instead and setState to that array instead of mutating state
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-    // for (let i = old_index; i < new_index; i++) {
-    //   arr[old_index] = arr[old_index + 1]
-    // }
-    // arr[new_index] = this.state.currentWord
     return arr;
   };
 
@@ -217,10 +200,9 @@ class Game extends Component {
         <div>
           <Trophy data={this.state.currentUser.achievements} />
         </div>
-      </Container>
-    );
+      </Container>);
+    }
   }
-}
 };
 
 export default Game;

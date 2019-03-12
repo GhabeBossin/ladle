@@ -40,14 +40,12 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this is user input", this.state.usernameInput)
     return axios.get("http://localhost:8080/api/users", {
       params: {
         username: this.state.usernameInput
       }
     })
     .then((response) => {
-      console.log('HELLO RESPONSE', response)
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) });
     })

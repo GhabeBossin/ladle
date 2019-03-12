@@ -39,24 +39,8 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    console.log(this.props.data.id, 'props')
-    // if (this.props.data.id) {
-      this.userWord(this.props.data.id)
-      this.setState({ currentUser: this.props.data })
-
-  // componentDidUpdate() {
-  //   this.userWord(this.props.data.id)
-  // }
-    // }
-    // if (this.props.data) {
-    //   this.userWord(this.props.data.id)
-    //   this.setState({ currentUser: this.props.data[0] })
-
-    //  else { console.log("help") }
-    //.then(this.drawNewCard(this.state.currentUser.currentWord[0]))
-    // if user is new run initial setup if not get word
-    // this.props.is_new === true ?
-    //   this.initialSetup(this.props.id) : this.userWord(this.props.id).then(() => this.drawNewCard(this.state.currentUser.currentWord))
+    this.userWord(this.props.data.id)
+    this.setState({ currentUser: this.props.data })
   }
 
   //  Populate user words array in state
@@ -67,7 +51,6 @@ class Game extends Component {
       }
     })
     .then((response) => {
-      console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", response.data)
       let words = response.data;
       const userWords = [];
 
@@ -145,8 +128,6 @@ class Game extends Component {
 
   // Update card and cue next card when word is learned
   checkMark = () => {
-    this.userWord(this.props.data.id)
-    console.log('this state', this.props.data.id)
     let newWords = this.state.userWords.slice();
     newWords.splice(0, 1)
     this.markedCard(1, newWords)

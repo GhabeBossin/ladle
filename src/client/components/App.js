@@ -25,7 +25,6 @@ class App extends Component {
   setCurrentUser = userObj => {
     let obj = userObj.data;
     let achievements = [];
-    console.log("object for mappping", userObj)
     !userObj.data[0].achievements ? achievements = [] : obj.forEach(element => {
       achievements.push({ id: element.id, name: element.name, description: element.description })
     })
@@ -59,7 +58,6 @@ class App extends Component {
 
   handleLogoutClick = () => {
     this.setState({ currentUser: {} })
-    console.log(this.state.currentUser)
   }
 
   render() {

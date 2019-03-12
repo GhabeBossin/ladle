@@ -89,7 +89,6 @@ class SignUp extends Component {
       achievements: true,
     })
     .then((response) => {
-      console.log("=========================", response)
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) }
       );

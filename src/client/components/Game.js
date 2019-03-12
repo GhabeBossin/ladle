@@ -19,15 +19,17 @@ class Game extends Component {
     this.state = {
       currentUser: {
       x_words: [],
-      currentWord: null,
+      
       user_word: "",
       en_word: "",
       es_word: "",
-      userWords: [],
       userAchievements: [],
       user_word_id: null,
       user_id: null
       },
+      userWords: [],
+
+      currentWord: null,
       populateWords: [],
       firstFlip: false,
       flipped  : false,
@@ -46,9 +48,9 @@ class Game extends Component {
   }
 
   // Populate user_words table with all words and associate them with new userID
-  initialSetup = (id) => {
-    return this.populateUserWords(id).then(() =>  this.userWord(id)).then(() => this.drawNewCard(this.state.currentUser.currentWord))
-  }
+  // initialSetup = (id) => {
+  //   return this.populateUserWords(id).then(() =>  this.userWord(id)).then(() => this.drawNewCard(this.state.currentUser.currentWord))
+  // }
 
   //  Populate user words array in state
   userWord = (user_id, url) => {
@@ -58,16 +60,14 @@ class Game extends Component {
       }
     })
     .then((response) => {
-      console.log(response, "reuseofjreoifjeofjeofj")
       let words = response.data;
       const userWords = [];
 
       words.forEach(element => {
         userWords.push(element.en_words_id)
-        this.setState({ currentUser: {...this.state.currentUser, "userWords": userWords, 'currentWord': userWords[0]}} )
+        this.setState({ userWords: userWords, currentWord: userWords[0] } )
       })
-      this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
-      console.log(userWords, "ufeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+      // this.setState({ currentUser: {...this.state.currentUser, "xWords": [] }})
       this.drawNewCard(userWords[0])
 
     })
@@ -75,15 +75,17 @@ class Game extends Component {
 
   // Get the proper card from the deck for current user that is rendered on the page
   drawNewCard = (user_word_id) => {
-    console.log(this.state.currentUser)
+    // console.log(this.state.currentUser)
     return axios.get("http://localhost:8080/game", {
       params: {
         id: user_word_id,
       }
     })
     .then((response) => {
+      console.log("this is the resposne to drawnewcard", response.data[0].rows[0])
       this.setState({ en_word: response.data[0].rows[0].word })
       this.setState({ es_word: response.data[1].rows[0].word })
+      // this.setState({ currentWord: response.data[0].rows[0].id })
     })
     .catch(function (error) {
       console.log("this is error is in getCard in Game.js", error);
@@ -92,7 +94,6 @@ class Game extends Component {
 
   // Post to user_words DB when a word is learned
   learnedCard = (en_word_id) => {
-    console.log("stureefefefe", en_word_id, this.state.currentUser.id)
     axios.put("http://localhost:8080/learned", {
         user_id: this.state.currentUser.id,
         en_word_id: en_word_id,
@@ -124,37 +125,39 @@ class Game extends Component {
     }
     // make new arr instead and setState to that array instead of mutating state
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    // for (let i = old_index; i < new_index; i++) {
+    //   arr[old_index] = arr[old_index + 1]
+    // }
+    // arr[new_index] = this.state.currentWord
     return arr;
   };
 
   // Grab new word and reset state of card
-  markedCard = (increment) => {
-    let num = this.state.currentUser.userWords[0];
-    this.updateWord(num, increment)
-    // console.log(user_word_id)
-    // this.setState({
-    //   user_word_id: num + 1
-    // })
-    this.drawNewCard(num + 1)
+  markedCard = (increment, state) => {
+    let num = state;
+    console.log(state)
+    this.setState({ userWords: state, currentWord: state[0] })
+    this.updateWord(num[0], increment)
+    this.drawNewCard(state[0])
     this.setState({firstFlip: false, isFlipped: false})
   }
 
   // User doesn't know the card and clicks the x mark, increase difficulty of card in en_cards table
   xMark = () => {
-    let num = this.state.currentUser.userWords.slice();
-    // this.updateWord(num, -1);
-    this.markedCard(-1);
-    this.arrayMove(num, 0, 3)
-    this.setState({ currentUser: {...this.state.currentUser, "userWords": num}})
-    // this.state.currentUser.xWords.push(num[0]);
+    let num = this.state.userWords.slice();
+    const newArray = this.arrayMove(num, 0, 2)
+    this.markedCard(-1, newArray);
   }
 
   // Update card and cue next card when word is learned
   checkMark = () => {
-    let num = this.state.currentUser.userWords;
-    this.markedCard(1);
-    this.learnedCard(num[0], 1)
-    num.splice(0, 1)
+    let newWords = this.state.userWords.slice();
+    console.log(newWords)
+    newWords.splice(0, 1)
+    console.log(newWords)
+    this.markedCard(1, newWords)
+    this.learnedCard(this.state.currentWord, 1)
+
   }
 
   firstFlip = () => {

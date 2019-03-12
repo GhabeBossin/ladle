@@ -86,14 +86,19 @@ class SignUp extends Component {
       last_name: lastData,
       username: unameData,
       password: passData,
-      achievements: false,
+      achievements: true,
     })
     .then((response) => {
+      console.log("=========================", response)
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) }
       );
-      console.log("this be the respoenreofoiejfoef", response)
     this.populateUserWords(response.data[0].id)
+    axios.post('http://localhost:8080/api/signup/newAward', {
+      id: response.data[0].id,
+      achievement: 4
+    })
+        
     })
     .catch((error) => {
       console.log('Error in Signup handleSubmit', error);
@@ -104,10 +109,7 @@ class SignUp extends Component {
     return (<>
       { this.state.validated
         ?
-        <Redirect to={{
-          pathname:'/',
-          state: {currentUser: this.state.usernameInput}
-          }} />
+        <Redirect to={{ pathname:'/' }} />
         :
         <Container>
           <Form onSubmit={this.handleSubmit}>

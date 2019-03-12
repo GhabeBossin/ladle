@@ -25,6 +25,7 @@ class App extends Component {
   setCurrentUser = userObj => {
     let obj = userObj.data;
     let achievements = [];
+    console.log("object for mappping", userObj)
     !userObj.data[0].achievements ? achievements = [] : obj.forEach(element => {
       achievements.push({ id: element.id, name: element.name, description: element.description })
     })
@@ -36,7 +37,7 @@ class App extends Component {
         last_name: userObj.data[0].last_name,
         username: userObj.data[0].username,
         is_admin: userObj.data[0].is_admin,
-        is_new: userObj.data[0].is_new
+        // is_new: userObj.data[0].is_new
       }
     })
   }
@@ -58,6 +59,7 @@ class App extends Component {
 
   handleLogoutClick = () => {
     this.setState({ currentUser: {} })
+    console.log(this.state.currentUser)
   }
 
   render() {
@@ -67,7 +69,7 @@ class App extends Component {
           <StyledMainNav onClick={ this.handleLogoutClick } data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
-                <Route exact path="/" render={(props) => <Game {...this.state.currentUser}/> }/>
+                <Route exact path="/" render={ props => <Game {...props} data={this.state.currentUser}  /> }/>
                 <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route exact path="/signup" component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route exact path="/admin/dashboard" component={ AdminDash } />

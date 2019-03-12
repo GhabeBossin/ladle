@@ -6,6 +6,7 @@ const router  = express.Router();
   module.exports = (knex) => {
 
     router.get("/", (req, res) => {
+      console.log("request from server", req.query)
       const id = req.query.id;
       const is_known = false;
       knex("user_words")

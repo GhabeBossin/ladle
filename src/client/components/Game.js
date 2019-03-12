@@ -19,7 +19,7 @@ class Game extends Component {
     this.state = {
       currentUser: {
       x_words: [],
-      
+
       user_word: "",
       en_word: "",
       es_word: "",
@@ -39,8 +39,21 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-    this.setState({ currentUser: this.props })
-    this.userWord(this.props.id)//.then(this.drawNewCard(this.state.currentUser.currentWord[0]))
+    console.log(this.props.data.id, 'props')
+    // if (this.props.data.id) {
+      this.userWord(this.props.data.id)
+      this.setState({ currentUser: this.props.data })
+
+  // componentDidUpdate() {
+  //   this.userWord(this.props.data.id)
+  // }
+    // }
+    // if (this.props.data) {
+    //   this.userWord(this.props.data.id)
+    //   this.setState({ currentUser: this.props.data[0] })
+
+    //  else { console.log("help") }
+    //.then(this.drawNewCard(this.state.currentUser.currentWord[0]))
     // if user is new run initial setup if not get word
     // this.props.is_new === true ?
     //   this.initialSetup(this.props.id) : this.userWord(this.props.id).then(() => this.drawNewCard(this.state.currentUser.currentWord))
@@ -54,6 +67,7 @@ class Game extends Component {
       }
     })
     .then((response) => {
+      console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", response.data)
       let words = response.data;
       const userWords = [];
 
@@ -61,8 +75,7 @@ class Game extends Component {
         userWords.push(element.en_words_id)
         this.setState({ userWords: userWords, currentWord: userWords[0] } )
       })
-      this.drawNewCard(userWords[0])
-
+      this.drawNewCard(this.state.userWords[0])
     })
   }
 
@@ -74,7 +87,6 @@ class Game extends Component {
       }
     })
     .then((response) => {
-      console.log("this is the resposne to drawnewcard", response.data[0].rows[0])
       this.setState({ en_word: response.data[0].rows[0].word })
       this.setState({ es_word: response.data[1].rows[0].word })
     })
@@ -118,7 +130,6 @@ class Game extends Component {
   // Grab new word and reset state of card
   markedCard = (increment, state) => {
     let num = state;
-    console.log(state)
     this.setState({ userWords: state, currentWord: state[0] })
     this.updateWord(num[0], increment)
     this.drawNewCard(state[0])
@@ -134,10 +145,10 @@ class Game extends Component {
 
   // Update card and cue next card when word is learned
   checkMark = () => {
+    this.userWord(this.props.data.id)
+    console.log('this state', this.props.data.id)
     let newWords = this.state.userWords.slice();
-    console.log(newWords)
     newWords.splice(0, 1)
-    console.log(newWords)
     this.markedCard(1, newWords)
     this.learnedCard(this.state.currentWord, 1)
 

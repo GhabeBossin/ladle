@@ -6,7 +6,6 @@ import {
   Col } from 'reactstrap'
   import { StyledTR } from '../../styles/adminStyles'
 import WordEdit from './WordEdit'
-// import SearchBar from './SearchBar'
 import axios from 'axios';
 
 

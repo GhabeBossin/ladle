@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
 import {
   Container,
   Table,
@@ -10,8 +9,8 @@ import axios from 'axios';
 import UserEdit from './UserEdit';
 
 class AdminUsers extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userData: []
     };
@@ -50,7 +49,8 @@ class AdminUsers extends Component {
   }
 
   mapRows = data => {
-    return data.map((row) => {
+    console.log('user1 @data[0]: ', data[0], ' \n user2 @data[1]: ', data[1], ' \n user3 @data[2]: ',data[2])
+    return data.map((row, i) => {
       id, first_name, last_name, username
       const { id, first_name, last_name, username } = row;
       return (
@@ -61,10 +61,13 @@ class AdminUsers extends Component {
           <td>{ username }</td>
           <td>
             {/* give currentUser.password to this so user can update their password if it is their account */}
-            <UserEdit updateUser={this.updateUser} data={ row } />
-            {/* turn into delete user button, only appears in for rows not that user
-            <span className="ml-2">❌</span>
-            */}
+            <UserEdit updateUser={this.updateUser} data={ row } currentUser={this.props.currentUser}/>
+            {/* turn into delete user button, only appears in for rows not that user */}
+            { this.props.currentUser.id === data[i].id ?
+              console.log('currentUser.id: ', this.props.currentUser.id, 'data[i].id: ', data[i].id)
+              :
+              <span className="ml-2">❌</span>
+            }
           </td>
       </StyledTR>
     )})

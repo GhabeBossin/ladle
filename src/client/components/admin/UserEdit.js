@@ -11,7 +11,7 @@ import {
   ModalWrapper } from '../../styles/adminStyles'
 
 class UserEdit extends Component {
-  constructor({updateUser, data}) {
+  constructor({updateUser, data, currentUser}) {
     super();
     this.updateUser = updateUser;
     this.state = {
@@ -20,7 +20,8 @@ class UserEdit extends Component {
       first_name   : data.first_name,
       last_name    : data.last_name,
       password     : data.password,
-      // is_admin     : data.is_admin,
+      is_admin     : data.is_admin,
+      CUid         : currentUser.id,
       // mode_setting : data.game_mode,
       // group        : data.group,
       modal_open   : false
@@ -46,7 +47,7 @@ class UserEdit extends Component {
         })
         break
       default:
-        console.log(Invalid)
+        console.log('Invalid')
     }
   }
 
@@ -80,13 +81,13 @@ class UserEdit extends Component {
                   <Label htmlFor="username">Username</Label>
                   <Input type="text" name="username" id="username" value={ this.state.username } onChange={ this.handleInputChange }/>
                 </FormGroup>
-                {/* { this.state.id === currentUser.id ?
+                { this.state.id === this.props.currentUser.id ?
                   <FormGroup>
                     <Label htmlFor="password">Password</Label>
                     <Input type="text" name="password" id="password" value={ this.state.password } onChange={ this.handleInputChange }/>
                   </FormGroup>
-                  : null
-                } */}
+                  : console.log('this.props.currentUser.id: ', this.props.currentUser.id)
+                }
                 <Button type="button"
                   onClick={() => {
                     this.updateUser(this.state),

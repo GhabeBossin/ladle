@@ -26,6 +26,19 @@ module.exports = (knex) => {
     );
   })
 
+  router.delete("/delete", cors(), (req, res) => {
+    knex
+      .with('firstDelete', knex.raw('?', [knex('user_achievements').del("*").where('user_id', req.body.id)]))
+      .with('secondDelete', knex.raw('?', [knex('user_words').delete('*').where('users_id', req.body.id)]))
+      .with('thirdDelete', knex.raw('?', [knex('users').delete("*").where('id', req.body.id)]))
+      .select(1)
+      .returning("*")
+      .then(res.status(200))
+      .then(res.send("user deleted"))
+      .catch((error) => {
+      console.log("Error in userEdit route /delete", error)
+    })
+  })
   return router;
 }
 

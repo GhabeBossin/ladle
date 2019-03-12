@@ -48,14 +48,16 @@ class AdminUsers extends Component {
   }
 
   deleteUser = (state) => {
-    return axios.delete("http://localhost:8080/api/user/delete", {
-      id      : state.id,
-      // username: state.username,
+    return axios.delete("http://localhost:8080/api/userEdit/delete", {
+      data: {
+      id: state.id,
+      }// username: state.username,
     })
     .then((response) => {
+      console.log(response)
       // const userData = response.data;
       // this.setState({ userData });
-      this.setState({userData: [...response.data]});
+      // this.setState({userData: [...response.data]});
     })
     .then(() => {
       this.getUserData()

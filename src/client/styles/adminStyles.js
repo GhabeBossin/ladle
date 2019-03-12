@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import UserDelete from '../components/admin/UserDelete'
 import { Button } from 'reactstrap';
 
 
@@ -14,20 +15,14 @@ const StyledTR = styled.tr`
 
 const BtnDiv = styled.div`
   display: flex;
-  align-content: space-between;
+  justify-content: space-between;
 `;
 
 const DelBtn = styled(Button)`
-  &&& .pAFhO.btn.btn-secondary {
-    background-color: #dc3545;
-    & :hover {
-      background-color: black;
-    }
+  background-color: #dc3545 !important;
+  & :hover {
+    background-color: black !important;
   }
-`;
-
-const CancelBtn = styled(Button)`
-
 `;
 
 const ModalContainer = styled.div`
@@ -57,7 +52,6 @@ const ModalWrapper = styled.div`
 export {
   StyledTR,
   BtnDiv,
-  CancelBtn,
   DelBtn,
   ModalContainer,
   ModalWrapper

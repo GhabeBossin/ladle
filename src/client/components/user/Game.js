@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import {
   Container,
   Row,
@@ -14,9 +14,9 @@ import {
   StyledCard, 
   StyledCardBody, 
   StyledCardButtons } from '../styles/gameStyles'
-// import StyledSpan from '../styles/signInUpStyles'
 import Trophy from './AchievementTrophy';
 import axios from 'axios';
+import Welcome from './Welcome';
 
 class Game extends Component {
   constructor(props) {
@@ -152,11 +152,7 @@ class Game extends Component {
   render() {
     if (!this.state.currentUser.id) {
       return (
-        <Container>
-          <span>
-            Already have an account? <Link to='/login'> Login here.</Link>
-          </span>
-        </Container>
+        <Welcome />
       )
     } else {
     return (

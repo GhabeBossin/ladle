@@ -4,9 +4,9 @@ import {
   InputGroup,
   InputGroupAddon, 
   Button} from 'reactstrap';
-  import { 
-    FuzzyDDF,
-    FuzzyInner } from '../styles/appStyles'
+import { 
+  FuzzyDDF,
+  FuzzyInner } from '../styles/appStyles'
 
 // these components share state and can even live in different components
 const { InputFilter, FilterResults, changeInputValue } = fuzzyFilterFactory();

@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import FuzzySearch from '../helpers/FuzzySearch'
 
-
-
 class SearchBar extends Component {
-  constructor(props) { //{ callback }
+  constructor(props) {
     super(props)
-    // this.callback = callback
     this.state = {
-      words: this.props.data
+      words: this.props.data,
+      es_word: '',
+      en_word: '',
     }
   }
 
   handleClick = (word) => {
     axios.get("http://localhost:8080/api/words/search", {
-      params: {
-        id: word
-      }
+      params: { id: word }
     })
     .then((response) => {
-      alert("The translation for " + ` "${word}"` + " is " + `"${response.data[0].word}"`)
-      // this.translateModal(response.data)
+      this.setState({
+        en_word: word,
+        es_word: response.data[0].word
+      })
+      this.props.translation(response.data[0].word, word)
     })
     .catch((error) => {
       console.log("Error in getCard in Login.js: ", error);
@@ -31,7 +31,8 @@ class SearchBar extends Component {
   render () {
     return (
       <div>
-        {this.props.data[0] && <FuzzySearch name='query' placeholder="Translate" handleClick={ this.handleClick } data={ this.props.data } /> }
+        {this.props.data[0] && 
+        <FuzzySearch name='query' placeholder="Translate" handleClick={ this.handleClick } data={ this.props.data } /> }
       </div>
     )
   }

@@ -51,14 +51,14 @@ class UserEdit extends Component {
     }
   }
 
-  buttonToggle = () => {
-    this.setState({ modal_open: !this.state.modal_open})
+  modalToggle = () => {
+    this.setState({ modal_open: !this.state.modal_open })
   }
 
   render() {
     return (<>
       {/* cursor: pointer */}
-      <span onClick={this.buttonToggle}>
+      <span onClick={this.modalToggle}>
         ✏️
       </span>
 
@@ -66,7 +66,7 @@ class UserEdit extends Component {
         <ModalContainer>
           <ModalWrapper className="p-4">
             <Container>
-              <Button close onClick={this.buttonToggle}/>
+              <Button close onClick={this.modalToggle}/>
               <h4 className='border-bottom mb-4'>Edit This User</h4>
               <Form>
                 <FormGroup>
@@ -91,7 +91,7 @@ class UserEdit extends Component {
                 <Button type="button"
                   onClick={() => {
                   this.updateUser(this.state)
-                  this.buttonToggle() }}> 
+                  this.modalToggle() }}> 
                   Update 
                 </Button>
               </Form>

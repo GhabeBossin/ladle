@@ -11,12 +11,14 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap'
 import SearchBar from './SearchBar.js'
+import TranslateModal from './TranslateModal';
 
 class MainNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      modal_open: false,
     };
   }
 
@@ -26,24 +28,28 @@ class MainNav extends Component {
     });
   }
 
-  // callback = data => {
-  //   this.setState({ data, showModal: true })
-  // }
+  translation = (data, word) => {
+    this.setState({ 
+      modal_open: true, 
+      en_word: word,
+      es_word: data })
+  }
 
-  // closeModal = () => {
-  //   this.setState({ showModal: false })
-  // }
+  closeTranslate = () => {
+    this.setState({ modal_open: false })
+  }
 
   render() {
     return (
       <div className={ this.props.className }>
-        {/* { this.state.modalOpen && 
-          <SomeModal /> } */}
+        { this.state.modal_open && (
+          <TranslateModal closeTranslate={ this.closeTranslate } en_word={ this.state.en_word } es_word={ this.state.es_word } />
+          )}
         <Navbar light expand='md' color='light' className='ml-auto' >
           <Link to='/' className='navbar-brand'>
             ladle
           </Link>
-          <SearchBar data={ this.props.data } callback={ this.callback } />
+          <SearchBar data={ this.props.data } translation={ this.translation } />
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             { this.props.currentUser.id ?

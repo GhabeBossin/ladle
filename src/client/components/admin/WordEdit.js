@@ -46,13 +46,13 @@ class WordEdit extends Component {
     })
   }
 
-  buttonToggle = () => {
+  modalToggle = () => {
     this.setState({ modal_open: !this.state.modal_open})
   }
 
   render() {
     return (<>
-      <div onClick={this.buttonToggle}>
+      <div onClick={this.modalToggle}>
         ✏️
       </div>
 
@@ -60,7 +60,7 @@ class WordEdit extends Component {
         <ModalContainer>
           <ModalWrapper className="p-4">
             <Container>
-              <Button close onClick={this.buttonToggle}/>
+              <Button close onClick={this.modalToggle}/>
               <h4 className='border-bottom mb-4'>Edit This Word</h4>
               <Form>
                 <FormGroup>
@@ -80,11 +80,11 @@ class WordEdit extends Component {
                     "Enable Word"
                   }
                   </Label>
-                  </FormGroup>
+                </FormGroup>
                 <Button type="button"
                   onClick={() => {
                   this.updateWord(this.state),
-                  this.buttonToggle() }}>
+                  this.modalToggle() }}>
                   Update
                 </Button>
               </Form>

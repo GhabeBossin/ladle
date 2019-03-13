@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { 
   Switch, 
-  Route} from "react-router-dom";
+  Route,
+  Redirect } from "react-router-dom";
 import { 
   StyledAppContainer,
   StyledMainNav,
   StyledFooter } from '../styles/appStyles'
+import Home from './Home'
 import Game from './Game'
 import Login from './Login'
 import SignUp from './SignUp'
@@ -74,12 +76,14 @@ class App extends Component {
           <StyledMainNav handleLogoutClick={ this.handleLogoutClick } data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
-                <Route exact path="/" render={ props => <Game {...props} data={this.state.currentUser}  /> }/>
-                <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
-                <Route exact path="/signup" component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
-                <Route exact path="/admin/dashboard" component={ props => <AdminDash {...props} data={ this.state.wordData } /> } />
-                <Route exact path="/admin/words" component={ AdminWords } />
-                <Route exact path="/admin/users" component={ props => <AdminUsers currentUser={ this.state.currentUser } { ...props } /> } />
+                <Route path='/' exact component={ props => <Home currentUser={this.state.currentUser} { ...props } /> }/>
+                <Route path='/game' component={ props => <Game data={this.state.currentUser} {...props} /> }/>
+                <Route path='/login' component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
+                <Route path='/signup' component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
+                <Route path='/admin/dashboard' component={ AdminDash } />
+                <Route path='/admin/words' component={ AdminWords } />
+                <Route path='/admin/users' component={ props => <AdminUsers currentUser={ this.state.currentUser } { ...props } /> }/>
+                <Redirect to='/' />
               </Switch>
             </div>
           </StyledAppContainer>

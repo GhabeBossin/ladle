@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import Footer from '../user/Footer'
 import MainNav from '../user/MainNav'
-import AdminDash from '../admin/AdminDash';
+import { 
+  ListGroup,
+  ListGroupItem } from 'reactstrap'
 
 const StyledAppContainer = styled.div`
   display: flex;
@@ -17,6 +19,10 @@ const StyledFooter = styled(Footer)`
   justify-self: flex-end;
   justify-content: flex-end;
   opacity: .75;
+
+  & nav span {
+    font-size: smaller
+  }
 `;
 
 const StyledMainNav = styled(MainNav).attrs({
@@ -30,34 +36,56 @@ const StyledMainNav = styled(MainNav).attrs({
   margin-bottom: 2em;
   position: relative;
 
-  & > nav {
+  &&& nav {
     min-width: 100%;
-  }
 
-  &&& .navbar-brand {
-    color: #0635C9;
-    transition: color .15s;
+    & .navbar-brand {
+      color: #0635C9;
+      transition: color .1s;
 
-  & :hover {
-      color: #1AE5BE;
-      transition: color .15s;
+    & :hover {
+        color: #1AE5BE;
+        transition: color .1s;
+      }
     }
-  }
+  
+    & .active {
+        color: #0635C9 !important;
+        transition: color .1s;
+
+        & :hover {
+          color: #1AE5BE !important;
+          transition: color .1s;
+        }
+      }
+
+    & a.nav-link {
+      color: rgba(6, 52, 201, 0.70);
+      transition: color .1s;
+
+      & :hover {
+        color: #1AE5BE !important;
+        transition: color .1s;
+      }
+    }
+  }`;
+
+
+const FuzzyDDF = styled(ListGroup)`
+  position: absolute;
+  top: 2.95em;
+  width: 285px;
+  z-index: 2;
 `;
 
-const FuzzyDDF = styled.div`
-  position: absolute;
-  background-color: white;
-  max-width: fit-content;
-  z-index: 1;
-  padding: 1em;
-  border: 1px solid lightgray;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+const FuzzyInner = styled(ListGroupItem)`
+  padding: .5em !important;
+  font-size: small;
 `;
 
 export {
   FuzzyDDF,
+  FuzzyInner,
   StyledMainNav,
   StyledAppContainer,
   StyledFooter

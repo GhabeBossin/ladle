@@ -71,7 +71,7 @@ class SignUp extends Component {
       data.map((element) => {
         words.push({ users_id: id, en_words_id: element.id, is_known: false })
       })
-
+    
       axios.post("http://localhost:8080/api/signup/userWords", {
         data: words,
         is_known: false
@@ -103,7 +103,7 @@ class SignUp extends Component {
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) }
       );
-    this.populateUserWords(response.data[0].id)
+      this.populateUserWords(response.data[0].id)
       axios.post('http://localhost:8080/api/signup/newAward', {
         id: response.data[0].id,
         achievement: 4
@@ -122,9 +122,8 @@ class SignUp extends Component {
 
   render() {
     return (<>
-      { this.state.validated
-        ?
-        <Redirect to={{ pathname:'/' }} />
+      { this.state.validated ?
+        <Redirect to={{ pathname:'/game' }} />
         :
         <Container>
           <Form onSubmit={this.handleSubmit}>

@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import FuzzySearch from '../helpers/FuzzySearch'
 
+
+
 class SearchBar extends Component {
-  constructor(props) {
+  constructor(props) { //{ callback }
     super(props)
+    // this.callback = callback
     this.state = {
       words: this.props.data
     }
@@ -18,6 +21,7 @@ class SearchBar extends Component {
     })
     .then((response) => {
       alert("The translation for " + ` "${word}"` + " is " + `"${response.data[0].word}"`)
+      // this.translateModal(response.data)
     })
     .catch((error) => {
       console.log("Error in getCard in Login.js: ", error);

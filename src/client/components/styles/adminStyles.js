@@ -1,8 +1,5 @@
-import React from 'react'
 import styled from 'styled-components';
-// import UserDelete from '../components/admin/UserDelete'
 import { Button } from 'reactstrap';
-
 
 const StyledTR = styled.tr`
   ${ ({ enabled }) => (

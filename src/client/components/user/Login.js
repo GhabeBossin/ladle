@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom'
+import { 
+  Redirect, 
+  Link } from 'react-router-dom'
 import {
   Container,
   Button,
@@ -62,9 +64,8 @@ class Login extends Component {
 
   render() {
     return (<>
-    { this.state.validated
-      ?
-      <Redirect to='/' />
+    { this.state.validated ?
+      <Redirect to={{ pathname:'/game' }} />
       :
       <Container>
         <Form onSubmit={this.handleSubmit}>

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -19,13 +18,13 @@ class Trophy extends Component {
   render() {
     if (this.props.data) {
       const achievements = this.props.data.map((element, i) =>
-        <Card key = {i} sm='4'>
+        <StyledTrophy key={i} xs='6' sm='4' md='3' lg='2'>
           <CardHeader>{`${element.name}`}</CardHeader>
           <CardBody>
             <CardImg src={`public/icons/${element.id}.png`}/>
             <CardText>{`${element.description}`}</CardText>
           </CardBody>
-        </Card>
+        </StyledTrophy>
       )
       return (
         <div>

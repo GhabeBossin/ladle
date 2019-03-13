@@ -62,9 +62,8 @@ class Login extends Component {
 
   render() {
     return (<>
-    { this.state.validated
-      ?
-      <Redirect to='/' />
+    { this.state.validated ?
+      <Redirect to={{ pathname:'/game' }} />
       :
       <Container>
         <Form onSubmit={this.handleSubmit}>

@@ -6,13 +6,13 @@ import {
   StyledAppContainer,
   StyledMainNav,
   StyledFooter } from '../styles/appStyles'
+import Home from './Home'
 import Game from './Game'
 import Login from './Login'
 import SignUp from './SignUp'
 import AdminDash from '../admin/AdminDash'
 import AdminWords from '../admin/AdminWords'
 import AdminUsers from '../admin/AdminUsers'
-
 import axios from 'axios'
 
 class App extends Component {
@@ -75,7 +75,8 @@ class App extends Component {
           <StyledMainNav handleLogoutClick={ this.handleLogoutClick } data={ this.state.wordData } currentUser={this.state.currentUser}/>
             <div>
               <Switch>
-                <Route exact path="/" render={ props => <Game {...props} data={this.state.currentUser}  /> }/>
+                <Route exact path="/" component={ props => <Home currentUser={this.state.currentUser} { ...props } /> }/>
+                <Route exact path="/game" render={ props => <Game {...props} data={this.state.currentUser}  /> }/>
                 <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route exact path="/signup" component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route exact path="/admin/dashboard" component={ AdminDash } />

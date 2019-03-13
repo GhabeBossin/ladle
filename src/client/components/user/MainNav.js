@@ -38,8 +38,10 @@ class MainNav extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               { this.props.currentUser.first_name ?
-                <NavItem className='nav-link'>
-                  Hello{`, ${this.props.currentUser.first_name}`}
+                <NavItem>
+                  <NavLink to='/game' className='nav-link'>
+                    {`Hello, ${this.props.currentUser.first_name}`}
+                  </NavLink>
                 </NavItem>
                 : null
               }

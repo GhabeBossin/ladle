@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import {
   Container,
   Row,
@@ -16,7 +16,6 @@ import {
   StyledCardButtons } from '../styles/gameStyles'
 import Trophy from './AchievementTrophy';
 import axios from 'axios';
-import Welcome from './Welcome';
 
 class Game extends Component {
   constructor(props) {
@@ -40,7 +39,6 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
-
     this.setState({ currentUser: this.props.data })
     this.userWord(this.props.data.id)
     this.setState({ achievements: this.props.data.achievements})
@@ -68,9 +66,7 @@ class Game extends Component {
   // Get the proper card from the deck for current user that is rendered on the page
   drawNewCard = (user_word_id) => {
     return axios.get("http://localhost:8080/game", {
-      params: {
-        id: user_word_id,
-      }
+      params: { id: user_word_id }
     })
     .then((response) => {
       this.setState({ en_word: response.data[0].rows[0].word })
@@ -84,10 +80,10 @@ class Game extends Component {
   // Post to user_words DB when a word is learned
   learnedCard = (en_word_id, increment) => {
     axios.put("http://localhost:8080/api/learned", {
-        user_id: this.state.currentUser.id,
-        en_word_id: en_word_id,
-        is_known: true,
-        increment: increment
+      user_id: this.state.currentUser.id,
+      en_word_id: en_word_id,
+      is_known: true,
+      increment: increment
     })
     .then((response) => {
       let played = response.data[0].cards_played + 1
@@ -133,7 +129,7 @@ class Game extends Component {
     if (new_index >= arr.length) {
       var k = new_index - arr.length + 1;
       while (k--) {
-          arr.push(undefined);
+        arr.push(undefined);
       }
     }
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
@@ -179,54 +175,53 @@ class Game extends Component {
   }
 
   render() {
-    if (!this.state.currentUser.id) {
-      return (
-        <Welcome />
-      )
-    } else {
-    return (
-      <Container>
-        <div>
-        <Row>
-          <Col>
-          { !this.state.isFlipped
-            ?
-            <StyledCard>
-              <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-              <StyledCardBody>
-                <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
-              </StyledCardBody>
-            </StyledCard>
-            :
-            <StyledCard>
-              <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
-              <StyledCardBody>
-                <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
-              </StyledCardBody>
-            </StyledCard>
-          }
-          </Col>
-        </Row>
-        <StyledBtnDiv>
-          <StyledCardButtons>
-          { !this.state.firstFlip
-            ?
-            <Button onClick={this.firstFlip}>Flip</Button>
-            :
-            <ButtonGroup>
-              <Button onClick={ this.xMark }>✘</Button>
-              <Button onClick={ this.flip }>Flip</Button>
-              <Button onClick={ this.checkMark }>✔</Button>
-            </ButtonGroup> }
-          </StyledCardButtons>
-        </StyledBtnDiv>
-        </div>
-        <div>
-          <Trophy data={this.state.achievements} />
-        </div>
-      </Container>
-      );
-    }
+      return ( <>
+        { !this.props.data.first_name ?
+          <Redirect to={{ pathname:'/' }} />
+          :
+          <Container>
+            <div>
+            <Row>
+              <Col>
+              { !this.state.isFlipped
+                ?
+                <StyledCard>
+                  <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
+                  <StyledCardBody>
+                    <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
+                  </StyledCardBody>
+                </StyledCard>
+                :
+                <StyledCard>
+                  <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
+                  <StyledCardBody>
+                    <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
+                  </StyledCardBody>
+                </StyledCard>
+              }
+              </Col>
+            </Row>
+            <StyledBtnDiv>
+              <StyledCardButtons>
+              { !this.state.firstFlip
+                ?
+                <Button onClick={this.firstFlip}>Flip</Button>
+                :
+                <ButtonGroup>
+                  <Button onClick={ this.xMark }>✘</Button>
+                  <Button onClick={ this.flip }>Flip</Button>
+                  <Button onClick={ this.checkMark }>✔</Button>
+                </ButtonGroup> }
+              </StyledCardButtons>
+            </StyledBtnDiv>
+            </div>
+            <div>
+              <Trophy data={this.state.achievements} />
+            </div>
+          </Container>
+        }
+      </>
+    );
   }
 };
 

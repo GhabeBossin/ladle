@@ -55,7 +55,7 @@ class MainNav extends Component {
                 </NavItem>
                 { this.props.currentUser.is_admin ?
                   <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle nav caret>
+                    <DropdownToggle nav caret >
                     Admin
                     </DropdownToggle>
                     <DropdownMenu right>

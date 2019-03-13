@@ -29,9 +29,8 @@ class AdminDash extends Component {
   getUserData = () => {
     axios.get("http://localhost:8080/api/users/all")
     .then((response) => {
-      console.log("resposne", response)
+      let users = response.data
       let labels = []
-      let wordType = []
       let data = []
       let sortedUsers = users.sort((a,b) => (a.wrong_counter > b.wrong_counter) ? 1 : ((b.wrong_counter > a.wrong_counter) ? -1 : 0));
       let minUsers = sortedUsers.slice(0, 10).reverse()

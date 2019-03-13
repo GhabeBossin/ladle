@@ -80,7 +80,7 @@ class App extends Component {
                 <Route path='/game' component={ props => <Game data={this.state.currentUser} {...props} /> }/>
                 <Route path='/login' component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route path='/signup' component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
-                <Route path='/admin/dashboard' component={ AdminDash } />
+                <Route path='/admin/dashboard' component={ props => <AdminDash data={this.state.wordData} {...props } /> } />
                 <Route path='/admin/words' component={ AdminWords } />
                 <Route path='/admin/users' component={ props => <AdminUsers currentUser={ this.state.currentUser } { ...props } /> }/>
                 <Redirect to='/' />

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledCard = styled.div.attrs({
   className: "card text-center border-0 shadow",
 })`
-  margin: 1em 0 3em;
+  margin: 0 3em 3em;
 `;
 
 const StyledCardBody = styled.div.attrs({

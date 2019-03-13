@@ -6,34 +6,34 @@ import {
   CardHeader,
   CardBody,
   CardText,
-  CardGroup,
+  CardDeck,
   Row,
   Col } from 'reactstrap'
 
 class Trophy extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   render() {
     if (this.props.data) {
       const achievements = this.props.data.map((element, i) =>
-        <StyledTrophy key={i} xs='6' sm='4' md='3' lg='2'>
+        <Card key={i} xs='5' sm='4' md='3' lg='2'>
           <CardHeader>{`${element.name}`}</CardHeader>
           <CardBody>
             <CardImg src={`public/icons/${element.id}.png`}/>
             <CardText>{`${element.description}`}</CardText>
           </CardBody>
-        </StyledTrophy>
+        </Card>
       )
       return (
         <div>
           <h4 className='my-5 text-center'>Achievements</h4>
           <Row className='mb-5'>
             <Col>
-              <CardGroup>
+              <CardDeck>
                 {achievements}
-              </CardGroup>
+              </CardDeck>
             </Col>
           </Row>
         </div>

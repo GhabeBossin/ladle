@@ -12,19 +12,6 @@ const StyledAppContainer = styled.div`
   min-height: calc(100vh - 2.5em);
 `;
 
-const StyledFooter = styled(Footer)`
-  display: flex;
-  flex: 1;
-  min-width: 100%;
-  justify-self: flex-end;
-  justify-content: flex-end;
-  opacity: .75;
-
-  & nav span {
-    font-size: smaller
-  }
-`;
-
 const StyledMainNav = styled(MainNav).attrs({
   className: 'shadow-sm',
 })`
@@ -33,7 +20,7 @@ const StyledMainNav = styled(MainNav).attrs({
   max-height: fit-content;
   min-width: 100%;
   justify-self: flex-start;
-  margin-bottom: 2em;
+  margin-bottom: 4em;
   position: relative;
 
   &&& nav {
@@ -68,8 +55,8 @@ const StyledMainNav = styled(MainNav).attrs({
         transition: color .1s;
       }
     }
-  }`;
-
+  }
+`;
 
 const FuzzyDDF = styled(ListGroup)`
   position: absolute;
@@ -81,6 +68,19 @@ const FuzzyDDF = styled(ListGroup)`
 const FuzzyInner = styled(ListGroupItem)`
   padding: .5em !important;
   font-size: small;
+`;
+
+const StyledFooter = styled(Footer)`
+  display: flex;
+  flex: 1;
+  min-width: 100%;
+  justify-self: flex-end;
+  justify-content: flex-end;
+  opacity: .75;
+
+  & nav span {
+    font-size: smaller
+  }
 `;
 
 export {

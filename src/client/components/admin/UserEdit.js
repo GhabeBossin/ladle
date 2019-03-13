@@ -8,7 +8,7 @@ import {
   Button } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../styles/adminStyles'
+  ModalWrapper } from '../styles/modalStyles'
 
 class UserEdit extends Component {
   constructor({updateUser, data, currentUser}) {

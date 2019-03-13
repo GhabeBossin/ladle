@@ -5,7 +5,8 @@ import {
   Container } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper, 
+  ModalWrapper } from '../styles/modalStyles'
+import {
   BtnDiv,
   DelBtn} from '../styles/adminStyles';
 

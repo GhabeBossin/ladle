@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   font-family: 'Lucida', 'Verdana', 'Tahoma', 'Arial';
+  box-shadow: none;
 }
 
 a {
@@ -24,21 +25,41 @@ a:hover {
   border: none;
 }
 
-#root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.hMxLlm > nav > div:nth-child(2) > div > div.input-group > input {
+.btn:active {
+  background-color: #1AE5BE !important;
+  border: none;
+}
+
+.btn:focus, 
+.btn:active, 
+.form-control:focus {
+  border-color: #1AE5BE;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26, 229, 188, 0.767);
+}
+
+#root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.giztTU > nav > div:nth-child(2) > div > div > input {
     height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
+    padding: .5em;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
+    line-height: 1.3;
+    color: #000000;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-top-left-radius: .25rem;
     border-bottom-left-radius: .25rem;
+    outline-style:none;
+    box-shadow:none;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-/* #root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.hMxLlm > nav > div:nth-child(2) > div > div:nth-child(2) {
-  z-index: 1;
-} */
+#root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.giztTU > nav > div:nth-child(2) > div > div > input:focus{
+  border-color: #1AE5BE;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26, 229, 188, 0.767);
+}
+
+hr {
+  color: #1AE5BE;
+  background-color: #1AE5BE;
+}

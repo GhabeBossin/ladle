@@ -4,7 +4,9 @@ import {
   InputGroup,
   InputGroupAddon, 
   Button} from 'reactstrap';
-  import { FuzzyDDF } from '../styles/appStyles'
+  import { 
+    FuzzyDDF,
+    FuzzyInner } from '../styles/appStyles'
 
 // these components share state and can even live in different components
 const { InputFilter, FilterResults, changeInputValue } = fuzzyFilterFactory();
@@ -14,7 +16,8 @@ class FuzzySearch extends Component {
     super(props);
     this.state = {
       words: [],
-      searchWord: ""
+      searchWord: '',
+      is_open: false
     }
   }
 
@@ -52,6 +55,7 @@ class FuzzySearch extends Component {
     const fuseConfig = {
       keys: ["meta", "tag"],
     };
+
     return (
       <div>
         <InputGroup>
@@ -65,7 +69,9 @@ class FuzzySearch extends Component {
             return (
               <FuzzyDDF>
                 {filteredItems.map(item => (
-                  <div key={item.name}>{item.name}</div>
+                  <FuzzyInner key={item.name}>
+                    {item.name}
+                  </FuzzyInner>
                 ))}
               </FuzzyDDF>
             );

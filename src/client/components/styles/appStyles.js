@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import Footer from '../user/Footer'
 import MainNav from '../user/MainNav'
-import AdminDash from '../admin/AdminDash';
+import { 
+  ListGroup,
+  ListGroupItem } from 'reactstrap'
 
 const StyledAppContainer = styled.div`
   display: flex;
@@ -45,19 +47,21 @@ const StyledMainNav = styled(MainNav).attrs({
   }
 `;
 
-const FuzzyDDF = styled.div`
+const FuzzyDDF = styled(ListGroup)`
   position: absolute;
-  background-color: white;
-  max-width: fit-content;
-  z-index: 1;
-  padding: 1em;
-  border: 1px solid lightgray;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  top: 2.95em;
+  width: 285px;
+  z-index: 2;
+`;
+
+const FuzzyInner = styled(ListGroupItem)`
+  padding: .5em !important;
+  font-size: smaller;
 `;
 
 export {
   FuzzyDDF,
+  FuzzyInner,
   StyledMainNav,
   StyledAppContainer,
   StyledFooter

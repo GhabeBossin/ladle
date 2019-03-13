@@ -34,7 +34,6 @@ class UserDelete extends Component {
         <ModalContainer>
           <ModalWrapper>
             <Container>
-              <Card>
               <Button close onClick={this.buttonToggle}/>
               <h3>Are You Sure?</h3>
               <CardText>This action cannot be undone!</CardText>
@@ -47,7 +46,6 @@ class UserDelete extends Component {
                   Delete User 
                 </DelBtn>
               </BtnDiv>
-              </Card>
             </Container>
           </ModalWrapper>
         </ModalContainer>

@@ -22,7 +22,7 @@ class MainNav extends Component {
 
   toggle = () => {
     this.setState({
-      isOpen  : !this.state.isOpen
+      isOpen: !this.state.isOpen
     });
   }
 
@@ -45,12 +45,17 @@ class MainNav extends Component {
               }
               { this.props.currentUser.id ?
                 <NavItem>
-                  <NavLink to="/login" className='nav-link' onClick={this.props.handleLogoutClick }>Logout</NavLink>
+                  <NavLink to='/' className='nav-link' onClick={this.props.handleLogoutClick }>Logout</NavLink>
                 </NavItem>
                 :
-                <NavItem>
-                  <NavLink to="/login" className="nav-link">Login</NavLink>
-                </NavItem>
+                <>
+                  <NavItem>
+                    <NavLink to="/login" className="nav-link">Login</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink to="/signup" className="nav-link">Signup</NavLink>
+                  </NavItem>
+                </>
               }
               { this.props.currentUser.is_admin ?
                 <UncontrolledDropdown nav inNavbar>

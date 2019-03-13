@@ -37,33 +37,33 @@ const StyledMainNav = styled(MainNav).attrs({
 
     & .navbar-brand {
       color: #0635C9;
-      transition: color .15s;
+      transition: color .1s;
 
     & :hover {
         color: #1AE5BE;
-        transition: color .15s;
+        transition: color .1s;
       }
     }
-
-    /* & .nav-link {
-      color: rgba(6, 52, 201, 0.70);
-      transition: color .15s;
-
-      & :hover {
-        color: #1AE5BE;
-        transition: color .15s;
-      }
-    }
-
-    & .nav-link.active {
-        color: #0635C9;
-        transition: color .15s;
+  
+    & .active {
+        color: #0635C9 !important;
+        transition: color .1s;
 
         & :hover {
-        color: #1AE5BE;
-        transition: color .15s;
+          color: #1AE5BE !important;
+          transition: color .1s;
+        }
       }
-    } */
+
+    & a.nav-link {
+      color: rgba(6, 52, 201, 0.70);
+      transition: color .1s;
+
+      & :hover {
+        color: #1AE5BE !important;
+        transition: color .1s;
+      }
+    }
   }`;
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink } from 'react-router-dom'
 import {
   Collapse,
   Navbar,
@@ -29,27 +29,27 @@ class MainNav extends Component {
   render() {
     return (
       <div className={ this.props.className }>
-        <Navbar light expand="md" color="light" className="ml-auto" >
-          <Link to="/" className="navbar-brand">
+        <Navbar expand='md' color='light' className='ml-auto' >
+          <Link to='/' className='navbar-brand'>
             ladle
           </Link>
           <SearchBar data={ this.props.data } />
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            { this.props.currentUser.first_name ?
-              <Nav className="ml-auto" navbar>
+            { this.props.currentUser.id ?
+              <Nav className='ml-auto' navbar>
                 <NavItem>
-                  <NavLink to='/' className='nav-link'>
-                    {`Hello, ${this.props.currentUser.first_name}`}
+                  <NavLink  exact to='/' activeClassName='active' className='nav-link' >
+                    Hello, { `${this.props.currentUser.first_name}`}
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to='/game' className='nav-link'>
+                  <NavLink to='/game' activeClassName='active' className='nav-link'>
                     Game
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to='/' className='nav-link' onClick={this.props.handleLogoutClick }>
+                  <NavLink exact to='/' activeClassName='active' className='nav-link' onClick={this.props.handleLogoutClick }>
                     Logout
                   </NavLink>
                 </NavItem>
@@ -59,27 +59,37 @@ class MainNav extends Component {
                     Admin
                     </DropdownToggle>
                     <DropdownMenu right>
-                    <DropdownItem>
-                      <NavLink to="/admin/dashboard" className="nav-link">Dashboard</NavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <NavLink to="/admin/words" className="nav-link">Words</NavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <NavLink to="/admin/users" className="nav-link">Users</NavLink>
-                    </DropdownItem>
+                      <DropdownItem>
+                        <NavLink to='/admin/dashboard' activeClassName='active' className='nav-link'>
+                          Dashboard
+                        </NavLink>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <NavLink to='/admin/words' activeClassName='active' className='nav-link'>
+                          Words
+                        </NavLink>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <NavLink to='/admin/users' activeClassName='active' className='nav-link'>
+                          Users
+                        </NavLink>
+                      </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                   : null
                 }
                 </Nav>
                 :
-                <Nav className="ml-auto" navbar>
+                <Nav className='ml-auto' navbar>
                   <NavItem>
-                    <NavLink to="/login" className="nav-link">Login</NavLink>
+                    <NavLink to='/login' className='nav-link'>
+                      Login
+                    </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/signup" className="nav-link">Signup</NavLink>
+                    <NavLink to='/signup' className='nav-link'>
+                      Signup
+                    </NavLink>
                   </NavItem>
                 </Nav>
               }

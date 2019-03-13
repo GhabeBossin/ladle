@@ -82,7 +82,7 @@ class App extends Component {
                 <Route exact path="/admin/users" component={ props => <AdminUsers currentUser={ this.state.currentUser } { ...props } /> } />
               </Switch>
             </div>
-        </StyledAppContainer>
+          </StyledAppContainer>
         <StyledFooter />
       </div>
     );

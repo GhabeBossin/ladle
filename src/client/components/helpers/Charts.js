@@ -13,7 +13,7 @@ class Chart extends Component{
   static defaultProps = {
     displayTitle:true,
     displayLegend: true,
-    legendPosition:'right',
+    legendPosition:'bottom',
   }
 
   render(){

@@ -87,7 +87,6 @@ class Game extends Component {
     })
     .then((response) => {
       let played = response.data[0].cards_played + 1
-      console.log("played", played / 5)
       if (played % 5 === 0) {
         axios.post(this.state.url + "/userAchievements/awards", {
           user_id: this.state.currentUser.id,

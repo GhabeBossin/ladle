@@ -77,7 +77,7 @@ class App extends Component {
             <div>
               <Switch>
                 <Route path='/' exact component={ props => <Home currentUser={this.state.currentUser} { ...props } /> }/>
-                <Route path='/game' component={ props => <Game {...props} data={this.state.currentUser}  /> }/>
+                <Route path='/game' component={ props => <Game data={this.state.currentUser} {...props} /> }/>
                 <Route path='/login' component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route path='/signup' component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route path='/admin/dashboard' component={ AdminDash } />
@@ -86,7 +86,7 @@ class App extends Component {
                 <Redirect to='/' />
               </Switch>
             </div>
-        </StyledAppContainer>
+          </StyledAppContainer>
         <StyledFooter />
       </div>
     );

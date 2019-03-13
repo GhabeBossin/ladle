@@ -21,7 +21,7 @@ class SearchBar extends Component {
     })
     .then((response) => {
       alert("The translation for " + ` "${word}"` + " is " + `"${response.data[0].word}"`)
-      // this.callback(response.data)
+      // this.translateModal(response.data)
     })
     .catch((error) => {
       console.log("Error in getCard in Login.js: ", error);

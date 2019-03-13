@@ -1,26 +1,38 @@
 import React, { Component } from 'react'
-import {
-  Button,
-  Card,
-  CardText,
-  ListGroup,
-  ListGroupItem } from 'reactstrap'
+import { Card } from 'reactstrap'
+  import {Bar, Line, Pie} from 'react-chartjs-2';
 
 class BadUsers extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  static defaultProps = {
+    displayTitle:true,
+    displayLegend: true,
+    legendPosition:'bottom',
+  
+  }
+
   render() {
     return (
       <Card body>
-        <h4>Struggling Students</h4>
-        <CardText>
-          These students are struggling the most to learn new words.
-        </CardText>
-        <ListGroup flush>
-          <ListGroupItem>Tim Timmeh</ListGroupItem>
-          <ListGroupItem>Anne Bolin</ListGroupItem>
-          <ListGroupItem>David Tennant</ListGroupItem>
-          <ListGroupItem>Another Student</ListGroupItem>
-          <ListGroupItem>John Doe</ListGroupItem>
-        </ListGroup>
+        <div className="chart">
+          <Pie
+            data={ this.props.chartData }
+            options={{
+              title:{
+                display:this.props.displayTitle,
+                text:'These students may need help',
+                fontSize:25
+              },
+              legend:{
+                display:this.props.displayLegend,
+                position:this.props.legendPosition
+              }
+            }}
+          />
+        </div>
       </Card>
     )
   }

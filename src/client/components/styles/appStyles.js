@@ -32,20 +32,40 @@ const StyledMainNav = styled(MainNav).attrs({
   margin-bottom: 2em;
   position: relative;
 
-  & > nav {
+  &&& nav {
     min-width: 100%;
-  }
 
-  &&& .navbar-brand {
-    color: #0635C9;
-    transition: color .15s;
-
-  & :hover {
-      color: #1AE5BE;
+    & .navbar-brand {
+      color: #0635C9;
       transition: color .15s;
+
+    & :hover {
+        color: #1AE5BE;
+        transition: color .15s;
+      }
     }
-  }
-`;
+
+    /* & .nav-link {
+      color: rgba(6, 52, 201, 0.70);
+      transition: color .15s;
+
+      & :hover {
+        color: #1AE5BE;
+        transition: color .15s;
+      }
+    }
+
+    & .nav-link.active {
+        color: #0635C9;
+        transition: color .15s;
+
+        & :hover {
+        color: #1AE5BE;
+        transition: color .15s;
+      }
+    } */
+  }`;
+
 
 const FuzzyDDF = styled(ListGroup)`
   position: absolute;
@@ -56,7 +76,7 @@ const FuzzyDDF = styled(ListGroup)`
 
 const FuzzyInner = styled(ListGroupItem)`
   padding: .5em !important;
-  font-size: smaller;
+  font-size: small;
 `;
 
 export {

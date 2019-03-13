@@ -77,12 +77,12 @@ class App extends Component {
                 <Route exact path="/" render={ props => <Game {...props} data={this.state.currentUser}  /> }/>
                 <Route exact path="/login" component={ props => <Login setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
                 <Route exact path="/signup" component={ props => <SignUp setCurrentUser={ this.setCurrentUser } { ...props } /> }/>
-                <Route exact path="/admin/dashboard" component={ AdminDash } />
+                <Route exact path="/admin/dashboard" component={ props => <AdminDash {...props} data={ this.state.wordData } /> } />
                 <Route exact path="/admin/words" component={ AdminWords } />
                 <Route exact path="/admin/users" component={ props => <AdminUsers currentUser={ this.state.currentUser } { ...props } /> } />
               </Switch>
             </div>
-        </StyledAppContainer>
+          </StyledAppContainer>
         <StyledFooter />
       </div>
     );

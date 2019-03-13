@@ -19,6 +19,10 @@ const StyledFooter = styled(Footer)`
   justify-self: flex-end;
   justify-content: flex-end;
   opacity: .75;
+
+  & nav span {
+    font-size: smaller
+  }
 `;
 
 const StyledMainNav = styled(MainNav).attrs({

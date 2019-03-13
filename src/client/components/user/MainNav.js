@@ -26,51 +26,61 @@ class MainNav extends Component {
     });
   }
 
+  // callback = data => {
+  //   this.setState({ data, showModal: true })
+  // }
+
+  // closeModal = () => {
+  //   this.setState({ showModal: false })
+  // }
+
   render() {
     return (
       <div className={ this.props.className }>
-        <Navbar expand='md' color='light' className='ml-auto' >
+        {/* { this.state.modalOpen && 
+          <SomeModal /> } */}
+        <Navbar light expand='md' color='light' className='ml-auto' >
           <Link to='/' className='navbar-brand'>
             ladle
           </Link>
-          <SearchBar data={ this.props.data } />
+          <SearchBar data={ this.props.data } callback={ this.callback } />
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             { this.props.currentUser.id ?
               <Nav className='ml-auto' navbar>
-                <NavItem>
+                <NavItem className='ml-auto'>
                   <NavLink  exact to='/' activeClassName='active' className='nav-link' >
                     Hello, { `${this.props.currentUser.first_name}`}
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className='ml-auto'>
                   <NavLink to='/game' activeClassName='active' className='nav-link'>
                     Game
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className='ml-auto'>
                   <NavLink exact to='/' activeClassName='active' className='nav-link' onClick={this.props.handleLogoutClick }>
                     Logout
                   </NavLink>
                 </NavItem>
                 { this.props.currentUser.is_admin ?
-                  <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle nav caret >
-                    Admin
+                  <UncontrolledDropdown nav inNavbar className='ml-auto'>
+                    <DropdownToggle nav caret className='ml-auto text-right'>
+                      Admin
                     </DropdownToggle>
                     <DropdownMenu right>
-                      <DropdownItem>
-                        <NavLink to='/admin/dashboard' activeClassName='active' className='nav-link'>
+                      <DropdownItem className='ml-auto'>
+                        <NavLink to='/admin/dashboard' activeClassName='active' className='nav-link text-center'>
                           Dashboard
                         </NavLink>
                       </DropdownItem>
-                      <DropdownItem>
-                        <NavLink to='/admin/words' activeClassName='active' className='nav-link'>
+                      <DropdownItem className='ml-auto'>
+                        <NavLink to='/admin/words' activeClassName='active' className='nav-link text-center'>
                           Words
                         </NavLink>
                       </DropdownItem>
-                      <DropdownItem>
-                        <NavLink to='/admin/users' activeClassName='active' className='nav-link'>
+                      <DropdownItem className='ml-auto'>
+                        <NavLink to='/admin/users' activeClassName='active' className='nav-link text-center'>
                           Users
                         </NavLink>
                       </DropdownItem>
@@ -81,12 +91,12 @@ class MainNav extends Component {
                 </Nav>
                 :
                 <Nav className='ml-auto' navbar>
-                  <NavItem>
+                  <NavItem className="ml-auto">
                     <NavLink to='/login' className='nav-link'>
                       Login
                     </NavLink>
                   </NavItem>
-                  <NavItem>
+                  <NavItem className="ml-auto">
                     <NavLink to='/signup' className='nav-link'>
                       Signup
                     </NavLink>

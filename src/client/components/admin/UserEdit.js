@@ -8,7 +8,8 @@ import {
   Button } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../styles/adminStyles'
+  ModalWrapper,
+  AlignX } from '../styles/modalStyles'
 
 class UserEdit extends Component {
   constructor({updateUser, data, currentUser}) {
@@ -51,23 +52,22 @@ class UserEdit extends Component {
     }
   }
 
-  buttonToggle = () => {
-    this.setState({ modal_open: !this.state.modal_open})
+  modalToggle = () => {
+    this.setState({ modal_open: !this.state.modal_open })
   }
 
   render() {
     return (<>
       {/* cursor: pointer */}
-      <span onClick={this.buttonToggle}>
+      <span onClick={this.modalToggle}>
         ✏️
       </span>
 
       { this.state.modal_open && (
         <ModalContainer>
-          <ModalWrapper className="p-4">
-            <Container>
-              <Button close onClick={this.buttonToggle}/>
-              <h4 className='border-bottom mb-4'>Edit This User</h4>
+          <ModalWrapper>
+            <AlignX close onClick={this.modalToggle}/>
+              <h3 className='border-bottom mb-3'>Edit This User</h3>
               <Form>
                 <FormGroup>
                   <Label htmlFor="first_name">First Name</Label>
@@ -91,11 +91,10 @@ class UserEdit extends Component {
                 <Button type="button"
                   onClick={() => {
                   this.updateUser(this.state)
-                  this.buttonToggle() }}> 
+                  this.modalToggle() }}> 
                   Update 
                 </Button>
               </Form>
-            </Container>
           </ModalWrapper>
         </ModalContainer>
       )}

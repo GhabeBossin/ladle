@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  Container,
   Form,
   FormGroup,
   Input,
@@ -8,7 +7,8 @@ import {
   Button } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../styles/modalStyles'
+  ModalWrapper,
+  AlignX } from '../styles/modalStyles'
 
 class WordEdit extends Component {
   constructor({updateWord, data}) {
@@ -46,49 +46,47 @@ class WordEdit extends Component {
     })
   }
 
-  buttonToggle = () => {
+  modalToggle = () => {
     this.setState({ modal_open: !this.state.modal_open})
   }
 
   render() {
     return (<>
-      <div onClick={this.buttonToggle}>
+      <div onClick={this.modalToggle}>
         ✏️
       </div>
 
       { this.state.modal_open && (
         <ModalContainer>
-          <ModalWrapper className="p-4">
-            <Container>
-              <Button close onClick={this.buttonToggle}/>
-              <h4 className='border-bottom mb-4'>Edit This Word</h4>
-              <Form>
-                <FormGroup>
-                  <Label htmlFor="en_word">English</Label>
-                  <Input type="text" name="en_word" id="en_word" value={ this.state.en_word } onChange={ this.handleInputChange }/>
-                </FormGroup>
-                <FormGroup>
-                <Label htmlFor="es_word">Spanish</Label>
-                  <Input type="text" name="es_word" id="es_word" value={ this.state.es_word } onChange={ this.handleInputChange }/>
-                </FormGroup>
-                <FormGroup check className='mb-3'>
-                  <Label check>
-                  <Input type="checkbox" onChange={this.handleCheckboxChange}/>{' '}
-                  { this.state.enabled ?
-                    "Disable Word"
-                    :
-                    "Enable Word"
-                  }
-                  </Label>
-                  </FormGroup>
-                <Button type="button"
-                  onClick={() => {
-                  this.updateWord(this.state),
-                  this.buttonToggle() }}>
-                  Update
-                </Button>
-              </Form>
-            </Container>
+          <ModalWrapper>
+            <AlignX close onClick={this.modalToggle}/>
+            <h4 className='border-bottom mb-3'>Edit This Word</h4>
+            <Form>
+              <FormGroup>
+                <Label htmlFor="en_word">English</Label>
+                <Input type="text" name="en_word" id="en_word" value={ this.state.en_word } onChange={ this.handleInputChange }/>
+              </FormGroup>
+              <FormGroup>
+              <Label htmlFor="es_word">Spanish</Label>
+                <Input type="text" name="es_word" id="es_word" value={ this.state.es_word } onChange={ this.handleInputChange }/>
+              </FormGroup>
+              <FormGroup check className='mb-3'>
+                <Label check>
+                <Input type="checkbox" onChange={this.handleCheckboxChange}/>{' '}
+                { this.state.enabled ?
+                  "Disable Word"
+                  :
+                  "Enable Word"
+                }
+                </Label>
+              </FormGroup>
+              <Button type="button"
+                onClick={() => {
+                this.updateWord(this.state),
+                this.modalToggle() }}>
+                Update
+              </Button>
+            </Form>
           </ModalWrapper>
         </ModalContainer>
       )}

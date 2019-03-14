@@ -10,9 +10,8 @@ import BadUsers from './BadUsers'
 import axios from 'axios';
 
 class AdminDash extends Component {
-
-  constructor() {
-    super() 
+  constructor(props) {
+    super(props) 
     this.state = {
       users: this.props,
       chartData: {}
@@ -82,11 +81,13 @@ class AdminDash extends Component {
     let data = []
     let sortedChart = chartData.sort((a,b) => (a.diff_counter > b.diff_counter) ? 1 : ((b.diff_counter > a.diff_counter) ? -1 : 0));
     let minChart = sortedChart.slice(0, 10)
+
     minChart.forEach(element => {
       labels.push(element.en_word)
       wordType.push(element.name)
       data.push(element.diff_counter)
     })
+
     this.setState({ 
       chartData: {
         labels: labels,
@@ -134,10 +135,8 @@ class AdminDash extends Component {
           </Jumbotron>
           <Row>
             <Col>
-              <HardWords  chartData={ this.state.chartData } displayLegend={true}/>
-            </Col>
-            <Col>
-              <BadUsers chartData={ this.state.chartDataUser } displayLegend={true}/>
+              <HardWords  chartData={ this.state.chartData } displayLegend={true} />
+              <BadUsers chartData={ this.state.chartDataUser } displayLegend={true} />
             </Col>
           </Row>
         </Container>

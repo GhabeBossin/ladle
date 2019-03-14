@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'reactstrap'
-  import {Bar, Line, Pie} from 'react-chartjs-2';
+  import { Pie } from 'react-chartjs-2';
 
 class BadUsers extends Component {
   constructor(props) {
@@ -8,10 +8,9 @@ class BadUsers extends Component {
   }
 
   static defaultProps = {
-    displayTitle:true,
+    displayTitle: true,
     displayLegend: true,
-    legendPosition:'bottom',
-  
+    legendPosition: 'bottom',
   }
 
   render() {
@@ -22,13 +21,14 @@ class BadUsers extends Component {
             data={ this.props.chartData }
             options={{
               title:{
-                display:this.props.displayTitle,
-                text:'These students may need help',
-                fontSize:25
+                display: this.props.displayTitle,
+                text: 'These students may need help',
+                fontSize: 25
+
               },
               legend:{
-                display:this.props.displayLegend,
-                position:this.props.legendPosition
+                display: this.props.displayLegend,
+                position: this.props.legendPosition
               }
             }}
           />

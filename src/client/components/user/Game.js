@@ -10,6 +10,7 @@ import {
   CardTitle } from 'reactstrap';
 import FlashCardImg from '../../flash-card.png'
 import { 
+  BigBtn,
   StyledBtnDiv, 
   StyledCard, 
   StyledCardBody, 
@@ -26,8 +27,8 @@ class Game extends Component {
       user_word_id: null,
       user_id: null
       },
-      en_word: "",
-      es_word: "",
+      en_word: '',
+      es_word: '',
       userWords: [],
       currentWord: null,
       populateWords: [],
@@ -65,7 +66,7 @@ class Game extends Component {
 
   // Get the proper card from the deck for current user that is rendered on the page
   drawNewCard = (user_word_id) => {
-    return axios.get("http://localhost:8080/game", {
+    return axios.get('http://localhost:8080/game', {
       params: { id: user_word_id }
     })
     .then((response) => {
@@ -73,13 +74,13 @@ class Game extends Component {
       this.setState({ es_word: response.data[1].rows[0].word })
     })
     .catch(function (error) {
-      console.log("Error in getCard in Game.js: ", error);
+      console.log('Error in getCard in Game.js: ', error);
     });
   }
 
   // Post to user_words DB when a word is learned
   learnedCard = (en_word_id, increment) => {
-    axios.put("http://localhost:8080/api/learned", {
+    axios.put('http://localhost:8080/api/learned', {
       user_id: this.state.currentUser.id,
       en_word_id: en_word_id,
       is_known: true,
@@ -87,37 +88,40 @@ class Game extends Component {
     })
     .then((response) => {
       let played = response.data[0].cards_played + 1
+      console.log('played response: ', response.data[0])
+
       if (played % 5 === 0) {
-        axios.post(this.state.url + "/userAchievements/awards", {
+        axios.post(this.state.url + '/userAchievements/awards', {
           user_id: this.state.currentUser.id,
-          award_id: (played / 5)
-      })
+          award_id: ((played / 5) + 1)
+        })
         .then(() => {
-        axios.get("http://localhost:8080/api/users", {
-          params: {
-          username: this.state.currentUser.username
-          }
+          axios.get('http://localhost:8080/api/users', {
+            params: {
+            username: this.state.currentUser.username
+            }
         })
-          .then((response) => {
-            let obj = response.data;
-            let achievements = this.state.achievements.splice();
-            obj.forEach(element => {
-              achievements.push({ id: element.achievement_id, name: element.achievement_name, description: element.achievement_description })
-            })
-            this.setState({ achievements: achievements })
+        .then((response) => {
+          let obj = response.data;
+          let achievements = this.state.achievements.splice();
+
+          obj.forEach(element => {
+            achievements.push({ id: element.achievement_id, name: element.achievement_name, description: element.achievement_description })
           })
+          this.setState({ achievements: achievements })
         })
+      })
       }
     })
     .catch(function (error) {
-      console.log("Error in learnedCard in Game.js: ", error);
+      console.log('Error in learnedCard in Game.js: ', error);
     });
     
   }
 
   // Increment the difficulty counter for the en_word
   updateWord = (wordID, counter) => {
-    axios.put("http://localhost:8080/updateWord", {
+    axios.put('http://localhost:8080/updateWord', {
       id: wordID,
       diff: counter
     })
@@ -185,16 +189,16 @@ class Game extends Component {
               { !this.state.isFlipped
                 ?
                 <StyledCard>
-                  <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
+                  <CardImg top width='100%' src={ FlashCardImg } alt='Card image cap' />
                   <StyledCardBody>
-                    <CardTitle className="flash-card-word">{ this.state.en_word }</CardTitle>
+                    <CardTitle className='flash-card-word'>{ this.state.en_word }</CardTitle>
                   </StyledCardBody>
                 </StyledCard>
                 :
                 <StyledCard>
-                  <CardImg top width="100%" src={ FlashCardImg } alt="Card image cap" />
+                  <CardImg top width='100%' src={ FlashCardImg } alt='Card image cap' />
                   <StyledCardBody>
-                    <CardTitle className="flash-card-word">{ this.state.es_word }</CardTitle>
+                    <CardTitle className='flash-card-word'>{ this.state.es_word }</CardTitle>
                   </StyledCardBody>
                 </StyledCard>
               }
@@ -204,12 +208,12 @@ class Game extends Component {
               <StyledCardButtons>
               { !this.state.firstFlip
                 ?
-                <Button onClick={this.firstFlip}>Flip</Button>
+                <BigBtn onClick={this.firstFlip}>Flip</BigBtn>
                 :
                 <ButtonGroup>
-                  <Button onClick={ this.xMark }>✘</Button>
-                  <Button onClick={ this.flip }>Flip</Button>
-                  <Button onClick={ this.checkMark }>✔</Button>
+                  <BigBtn onClick={ this.xMark }>✘</BigBtn>
+                  <BigBtn onClick={ this.flip }>Flip</BigBtn>
+                  <BigBtn onClick={ this.checkMark }>✔</BigBtn>
                 </ButtonGroup> }
               </StyledCardButtons>
             </StyledBtnDiv>

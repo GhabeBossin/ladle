@@ -85,7 +85,6 @@ class AdminUsers extends Component {
         <h2>Users</h2>
         <Row>
           <Col>
-          {/* <SearchBar /> */}
             <Table striped bordered>
               <thead>
                 <tr>

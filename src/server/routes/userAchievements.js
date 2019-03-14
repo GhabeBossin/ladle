@@ -19,7 +19,7 @@ module.exports = (knex) => {
     let user_id = req.body.user_id;
     let award_id = req.body.award_id
     knex('user_achievements')
-    .insert({ 'user_id': user_id, 'achievements_id': 2 })
+    .insert({ 'user_id': user_id, 'achievements_id': award_id })
     .returning('*')
     .select('achievements_id')
     .where({ 'user_id': user_id })

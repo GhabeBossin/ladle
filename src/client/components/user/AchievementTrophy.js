@@ -11,14 +11,14 @@ import {
   Col } from 'reactstrap'
 
 class Trophy extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   render() {
     if (this.props.data) {
       const achievements = this.props.data.map((element, i) =>
-        <Card key={i} xs='5' sm='4' md='3' lg='2'>
+        <Card key={i}>
           <CardHeader>{`${element.name}`}</CardHeader>
           <CardBody>
             <CardImg src={`public/icons/${element.id}.png`}/>

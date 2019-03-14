@@ -1,8 +1,13 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Lucida', 'Verdana', 'Tahoma', 'Arial';
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded' , 'Arial', 'sans-serif' !important;
   box-shadow: none;
+}
+
+hr {
+  color: #1AE5BE;
+  background-color: #1AE5BE;
 }
 
 a {
@@ -37,7 +42,8 @@ a:hover {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26, 229, 188, 0.767);
 }
 
-#root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.iQJFVX > nav > div:nth-child(2) > div > div > input {
+/* Fuzzy Filter bootstrap overrides */
+nav div.input-group input.react-fuzzy-filter__input {
   height: calc(1.5em + .75rem + 2px);
   padding: .5em;
   font-size: 1rem;
@@ -54,12 +60,7 @@ a:hover {
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-#root > div > div > div.appStyles__StyledMainNav-oq0d7u-2.shadow-sm.iQJFVX > nav > div:nth-child(2) > div > div > input:focus{
+nav div.input-group input.react-fuzzy-filter__input:focus{
   border-color: #1AE5BE;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26, 229, 188, 0.767);
-}
-
-hr {
-  color: #1AE5BE;
-  background-color: #1AE5BE;
 }

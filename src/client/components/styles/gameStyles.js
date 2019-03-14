@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { Button } from 'reactstrap';
 
 const StyledCard = styled.div.attrs({
   className: "card text-center border-0 shadow",
 })`
-  margin: 1em 0 3em;
+  margin: 0 3em 3em;
 `;
 
 const StyledCardBody = styled.div.attrs({
@@ -29,7 +30,12 @@ const StyledCardButtons = styled.div`
   max-width: fit-content;
 `;
 
+const BigBtn = styled(Button).attrs({
+  size: 'lg'
+})``;
+
 export {
+  BigBtn,
   StyledBtnDiv,
   StyledCard,
   StyledCardBody,

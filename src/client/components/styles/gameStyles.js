@@ -4,7 +4,8 @@ import { Button } from 'reactstrap';
 const StyledCard = styled.div.attrs({
   className: "card text-center border-0 shadow",
 })`
-  margin: 0 3em 3em;
+  margin: 0 auto 3em;
+  min-width: 200px !important;
 `;
 
 const StyledCardBody = styled.div.attrs({

@@ -42,18 +42,23 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    return axios.get("http://localhost:8080/api/users", {
-      params: {
-        username: this.state.usernameInput
-      }
-    })
-    .then((response) => {
-      this.setState({ validated: true },
-        () => { this.setCurrentUser(response) });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    if (!this.state.usernameInput || !this.state.passwordInput) {
+      return <Redirect to='/target' />
+    }
+    else {
+      return axios.get("http://localhost:8080/api/users", {
+        params: {
+          username: this.state.usernameInput
+        }
+      })
+      .then((response) => {
+        this.setState({ validated: true },
+          () => { this.setCurrentUser(response) });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
   handleEnter = (e) => {

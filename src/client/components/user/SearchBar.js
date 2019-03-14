@@ -11,12 +11,13 @@ class SearchBar extends Component {
       en_word: '',
     }
   }
-
+ 
   handleClick = (word) => {
     axios.get('http://localhost:8080/api/words/search', {
       params: { id: word }
     })
     .then((response) => {
+      console.log("response", response)
       this.setState({
         en_word: word,
         es_word: response.data[0].word

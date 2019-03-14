@@ -64,3 +64,16 @@ nav div.input-group input.react-fuzzy-filter__input:focus{
   border-color: #1AE5BE;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26, 229, 188, 0.767);
 }
+
+.card-deck {
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.card.trophy {
+  justify-self: center;
+  min-width: 200px !important;
+  max-width: 300px;
+  margin: .5em;
+}

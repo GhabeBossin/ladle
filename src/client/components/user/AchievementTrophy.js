@@ -18,7 +18,7 @@ class Trophy extends Component {
   render() {
     if (this.props.data) {
       const achievements = this.props.data.map((element, i) =>
-        <Card key={i}>
+        <Card key={i} className='trophy'>
           <CardHeader>{`${element.name}`}</CardHeader>
           <CardBody>
             <CardImg src={`public/icons/${element.id}.png`}/>

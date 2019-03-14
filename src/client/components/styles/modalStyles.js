@@ -4,7 +4,7 @@ import { Button } from 'reactstrap'
 const AlignX = styled(Button)`
   align-self: flex-end;
   position: relative;
-  left: 17px;
+  left: 20px;
 `;
 
 const ModalContainer = styled.div`
@@ -25,10 +25,10 @@ const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  max-width: 60%;
-  overflow: scroll;
+  min-width: fit-content;
+  max-width: 70%;
   border-radius: 5px;
-  padding: 1em;
+  padding: 0 1.5em 1.5em;
 `;
 
 export { 

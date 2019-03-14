@@ -27,10 +27,12 @@ class FuzzySearch extends Component {
 
   createWordsArray = () => {
     let wordArray = [];
+
     this.props.data.forEach((element) =>
     wordArray.push({name: element.en_word, meta: element.en_word })
     )
     this.setState({ words: wordArray })
+
   }
 
   handleEnter = (e) => {
@@ -47,7 +49,9 @@ class FuzzySearch extends Component {
 
   onClick = () => {
     this.props.handleClick(this.state.searchWord)
-    this.setState({  })
+    // this.setState({  })
+    changeInputValue()
+
   }
 
   render() {

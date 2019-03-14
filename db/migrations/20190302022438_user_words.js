@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('user_words', function (table) {
-    table.increments();
+    // table.increments();
     table.integer('en_words_id');
     table.integer('users_id');
     table.foreign('en_words_id').references('en_words.id');

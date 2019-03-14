@@ -1,11 +1,12 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('en_words', function (table) {
-    table.increments();
+    // table.increments();
+    table.integer('id').notNullable().primary();
     table.string('word');
     table.integer('ranking');
     table.string('image');
-    table.string('audio');
+    // table.string('audio');
     table.integer('diff_counter');
     table.boolean('enabled')
   })

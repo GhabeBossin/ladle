@@ -122,7 +122,7 @@ class SignUp extends Component {
 
   render() {
     return (<>
-      { this.state.validated ?
+      { this.state.validated === true ?
         <Redirect to={{ pathname:'/game' }} />
         :
         <Container>
@@ -150,7 +150,8 @@ class SignUp extends Component {
               <StyledSpan>Already have an account? <Link to='/login'> Login here.</Link></StyledSpan>
             </StyledDiv>
           </Form>
-      </Container> }
+        </Container> 
+      }
     </>);
   }
 }

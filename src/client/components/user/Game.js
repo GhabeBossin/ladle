@@ -10,6 +10,7 @@ import {
   CardTitle } from 'reactstrap';
 import FlashCardImg from '../../flash-card.png'
 import { 
+  BigBtn,
   StyledBtnDiv, 
   StyledCard, 
   StyledCardBody, 
@@ -87,21 +88,23 @@ class Game extends Component {
     })
     .then((response) => {
       let played = response.data[0].cards_played + 1
-      if (played % 5 === 0 && played < 30) {
-        console.log(played)
+      console.log('played response: ', response.data[0])
+
+      if (played % 5 === 0) {
         axios.post(this.state.url + '/userAchievements/awards', {
           user_id: this.state.currentUser.id,
-          award_id: (played / 5)
-      })
-      .then(() => {
-        axios.get('http://localhost:8080/api/users', {
-          params: {
-          username: this.state.currentUser.username
-          }
-      })
+          award_id: ((played / 5) + 1)
+        })
+        .then(() => {
+          axios.get('http://localhost:8080/api/users', {
+            params: {
+            username: this.state.currentUser.username
+            }
+        })
         .then((response) => {
           let obj = response.data;
           let achievements = this.state.achievements.splice();
+
           obj.forEach(element => {
             achievements.push({ id: element.achievement_id, name: element.achievement_name, description: element.achievement_description })
           })
@@ -205,12 +208,12 @@ class Game extends Component {
               <StyledCardButtons>
               { !this.state.firstFlip
                 ?
-                <Button onClick={this.firstFlip}>Flip</Button>
+                <BigBtn onClick={this.firstFlip}>Flip</BigBtn>
                 :
                 <ButtonGroup>
-                  <Button onClick={ this.xMark }>✘</Button>
-                  <Button onClick={ this.flip }>Flip</Button>
-                  <Button onClick={ this.checkMark }>✔</Button>
+                  <BigBtn onClick={ this.xMark }>✘</BigBtn>
+                  <BigBtn onClick={ this.flip }>Flip</BigBtn>
+                  <BigBtn onClick={ this.checkMark }>✔</BigBtn>
                 </ButtonGroup> }
               </StyledCardButtons>
             </StyledBtnDiv>

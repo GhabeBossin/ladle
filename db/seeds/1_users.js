@@ -5,7 +5,7 @@ exports.seed = function (knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('users').insert([
-          { is_new: false, achievements: true, username: "user1", first_name: 'Timtim', last_name: 'Timmeh', password: 'password', group: 'beginner', cards_played: 3, sessions_played: 4, wrong_counter: 40, mode_setting: 'learn_easy', is_admin: true },
+          { is_new: false, achievements: true, username: "user1", first_name: 'Timtim', last_name: 'Timmeh', password: 'password', group: 'beginner', cards_played: 0, sessions_played: 4, wrong_counter: 40, mode_setting: 'learn_easy', is_admin: true },
           { is_new: false, achievements: true, username: "user2", first_name: 'Juan', last_name: 'Pablo', password: 'password', group: 'beginner', cards_played: 67, sessions_played: 9, wrong_counter: 33, mode_setting: 'drill_easy', is_admin: false },
           { is_new: false, achievements: true, username: "user3", first_name: 'Mateo', last_name: 'Turbo', password: 'password', group: 'beginner', cards_played: 234, sessions_played: 12, wrong_counter: 68, mode_setting: 'learn_medium', is_admin: true },
           { is_new: false, achievements: true, username: "user4", last_name: 'Loza', first_name: 'Zoe', password: 'password', group: 'intermediate', cards_played: 4, sessions_played: 30, wrong_counter: 66, mode_setting: 'learn_medium', is_admin: false },

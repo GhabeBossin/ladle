@@ -9,7 +9,7 @@ const StyledAppContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 100vw;
-  min-height: calc(100vh - 2.5em);
+  min-height: calc(100vh - 2em);
 `;
 
 const FuzzyDDF = styled(ListGroup)`
@@ -72,14 +72,27 @@ const StyledMainNav = styled(MainNav).attrs({
 
 const StyledFooter = styled(Footer)`
   display: flex;
-  flex: 1;
   min-width: 100%;
-  justify-self: flex-end;
-  justify-content: flex-end;
-  opacity: .75;
+  
+  &&& nav {
+    position: relative;
+    display: flex;
+    min-width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+    align-items: baseline;
+    padding: 0 1em 0 !important;
 
-  & nav span {
-    font-size: smaller
+    & p {
+      font-size: x-small;
+      opacity: .25;
+    }
+
+    & span {
+      opacity: .5;
+      justify-self: flex-end;
+      font-size: smaller;
+    }
   }
 `;
 

@@ -87,26 +87,27 @@ class Game extends Component {
     })
     .then((response) => {
       let played = response.data[0].cards_played + 1
-      if (played % 5 === 0) {
+      if (played % 5 === 0 && played < 30) {
+        console.log(played)
         axios.post(this.state.url + '/userAchievements/awards', {
           user_id: this.state.currentUser.id,
           award_id: (played / 5)
       })
-        .then(() => {
+      .then(() => {
         axios.get('http://localhost:8080/api/users', {
           params: {
           username: this.state.currentUser.username
           }
-        })
-          .then((response) => {
-            let obj = response.data;
-            let achievements = this.state.achievements.splice();
-            obj.forEach(element => {
-              achievements.push({ id: element.achievement_id, name: element.achievement_name, description: element.achievement_description })
-            })
-            this.setState({ achievements: achievements })
+      })
+        .then((response) => {
+          let obj = response.data;
+          let achievements = this.state.achievements.splice();
+          obj.forEach(element => {
+            achievements.push({ id: element.achievement_id, name: element.achievement_name, description: element.achievement_description })
           })
+          this.setState({ achievements: achievements })
         })
+      })
       }
     })
     .catch(function (error) {

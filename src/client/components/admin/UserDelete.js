@@ -5,7 +5,8 @@ import {
   Container } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../styles/modalStyles'
+  ModalWrapper,
+  AlignX } from '../styles/modalStyles'
 import {
   BtnDiv,
   DelBtn} from '../styles/adminStyles';
@@ -34,20 +35,18 @@ class UserDelete extends Component {
       { this.state.modal_open && (
         <ModalContainer>
           <ModalWrapper>
-            <Container>
-              <Button close onClick={this.buttonToggle}/>
-              <h3>Are You Sure?</h3>
-              <CardText>This action cannot be undone!</CardText>
-              <BtnDiv>
-                <Button onClick={this.buttonToggle}>Cancel</Button>
-                <DelBtn 
-                  onClick={() => {
-                  this.deleteUser(this.state)
-                  this.buttonToggle() }}> 
-                  Delete User 
-                </DelBtn>
-              </BtnDiv>
-            </Container>
+            <AlignX close onClick={this.buttonToggle}/>
+            <h4 className='border-bottom mb-2'>Are You Sure?</h4>
+            <CardText>This action cannot be undone!</CardText>
+            <BtnDiv>
+              <Button onClick={this.buttonToggle}>Cancel</Button>
+              <DelBtn 
+                onClick={() => {
+                this.deleteUser(this.state)
+                this.buttonToggle() }}> 
+                Delete User 
+              </DelBtn>
+            </BtnDiv>
           </ModalWrapper>
         </ModalContainer>
       )}

@@ -97,12 +97,12 @@ class MainNav extends Component {
                 </Nav>
                 :
                 <Nav className='ml-auto' navbar>
-                  <NavItem className="ml-auto">
+                  <NavItem className='ml-auto'>
                     <NavLink to='/login' className='nav-link'>
                       Login
                     </NavLink>
                   </NavItem>
-                  <NavItem className="ml-auto">
+                  <NavItem className='ml-auto'>
                     <NavLink to='/signup' className='nav-link'>
                       Signup
                     </NavLink>

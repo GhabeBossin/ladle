@@ -12,6 +12,18 @@ const StyledAppContainer = styled.div`
   min-height: calc(100vh - 2.5em);
 `;
 
+const FuzzyDDF = styled(ListGroup)`
+  position: absolute;
+  top: 2.95em;
+  width: 285px;
+  z-index: 2;
+`;
+
+const FuzzyInner = styled(ListGroupItem)`
+  padding: .5em !important;
+  font-size: small;
+`;
+
 const StyledMainNav = styled(MainNav).attrs({
   className: 'shadow-sm',
 })`
@@ -56,18 +68,6 @@ const StyledMainNav = styled(MainNav).attrs({
       }
     }
   }
-`;
-
-const FuzzyDDF = styled(ListGroup)`
-  position: absolute;
-  top: 2.95em;
-  width: 285px;
-  z-index: 2;
-`;
-
-const FuzzyInner = styled(ListGroupItem)`
-  padding: .5em !important;
-  font-size: small;
 `;
 
 const StyledFooter = styled(Footer)`

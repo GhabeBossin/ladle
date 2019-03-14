@@ -13,7 +13,7 @@ class SearchBar extends Component {
   }
 
   handleClick = (word) => {
-    axios.get("http://localhost:8080/api/words/search", {
+    axios.get('http://localhost:8080/api/words/search', {
       params: { id: word }
     })
     .then((response) => {
@@ -24,7 +24,7 @@ class SearchBar extends Component {
       this.props.translation(response.data[0].word, word)
     })
     .catch((error) => {
-      console.log("Error in getCard in Login.js: ", error);
+      console.log('Error in getCard in Login.js: ', error);
     });
   }
 
@@ -32,7 +32,7 @@ class SearchBar extends Component {
     return (
       <div>
         {this.props.data[0] && 
-        <FuzzySearch name='query' placeholder="Translate" handleClick={ this.handleClick } data={ this.props.data } /> }
+        <FuzzySearch name='query' placeholder='Translate' handleClick={ this.handleClick } data={ this.props.data } /> }
       </div>
     )
   }

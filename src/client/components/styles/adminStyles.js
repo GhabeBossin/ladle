@@ -12,7 +12,7 @@ const StyledTR = styled.tr`
 
 const BtnDiv = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 const DelBtn = styled(Button)`

@@ -8,7 +8,8 @@ import {
   Button } from 'reactstrap'
 import { 
   ModalContainer, 
-  ModalWrapper } from '../styles/modalStyles'
+  ModalWrapper,
+  AlignX } from '../styles/modalStyles'
 
 class UserEdit extends Component {
   constructor({updateUser, data, currentUser}) {
@@ -64,10 +65,9 @@ class UserEdit extends Component {
 
       { this.state.modal_open && (
         <ModalContainer>
-          <ModalWrapper className="p-4">
-            <Container>
-              <Button close onClick={this.modalToggle}/>
-              <h4 className='border-bottom mb-4'>Edit This User</h4>
+          <ModalWrapper>
+            <AlignX close onClick={this.modalToggle}/>
+              <h3 className='border-bottom mb-3'>Edit This User</h3>
               <Form>
                 <FormGroup>
                   <Label htmlFor="first_name">First Name</Label>
@@ -95,7 +95,6 @@ class UserEdit extends Component {
                   Update 
                 </Button>
               </Form>
-            </Container>
           </ModalWrapper>
         </ModalContainer>
       )}

@@ -151,7 +151,7 @@ class Game extends Component {
   // User doesn't know the card and clicks the x mark, increase difficulty of card in en_cards table
   xMark = () => {
     let num = this.state.userWords.slice();
-    const newArray = this.arrayMove(num, 0, 2)
+    const newArray = this.arrayMove(num, 0, 5)
     this.markedCard(-1, newArray);
   }
 

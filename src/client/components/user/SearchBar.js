@@ -11,7 +11,7 @@ class SearchBar extends Component {
       en_word: '',
     }
   }
-
+ 
   handleClick = (word) => {
     axios.get('http://localhost:8080/api/words/search', {
       params: { id: word }

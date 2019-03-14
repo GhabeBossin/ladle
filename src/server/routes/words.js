@@ -23,7 +23,8 @@ module.exports = (knex) => {
     knex('en_words')
       .leftJoin('es_words', 'en_words.id', 'es_words.en_words_id')
       .select('*')
-      .where({ 'en_words.word': req.query.id })
+      .whereRaw(`LOWER(en_words.word) LIKE ?`, [`%${req.query.id}%`])
+      // .where({ 'en_words.word': req.query.id })
       .then(result => { res.json(result) })
       .catch((error) => {
         console.log('Error in routes/words/search: ', error)

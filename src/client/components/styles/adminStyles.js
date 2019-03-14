@@ -10,11 +10,6 @@ const StyledTR = styled.tr`
   )}
 `;
 
-const StyledTD = styled.td`
-  display: flex;
-  justify-content: space-evenly;
-`;
-
 const BtnDiv = styled.div`
   display: flex;
   justify-content: space-around;
@@ -29,7 +24,6 @@ const DelBtn = styled(Button)`
 
 export {
   StyledTR,
-  StyledTD,
   BtnDiv,
   DelBtn
 }

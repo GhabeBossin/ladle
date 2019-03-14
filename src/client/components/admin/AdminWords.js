@@ -4,7 +4,9 @@ import {
   Table,
   Row,
   Col } from 'reactstrap'
-  import { StyledTR } from '../styles/adminStyles'
+  import { 
+    StyledTR,
+    StyledTD } from '../styles/adminStyles'
 import WordEdit from './WordEdit'
 import axios from 'axios';
 
@@ -57,9 +59,9 @@ class AdminWords extends Component {
           <td>{ es_word }</td>
           <td>{ name }</td>
           <td>{ ranking }</td>
-          <td>
+          <StyledTD>
             <WordEdit updateWord={this.updateWord} data={ row } />
-          </td>
+          </StyledTD>
         </StyledTR>
     )})
   }

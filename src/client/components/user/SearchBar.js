@@ -17,7 +17,6 @@ class SearchBar extends Component {
       params: { id: word }
     })
     .then((response) => {
-      console.log("response", response)
       this.setState({
         en_word: word,
         es_word: response.data[0].word

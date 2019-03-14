@@ -37,7 +37,6 @@ class FuzzySearch extends Component {
 
   handleEnter = (e) => {
     if (e.key === 'Enter') {
-      console.log(this.state.searchWord, "seeeeeeeeeeeeeeeeeeeeeee")
     this.props.handleClick(this.state.searchWord)
     changeInputValue()
     }
@@ -49,7 +48,6 @@ class FuzzySearch extends Component {
   }
 
   onClick = () => {
-    console.log(this.state.searchWord, "9000000000000")
     this.props.handleClick(this.state.searchWord)
     // this.setState({  })
     changeInputValue()

@@ -7,6 +7,7 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.get("/", cors(), (req, res) => {
+    console.log("router", req.query)
     knex('users')
     .leftJoin('user_achievements', 'users.id', 'user_id')
     .leftJoin('achievements', 'user_achievements.achievements_id', 'achievements.id')
@@ -21,8 +22,13 @@ module.exports = (knex) => {
       'username',
       'achievements.description AS achievement_description'
       )
-    .then(result => res.json(result))
-    .catch((error) => {
+    .then(
+      result => 
+      
+      res.json(result),
+      console.log("this is result", res.body))
+
+      .catch((error) => {
       console.log("Error is from routes/users/: ", error)
     });
   })

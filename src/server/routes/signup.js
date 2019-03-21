@@ -7,11 +7,14 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.post("/", cors(), (req, res) => {
+    console.log("singuup body", req.body)
     const data = req.body;
     knex("users")
-    .insert([{first_name: data.first_name, last_name: data.last_name, username: data.username, password: data.password, achievements: data.achievements, is_new: false }])
+    .insert([{first_name: data.first_name, last_name: data.last_name, username: data.username, password: data.password, achievements: data.achievements, is_new: true }])
     .returning("*")
-    .then(result => res.json(result))
+    .then(result => 
+      res.json(result),
+      console.log("signup result", res.body))
     .then(res.status(200))
     .catch((error) => {
       console.log("Error is from routes/signup: ", error)
@@ -33,13 +36,13 @@ module.exports = (knex) => {
     .then(result => res.json(result))
   })
 
-  router.put("/isNew", cors(), (req, res) => {
-    const id = req.body.id
-    knex("users")
-    .where("id", req.body.id)
-    .update({ is_new: false })
-    .then(res.status(200))
-  })
+  // router.put("/isNew", cors(), (req, res) => {
+  //   const id = req.body.id
+  //   knex("users")
+  //   .where("id", req.body.id)
+  //   .update({ is_new: false })
+  //   .then(res.status(200))
+  // })
   
   router.post('/newAward', cors(), (req,res) => {
     knex('user_achievements')

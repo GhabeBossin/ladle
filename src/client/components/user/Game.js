@@ -17,13 +17,14 @@ import {
   StyledCardButtons } from '../styles/gameStyles'
 import Trophy from './AchievementTrophy';
 import axios from 'axios';
+import NewUserModal from './NewUserModal'
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentUser: {
-      userAchievements: [],
+      userAchievements: [1],
       user_word_id: null,
       user_id: null
       },
@@ -40,6 +41,7 @@ class Game extends Component {
 
   // Load first card from currentUser information and set user_id in state
   componentDidMount() {
+    console.log(this.props, "shteref eofefiejfef")
     this.setState({ currentUser: this.props.data })
     this.userWord(this.props.data.id)
     this.setState({ achievements: this.props.data.achievements})
@@ -89,6 +91,7 @@ class Game extends Component {
     .then((response) => {
       let played = response.data[0].cards_played + 1
       console.log('played response: ', response.data[0])
+      console.log("userwords", this.state.userWords)
 
       if (played % 5 === 0) {
         axios.post(this.state.url + '/userAchievements/awards', {
@@ -178,10 +181,16 @@ class Game extends Component {
   }
 
   render() {
-      return ( <>
-        { !this.props.data.first_name ?
-          <Redirect to={{ pathname:'/' }} />
-          :
+      
+        
+          if (!this.props.data.first_name) {
+          return (<Redirect to={{ pathname:'/' }} />)
+          }
+          if (this.props.data.is_new) {
+            return (<NewUserModal data={<Redirect to="/" />} />)
+          }
+          else {
+            return (
           <Container>
             <div>
             <Row>
@@ -222,9 +231,11 @@ class Game extends Component {
               <Trophy data={this.state.achievements} />
             </div>
           </Container>
+            )  
+        
         }
-      </>
-    );
+      
+    
   }
 };
 

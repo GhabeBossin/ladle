@@ -76,12 +76,12 @@ class SignUp extends Component {
         data: words,
         is_known: false
       })
-      .then(() => {
-        axios.put("http://localhost:8080/api/signup/isNew", {
-          new_user: false,
-          id: id
-        })
-      })
+      // .then(() => {
+      //   axios.put("http://localhost:8080/api/signup/isNew", {
+      //     new_user: false,
+      //     id: id
+      //   })
+      // })
     })
   }
 
@@ -100,13 +100,14 @@ class SignUp extends Component {
       achievements: true,
     })
     .then((response) => {
+      console.log("post response", response.data)
       this.setState({ validated: true },
         () => { this.setCurrentUser(response) }
       );
       this.populateUserWords(response.data[0].id)
       axios.post('http://localhost:8080/api/signup/newAward', {
         id: response.data[0].id,
-        achievement: 4
+        achievement: 1
       })
     })
     .catch((error) => {
@@ -123,7 +124,9 @@ class SignUp extends Component {
   render() {
     return (<>
       { this.state.validated === true ?
-        <Redirect to={{ pathname:'/game' }} />
+        <Redirect to={{ 
+          pathname:'/game',
+          data: this.state }} />
         :
         <Container>
           <Form onSubmit={this.handleSubmit}>

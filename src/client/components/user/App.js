@@ -39,6 +39,7 @@ class App extends Component {
         last_name: userObj.data[0].last_name,
         username: userObj.data[0].username,
         is_admin: userObj.data[0].is_admin,
+        is_new: userObj.data[0].is_new
       }
     })
   }

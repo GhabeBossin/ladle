@@ -9,11 +9,11 @@
 
 ## Examples
 
-!["Card Front"] (https://github.com/floydianslips/ladle/blob/master/docs/Front-of-Flashcard.png?raw=true)
-!["Admin Dashboard"] (https://github.com/floydianslips/ladle/blob/master/docs/Admin-Dashboard.png?raw=true)
-!["Word Edit"] (https://github.com/floydianslips/ladle/blob/master/docs/Word-Edit.png?raw=true)
-!["User Edit"] (https://github.com/floydianslips/ladle/blob/master/docs/User-Edit.png?raw=true)
-!["Fuzzy Search"] (https://github.com/floydianslips/ladle/blob/master/docs/Fuzzy-Search.png?raw=true)
+!["Card Front"](https://github.com/floydianslips/ladle/blob/master/docs/Front-of-Flashcard.png?raw=true)
+!["Admin Dashboard"](https://github.com/floydianslips/ladle/blob/master/docs/Admin-Dashboard.png?raw=true)
+!["Word Edit"](https://github.com/floydianslips/ladle/blob/master/docs/Word-Edit.png?raw=true)
+!["User Edit"](https://github.com/floydianslips/ladle/blob/master/docs/User-Edit.png?raw=true)
+!["Fuzzy Search"](https://github.com/floydianslips/ladle/blob/master/docs/Fuzzy-Search.png?raw=true)
 
 ## Dependencies
 

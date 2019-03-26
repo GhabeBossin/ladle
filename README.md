@@ -10,10 +10,10 @@
 ## Examples
 
 !["Card-Front"] (https://github.com/floydianslips/ladle/blob/master/docs/Front-of-Flashcard.png)
-![Admin-Dashboard] (docs/Admin-Dashboard.png)
+<!-- ![Admin-Dashboard] (docs/Admin-Dashboard.png)
 ![Word-Edit] (docs/Word-Edit.png)
 ![User-Edit] (docs/User-Edit.png)
-![Fuzzy-Search] (docs/Fuzzy-Search.png)
+![Fuzzy-Search] (docs/Fuzzy-Search.png) -->
 
 ## Dependencies
 

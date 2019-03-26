@@ -6,3 +6,10 @@ yarn.lock
 .env
 .DS_store
 package-lock.json
+knexfile.js
+.travis.yml
+.babelrc
+.eslintrc.json
+.gitignore
+nodemon.json
+webpack.config.js

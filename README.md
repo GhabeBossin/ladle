@@ -18,3 +18,8 @@
 * React-Router-Dom
 * Styled Components
 
+![alt text] https://github.com/floydianslips/ladle/blob/master/docs/Front%20of%20Flashcard.png?raw=true
+![alt text] https://github.com/floydianslips/ladle/blob/master/docs/Admin%20Dashboard.png?raw=true
+![alt text] https://github.com/floydianslips/ladle/blob/master/docs/Word%20Edit.png?raw=true
+![alt text] https://github.com/floydianslips/ladle/blob/master/docs/User%20Edit.png?raw=true
+![alt text] https://github.com/floydianslips/ladle/blob/master/docs/Fuzzy%20Search.png?raw=true
